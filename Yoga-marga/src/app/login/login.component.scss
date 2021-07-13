@@ -1,0 +1,43 @@
+.img-sing-in{
+    background: none;
+   max-width: 200px;
+   width: 200px;
+   height: 200px;
+   margin: auto;
+   margin-bottom: 22px;
+}
+
+.component{
+    max-width: 500px;
+    margin:0 auto;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+input{
+    border: 2px solid #009688 !important;
+
+    border-radius: 2px;
+    margin-bottom: 10px;
+    padding: 14px 12px;
+    padding-right: 10px !important;
+   
+    margin: 14px 8px;
+}
+
+// input::placeholder{
+//    // margin: 14px 8px;
+//    // padding: 10px;
+// }
+
+.button{
+    margin: 14px 8px;
+    padding: 10px;
+    background: rgb(255, 255, 255);
+    border: 2px solid #009688 ;
+    color: #009688;
+}
+
+button[disabled]{
+    border: 2px solid #c4c4c4 ;
+}

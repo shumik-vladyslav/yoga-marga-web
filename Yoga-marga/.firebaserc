@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "yoga-marga": {
+      "hosting": {
+        "Yoga-marga": [
+          "yoga-marga"
+        ]
+      }
+    }
+  }
+}
