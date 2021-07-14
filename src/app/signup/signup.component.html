@@ -1,0 +1,26 @@
+<form action="" class="form" #form="ngForm" >
+    <div class="component">
+        <img  class="img-sing-in" src="/assets/logo/logo.jpg" alt="img-sing-in"  > 
+        <input type="text" class="input" placeholder="Духовное Имя" #spiritualName="ngModel" ngModel name="spiritualName" >
+        <input type="text" class="input" placeholder="ФИО" #Name="ngModel" ngModel name="Name" required>
+        <input type="text" class="input" placeholder="Email"  #email="ngModel" ngModel name="email" required email>
+        <select name="Status" id=""  #Status [ngModel]="Status" class="select" required placeholder="Статус" >
+            <option value="Грихастха">Грихастха</option>
+			<option value="Заочный символ веры">Заочный символ веры</option>
+			<option value="Карма-санньяси">Карма-санньяси</option>
+            <option value="Очный символ веры">Очный символ веры</option>
+            <option value="Неофит">Неофит</option>
+            <option value="Пурна-санньяси">Пурна-санньяси</option>
+            <option value="Символ веры">Символ веры</option>
+            <option value="Разработчик">Разработчик</option>
+            <option value="Status" disabled hidden> Статус</option>
+            
+            
+        </select>
+        <input type="password" class="input" placeholder="Пароль" ngModel name="password" required #password="ngModel" minlength="6">
+        <input type="password" class="input" placeholder="Подтвердите пароль" #passwordrepeat="ngModel" ngModel name="passwordrepeat" required pattern="{{password.value}}">
+        <button class="button" type="submit" [disabled]="!form.valid" (click)="SignUp(email.value, password.value, spiritualName.valid, Name.value, Status.value)">Зарегестрироваться</button>
+        <p>{{ErrorMsg}}</p>
+        <p class="text">Есть аккаунт? <a routerLink="/login">Войти</a></p>
+    </div>
+</form>
