@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>Ошибка </h1>
+<div class="component">
+  <p class="text">{{data.Errore}}</p>
+ <p class="text">{{data.ErrMsg}}</p>
+</div>
+<div mat-dialog-actions class="container">
+  <button class="button" (click)="Close()" [mat-dialog-close]="data.animal">Закрыть</button>
+</div>

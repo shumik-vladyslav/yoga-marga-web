@@ -1,14 +1,14 @@
 
-<form action="" class="form" class="form"  #form="ngForm">
+<form action="" class="form" class="form"  [formGroup]="myForm" #form="ngForm">
     <div class="component">
  
     <img  class="img-sing-in" src="/assets/logo/logo.jpg" alt="img-sing-in"  > 
-    <input type="email" placeholder="email" #email="ngModel" ngModel name="login" required email>
-    <p *ngIf="email.invalid && email.touched"> Некорректный email! <br> Пожалуйста проверьте правильность Вашего Email.</p>
-    <input type="password" name="" id="" placeholder="пароль" ngModel name="password" required #password="ngModel">
-    <p *ngIf="password.invalid && password.touched"> Некорректный  пароль!</p>
-    <p>{{errorMsg}}</p>
-    <button type="submit" class="button button-submit" [disabled]="!form.valid" (click)="onSignin(email.value,password.value)">Войти</button>
+    <input type="email" placeholder="email" formControlName="Email" name="login"  [ngClass]="{'error-validation': (myForm.controls.Email.invalid) && (customeValidation === false)}">
+   
+    <input type="password" placeholder="Пароль" name="" id="" formControlName="Password" name="password"[ngClass]="{'error-validation': (myForm.controls.Password.invalid) &&   (customeValidation === false)}" >
+    
+   
+    <button type="submit" class="button button-submit"  (click)="onSignin()">Войти</button>
     <p class="text">Еще нет аккаунта? <a routerLink="/signup">Зарегистрируйтесь</a></p>
  
   </div>

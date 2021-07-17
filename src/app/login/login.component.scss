@@ -2,3 +2,16 @@
     text-align: center;
     margin-top: 20px;
 }
+
+.error-validation{
+    border: 2px solid red ;
+}
+
+.button-submit{
+transition: 1s ;}
+
+.button-submit:hover{
+    background-color: #009688 ;
+    color: #fff;
+    transition: 1s ;
+}

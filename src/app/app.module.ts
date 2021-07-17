@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common'; 
+
+import {  ReactiveFormsModule, FormsModule} from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
@@ -9,6 +11,11 @@ import { LoginComponent } from './login/login.component';
 import { AngularFireModule } from '@angular/fire';
 import { HomePageComponent } from './home-page/home-page.component';
 import { SignupComponent } from './signup/signup.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatDialogModule} from '@angular/material/dialog';
+import { ErrorDialogComponent } from './error-dialog/error-dialog.component';
+
+
 export const config = {
   firebase: {
       apiKey: "AIzaSyB_GbsCOx3bVOQ8ewbi0wmET7rV5yh-nq0",
@@ -24,10 +31,17 @@ export const config = {
     AppComponent,
     LoginComponent,
     HomePageComponent,
-    SignupComponent
+    SignupComponent,
+   // ,MatDialogModule
+    ErrorDialogComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
+    CommonModule,
+    MatDialogModule,
+   
     AppRoutingModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
@@ -35,10 +49,16 @@ export const config = {
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
     }),
-    FormsModule,
-    AngularFireModule.initializeApp(config.firebase)
+   
+    AngularFireModule.initializeApp(config.firebase),
+   
+    BrowserAnimationsModule
     
   ],
+  entryComponents: [
+   ErrorDialogComponent
+  ],
+
   providers: [],
   bootstrap: [AppComponent]
 })
