@@ -14,6 +14,10 @@ import { SignupComponent } from './signup/signup.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatDialogModule} from '@angular/material/dialog';
 import { ErrorDialogComponent } from './error-dialog/error-dialog.component';
+import { PracticsSearchComponent } from './practics-search/practics-search.component';
+import { MyComplexComponent } from './my-complex/my-complex.component';
+import { PracticePerfomanceComponent } from './practice-perfomance/practice-perfomance.component';
+import { BmPageComponent } from './bm-page/bm-page.component';
 
 
 export const config = {
@@ -33,7 +37,11 @@ export const config = {
     HomePageComponent,
     SignupComponent,
    // ,MatDialogModule
-    ErrorDialogComponent
+    ErrorDialogComponent,
+   PracticsSearchComponent,
+   MyComplexComponent,
+   PracticePerfomanceComponent,
+   BmPageComponent
   ],
   imports: [
     BrowserModule,

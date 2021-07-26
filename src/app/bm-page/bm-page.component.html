@@ -1,0 +1,25 @@
+<div class="component" >
+    <div class="practice-img">
+        <!-- <img img-cache img-cache-src="{{ practice.img }}" *ngIf="practice.img" style="padding-top: 10px;" /> -->
+         
+        <div class="image" [ngStyle]="{'background-image': 'url('+practice.img+')'}">
+            
+        </div>
+        <div class="time">
+
+        </div>
+    
+    </div>
+    <div class="items"   (click)="onSelectTrack(i)" *ngFor="let t of practice.bmtracks; let i=index">
+        <div class="inner">
+            {{i+1}}. {{t.name}}
+            <audio src="{{t.url}}" controls> </audio>
+        </div>
+    </div>
+</div>
+<div class="footer">
+    <div class="inne">1</div>
+    <div class="inne">2</div>
+    <div class="inne">3</div>
+    <div class="inne" [routerLink]="['/practices-search']">Назад</div>
+</div>

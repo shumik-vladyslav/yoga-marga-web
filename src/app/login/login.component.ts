@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
    }
    else{
      await this.afAuth.signInWithEmailAndPassword(this.myForm.value.Email, this.myForm.value.Password,).then((res)=>{
-    this.router.navigate(['home'])
+    this.router.navigate(['practices-search'])
   })
   .catch(error =>{
     this.errorMsg = error.message;
@@ -55,41 +55,6 @@ export class LoginComponent implements OnInit {
    }
   
  }
-
-//  Рабочая функция авторизации
-//  async onSignin(){
-//   await this.afAuth.signInWithEmailAndPassword(this.myForm.value.Email, this.myForm.value.Password,).then((res)=>{
-//     this.router.navigate(['home'])
-//   })
-//   .catch(error =>{
-//     this.errorMsg = error.message;
-//     this.openDialog();
-
-//     })
-//  }
-
-
-
-
-//  Хорошая функция авторизации, с рабочими еррор логами, но не рабочая; не заходит на страницу.
-//  async signIn() {
-//   if(this.myForm.invalid){
-//     this.customeValidation = false;
-//     return this.openDialog();;
-//   }
-//   try {
-//     const user = await this.afAuth.signInWithEmailAndPassword(this.myForm.value.Email, this.myForm.value.Password,).then(res=>{
-//       this.router.navigate[('home')];
-//       console.log(res)
-//     });
-    
-//     console.log('user', user);
-  
-//   } catch (err) {
-//     console.log(err);
-//     this.openDialogErr();
-//   }
-// }
 
 
 

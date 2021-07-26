@@ -1,0 +1,93 @@
+# Query: UserProvider
+# ContextLines: 1
+
+Результаты: 34 - 1 файл
+
+
+Yoga-marga\src\app\angular-fire.service.ts:
+   32        if (!docSnapshot.exists) return;
+   33:       AngularFireService.id = docSnapshot.id;
+   34:       AngularFireService.user = docSnapshot.data();
+   35:       if (!AngularFireService.user.practices) {
+   36:         AngularFireService.user.practices = {};
+   37        }
+
+   50        }
+   51:       AngularFireService.globalPractices = result;
+   52      });
+
+   67          if (!docSnapshot.exists) return;
+   68:         AngularFireService.id = docSnapshot.id;
+   69:         AngularFireService.user = docSnapshot.data();
+   70:         if (!AngularFireService.user.practices) {
+   71:           AngularFireService.user.practices = {};
+   72          }
+   73:         if (AngularFireService.stepFlag) {
+   74:           resolve(AngularFireService.user);
+   75          } else {
+   76:           AngularFireService.stepFlag = true;
+   77          }
+
+   83          s2.unsubscribe();
+   84:         if (AngularFireService.stepFlag) {
+   85:           resolve(AngularFireService.user);
+   86          } else {
+   87:           AngularFireService.stepFlag = true;
+   88          }
+
+   95          }
+   96:         AngularFireService.globalPractices = result;
+   97        });
+
+  114      const res = {};
+  115:     const ps = AngularFireService.globalPractices;
+  116  
+
+  124      }
+  125:     // return UserProvider.globalPractices.filter(p => this.arraysHasIntersection(p.groups, this.user.groups));
+  126      return res;
+
+  128  
+  129:   static getUser = () => AngularFireService.user;
+  130  
+
+  135    static updateUserPracticeSettings(practiceId, settings) {
+  136:     AngularFireService.user.practices[practiceId] = settings;
+  137:     return AngularFireService.updateUser(AngularFireService.user);
+  138    }
+
+  154    static getComplexes() {
+  155:     // const pr = UserProvider.globalPractices;
+  156:     // const cm = UserProvider.user.complexes;
+  157      
+
+  164      // return cm;
+  165:     return AngularFireService.user.complexes;
+  166    }
+
+  170      const gps = this.getGlobalPractices();
+  171:     const goals = AngularFireService.user.goals;
+  172:     const practices = AngularFireService.user.practices;
+  173      if(!goals || !practices) return [];
+
+  187          result.push({
+  188:           name: AngularFireService.globalPractices[key]
+  189:             ? AngularFireService.globalPractices[key].name
+  190              : "",
+
+  200    static getUserPractices(){
+  201:     return AngularFireService.user.practices;
+  202    }
+
+  205      const result = [];
+  206:     const practices = AngularFireService.user.practices;
+  207      console.log("practices", practices);
+
+  215            id: id,
+  216:           name: AngularFireService.globalPractices[id]
+  217:             ? AngularFireService.globalPractices[id].name
+  218              : "",
+
+  221              : practice.timespan,
+  222:           goal: AngularFireService.user.goals[id]
+  223          });
