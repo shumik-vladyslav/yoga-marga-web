@@ -1,25 +1,34 @@
-<div class="component" >
+<div class="component">
     <div class="practice-img">
         <!-- <img img-cache img-cache-src="{{ practice.img }}" *ngIf="practice.img" style="padding-top: 10px;" /> -->
-         
-        <div class="image" [ngStyle]="{'background-image': 'url('+practice.img+')'}">
-            
+
+        <div class="image" [ngStyle]="{'background-image': 'url('+practice?.img+')'}">
+
         </div>
         <div class="time">
 
         </div>
-    
+
     </div>
-    <div class="items"   (click)="onSelectTrack(i)" *ngFor="let t of practice.bmtracks; let i=index">
+    <div class="items" *ngFor="let t of practice?.bmtracks; let i=index" #track>
         <div class="inner">
             {{i+1}}. {{t.name}}
-            <audio src="{{t.url}}" controls> </audio>
+            <audio src="{{t.url}}" class="audio " id='{{i}}' controls (play)="onPlay(i, $event)"> </audio>
         </div>
     </div>
 </div>
 <div class="footer">
-    <div class="inne">1</div>
-    <div class="inne">2</div>
-    <div class="inne">3</div>
+    <div class="inne" (click)="before()">
+        <div class="icon-img img_forward"></div>
+    </div>
+    <div class="inne" (click)="Play()">
+        <div class="icon-img img_play"></div>
+    </div>
+    <div class="inne" (click)="onPause()">
+        <div class="icon-img img_pause"></div>
+    </div>
+    <div class="inne" (click)="next()">
+        <div class="icon-img img_next"></div>
+    </div>
     <div class="inne" [routerLink]="['/practices-search']">Назад</div>
 </div>

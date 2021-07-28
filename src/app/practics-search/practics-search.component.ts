@@ -46,48 +46,49 @@ export class PracticsSearchComponent implements OnInit {
   
   ngOnInit(): void {
      
-    this.practices = this.AFS.collection(`practices`).valueChanges()
-    console.log(this.practices)
+    // this.practices = this.AFS.collection(`practices`).valueChanges()
+    // console.log(this.practices)
 
-    this.practices.subscribe(item=>{ this.item$ = item})
-    console.log(this.item$)
-    // this.AFservice.GetPractices().subscribe(item =>{
-    //   console.log(item)
-    //   this.practices = item
-    // })
+    // this.practices.subscribe(item=>{ this.item$ = item})
+    // console.log(this.item$)
+    this.AFservice.GetPractices().subscribe(item =>{
+      console.log(item)
+      this.practices = item;
+      this.filteredPractices = this.practices;
+    })
 
-   setTimeout(() => {
-     this.filteredPractices = this.practices;
-     console.log(this.filteredPractices)
-   }, 1000); 
+  //  setTimeout(() => {
+  //    this.filteredPractices = this.practices;
+  //    console.log(this.filteredPractices)
+  //  }, 1000); 
   }
 
 
   
 
-  // onSearchChange(value) {
-    
-  //   console.log(value);
-  //   if (!value) {
-  //     return this.filteredPractices = this.practices;
-  //   }
-  //   this.filteredPractices = this.item$.filter(
-  //    (p)  => p.name.toLowerCase().indexOf(value.toLowerCase()) !== -1
-  //   );
-  // }
-
   onSearchChange(value) {
+    
+    console.log(value);
+    if (!value) {
+      return this.filteredPractices = this.practices;
+    }
+    this.filteredPractices = this.practices.filter(
+     (p)  => p.name.toLowerCase().indexOf(value.toLowerCase()) !== -1
+    );
+  }
+
+  // onSearchChange(value) {
 
     
-    let self = this;
-    self.results = self.AFS.collection(`practices`, ref => ref
-      .orderBy("practices")
-      .startAt(value.toLowerCase())
-      .endAt(value.toLowerCase()+"\uf8ff")
-      .limit(10))
-      .valueChanges();
-      console.log(self.results)
-  }
+  //   let self = this;
+  //   self.results = self.AFS.collection(`practices`, ref => ref
+  //     .orderBy("practices")
+  //     .startAt(value.toLowerCase())
+  //     .endAt(value.toLowerCase()+"\uf8ff")
+  //     .limit(10))
+  //     .valueChanges();
+  //     console.log(self.results)
+  // }
 
   openPractice(p){
     this.AFservice.ChoosedPractic = p;

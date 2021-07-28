@@ -10,7 +10,7 @@
     
    <div class="container"   >
        <div class="block__row">
-        <div class="block__element " *ngFor="let p of filteredPractices | async" (click)="openPractice(p)">
+        <div class="block__element " *ngFor="let p of filteredPractices " (click)="openPractice(p)">
             <div class="inner">
                 <div class="image">
                     <img src="{{p?.ico}}" alt="icon" class="img-icon">

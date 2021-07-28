@@ -1,10 +1,12 @@
 .conmponent{
     max-width: 800px;
-    margin: 0px auto;
+    margin: 0px auto ;
     position: relative;
     border: 2px solid #009688;
     border-radius: 10px;
+    
 }
+.component{padding-bottom: 50px !important; }
 .image{
     display: flex;
     align-items: center;
@@ -36,7 +38,7 @@
     display: flex;
     height: 50px;
    width: 100%;
-   background-color: white;
+   //background-color: white;
    z-index: 2;
    margin-left: 0;
 }
@@ -50,8 +52,32 @@
     border-radius: 10px;
 }
 .inne{
-    flex: 1 1 25%;
+     flex: 1 1 25%;
     margin: 10px;
-    background-image: url();
+   
     
+}
+.audio{
+    width: 100%;
+}
+
+.icon-img{
+    width: 32px;
+    height: 32px;
+    z-index: 7;
+    
+}
+.img_forward{
+    background-image: url(../../assets/icons/icons/backward.svg);
+}
+.img_play{
+    background-image: url(../../assets/icons/icons/play-back.svg);
+}
+.img_pause{
+    background-image: url(../../assets/icons/icons/pause.png);
+    width: 48px;
+    height: 48px;
+}
+.img_next{
+    background-image: url(../../assets/icons/icons/forward.svg);
 }
