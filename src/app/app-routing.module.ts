@@ -14,7 +14,7 @@ const routes: Routes = [
   { path: 'signup', component: SignupComponent },
   {path: 'practices-search', component: PracticsSearchComponent},
   {path: 'practic', component: PracticePerfomanceComponent},
-  {path: 'bm', component: BmPageComponent},
+  {path: 'bm/:id', component: BmPageComponent},
   
   
 ];

@@ -1,9 +1,10 @@
-.conmponent{
-    max-width: 800px;
+.component{
+    max-width: 1200px;
     margin: 0px auto ;
-    position: relative;
-    border: 2px solid #009688;
-    border-radius: 10px;
+    
+    //position: relative;
+   // border: 2px solid #009688;
+    //border-radius: 10px;
     
 }
 .component{padding-bottom: 50px !important; }
@@ -14,10 +15,11 @@
     max-height :800px;
 
     width: 100%;
-    height: calc(75vh - 142.8px);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+    
+    height: calc(75vh + 100px) ;
+     background-position: center !important;
+    // background-repeat: no-repeat;
+    // background-size: cover;
 }
 .img{
     max-width: 600px;
@@ -36,20 +38,21 @@
     bottom:0;
     border-top : 1px solid rgb(27, 27, 27);
     display: flex;
-    height: 50px;
-   width: 100%;
-   //background-color: white;
+    height: 60px;
+   width: 60%;
+   background-color: rgb(207, 207, 207);
    z-index: 2;
-   margin-left: 0;
+   margin: 0 20% ;
 }
 
 .inner{
    display: flex;
    flex-direction: column;
-   background: #009688;
+  // background: #009688;
    margin: 10px 0;
    padding: 10px;
-    border-radius: 10px;
+   cursor: pointer;
+    border-bottom: 1px solid gray;
 }
 .inne{
      flex: 1 1 25%;
@@ -59,25 +62,68 @@
 }
 .audio{
     width: 100%;
+    display: none;
+   
 }
+ .active{
+        display: block;
+        transition: 500ms;
+        
+    }
 
 .icon-img{
     width: 32px;
     height: 32px;
     z-index: 7;
+    cursor:pointer;
     
 }
 .img_forward{
-    background-image: url(../../assets/icons/icons/backward.svg);
+    background: url(../../assets/icons/icons/backward.svg) 0 0/cover  no-repeat;
 }
 .img_play{
-    background-image: url(../../assets/icons/icons/play-back.svg);
+    background: url(../../assets/icons/icons/play-back.svg) 0 0/cover  no-repeat;
 }
 .img_pause{
-    background-image: url(../../assets/icons/icons/pause.png);
+    background: url(../../assets/icons/icons/pause.png) 0 0/contain  no-repeat;
     width: 48px;
     height: 48px;
 }
 .img_next{
-    background-image: url(../../assets/icons/icons/forward.svg);
+    background: url(../../assets/icons/icons/forward.svg) 0 0/cover  no-repeat;
+}
+@media(max-width: 1200px){
+
+    .component{
+        max-width: 800px;
+     
+    }
+    .image{
+        height: calc(75vh - 142.8px); 
+    }
+}
+
+@media(max-width: 800px){
+    .image{
+        height: calc(75vh - 142.8px); 
+    }
+    .conmponent{
+        max-width: 800px;
+        margin: 0px auto ;
+        position: relative;
+        border: 2px solid #009688;
+        border-radius: 10px;
+        
+    }
+    .footer{
+        position: fixed;
+        bottom:0;
+        border-top : 1px solid rgb(27, 27, 27);
+        display: flex;
+        height: 50px;
+       width: 100%;
+       background-color: white;
+       z-index: 2;
+       margin-left: 0;
+    }
 }

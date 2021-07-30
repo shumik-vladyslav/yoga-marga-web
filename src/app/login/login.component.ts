@@ -18,10 +18,10 @@ export class LoginComponent implements OnInit {
     private router: Router,
     public dialog: MatDialog,
     private formBuilder: FormBuilder,
-    
+
   ) { }
 
-  @ViewChild('form') form: NgForm 
+  @ViewChild('form') form: NgForm
 
   errorMsg: string;
 
@@ -31,60 +31,60 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.myForm = new FormGroup({
-              
+
       Email: new FormControl("", [Validators.required, Validators.email]),
       Password: new FormControl("", [Validators.required, Validators.pattern(".{8,}")])
-    
+
     });
   }
-  
- async onSignin(){
-   if(this.myForm.invalid){
-    this.customeValidation = false;
-    return this.openDialog();
-   }
-   else{
-     await this.afAuth.signInWithEmailAndPassword(this.myForm.value.Email, this.myForm.value.Password,).then((res)=>{
-    this.router.navigate(['practices-search'])
-  })
-  .catch(error =>{
-    this.errorMsg = error.message;
-    this.openDialogErr();
 
-    })
-   }
-  
- }
+  async onSignin() {
+    if (this.myForm.invalid) {
+      this.customeValidation = false;
+      return this.openDialog();
+    }
+    else {
+      await this.afAuth.signInWithEmailAndPassword(this.myForm.value.Email, this.myForm.value.Password,).then((res) => {
+        this.router.navigate(['practices-search'])
+      })
+        .catch(error => {
+          this.errorMsg = error.message;
+          this.openDialogErr();
+
+        })
+    }
+
+  }
 
 
 
   openDialog(): void {
     const dialogRef = this.dialog.open(ErrorDialogComponent, {
       width: '400px',
-      data: {Errore: "Проверьте правильность полей, пароль не должен быть меньше 8 символов ", }
+      data: { Errore: "Проверьте правильность полей, пароль не должен быть меньше 8 символов ", }
 
-      
+
     });
 
 
-    
+
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-      
+
     });
   }
-  
+
   openDialogErr(): void {
     const dialogRef = this.dialog.open(ErrorDialogComponent, {
       width: '400px',
-      data: {ErrMsg: "Пароль не верный или такого пользователя не существует" }
+      data: { ErrMsg: "Пароль не верный или такого пользователя не существует" }
 
-      
+
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-      
+
     });
 
   }

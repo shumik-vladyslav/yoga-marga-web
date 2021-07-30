@@ -2,18 +2,18 @@
     <div class="practice-img">
         <!-- <img img-cache img-cache-src="{{ practice.img }}" *ngIf="practice.img" style="padding-top: 10px;" /> -->
 
-        <div class="image" [ngStyle]="{'background-image': 'url('+practice?.img+')'}">
+        <div class="image" [ngStyle]="{'background': 'url('+currentPractice?.img+') 0 0/cover  no-repeat'}">
 
         </div>
-        <div class="time">
+        <!-- <div class="time">
 
-        </div>
+        </div> -->
 
     </div>
-    <div class="items" *ngFor="let t of practice?.bmtracks; let i=index" #track>
-        <div class="inner">
+    <div class="items" *ngFor="let t of currentPractice?.bmtracks; let i=index" #track>
+        <div class="inner" (click)="onClick(i)">
             {{i+1}}. {{t.name}}
-            <audio src="{{t.url}}" class="audio " id='{{i}}' controls (play)="onPlay(i, $event)"> </audio>
+            <audio src="{{t.url}}" class="audio " id='{{i}}' controls (play)="onPlay(i, $event)" (pause)="onPlay(i, $event)"> </audio>
         </div>
     </div>
 </div>
@@ -21,11 +21,15 @@
     <div class="inne" (click)="before()">
         <div class="icon-img img_forward"></div>
     </div>
-    <div class="inne" (click)="Play()">
+    <!-- <div class="inne" (click)="Play()">
         <div class="icon-img img_play"></div>
     </div>
     <div class="inne" (click)="onPause()">
         <div class="icon-img img_pause"></div>
+    </div> -->
+    <div class="inne">
+        <img src="../../assets/icons/icons/play-back.svg" alt="" class="icon-img" *ngIf="isPlay" (click)="Play() ">
+        <img src="../../assets/icons/icons/pause.png" alt="" class="icon-img" *ngIf="!isPlay" (click)="onPause()"> 
     </div>
     <div class="inne" (click)="next()">
         <div class="icon-img img_next"></div>

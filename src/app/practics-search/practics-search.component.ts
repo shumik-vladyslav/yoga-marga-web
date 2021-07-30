@@ -94,7 +94,7 @@ export class PracticsSearchComponent implements OnInit {
     this.AFservice.ChoosedPractic = p;
     console.log(this.AFservice.ChoosedPractic);
     if(p.isBm){
-      this.router.navigate(['bm'])
+      this.router.navigate(['bm', p.id])
     }
     else{
       this.router.navigate(['practic']);

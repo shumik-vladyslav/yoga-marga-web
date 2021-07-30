@@ -2,14 +2,17 @@ import { Component, OnDestroy, OnInit, ViewChild, AfterViewInit } from '@angular
 import { AngularFireService } from '../angular-fire.service';
 import { NgForm } from '@angular/forms';
 import { Subject } from 'rxjs';
+import { Router, ActivatedRoute } from '@angular/router';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { async } from '@angular/core/testing';
 
 @Component({
   selector: 'app-bm-page',
   templateUrl: './bm-page.component.html',
   styleUrls: ['./bm-page.component.scss']
 })
-export class BmPageComponent implements OnInit, AfterViewInit, OnDestroy{
-  practice ;
+export class BmPageComponent implements OnInit, AfterViewInit, OnDestroy {
+  currentPractice;
 
   audio
 
@@ -17,62 +20,128 @@ export class BmPageComponent implements OnInit, AfterViewInit, OnDestroy{
 
   played
 
-  constructor(private AFService: AngularFireService,
-    ) {
-      this.practice = this.AFService.ChoosedPractic;
+  isPlay: boolean = true;
+
+  bmId;
+
+  allPractics;
+
+  constructor(
+    private AFService: AngularFireService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private AFS: AngularFirestore,
+  ) {
+
+    this.currentPractice = this.AFService.ChoosedPractic;
+
+    this.bmId = this.route.snapshot.params['id'];
+
+    this.AFService.GetPractices().subscribe(item => {
       
-     }
+     return this.allPractics = item
+      
+      console.log(item);
+    })
+
+
+  }
 
   ngOnInit(): void {
+
+
+    //  this.AFService.GetPractices().subscribe(item=>{
+    //   console.log(item)
+    //    this.practics = item;
+    //  })
+    setTimeout(() => {
+     for (let index = 0; index < this.allPractics.length; index++) {
+      if (this.allPractics[index].id == this.bmId) {
+        console.log(this.allPractics[index])
+        this.currentPractice = this.allPractics[index]
+      }
+
+    }
+    }, 1000);
+
+ console.log(this.allPractics)
+
   }
 
   ngOnDestroy() {
-    
+
   }
 
   ngAfterViewInit() {
-  
+    
   }
 
 
-  
-  onPlay(index, event){
-    console.log('Playing!',event, index);
+
+  onPlay(index, event) {
 
     this.playedIdx = index;
-    
-    let audio = document.getElementsByTagName('audio') [index];
-    audio.classList.add("active")
-   console.log(audio)
 
-   audio.addEventListener('ended', (event)=>{
-     console.log("конец")
-     document.getElementsByTagName('audio')[index+1].play()
-   })
+    let audio = document.getElementsByTagName('audio')[index];
 
-   
-  }
+    audio.classList.add("active");
 
-  onPause(){
-    if(document.getElementsByTagName('audio') [this.playedIdx].played){
-      document.getElementsByTagName('audio') [this.playedIdx].pause()
+    audio.addEventListener('ended', (event) => {
+      console.log("конец")
+      document.getElementsByTagName('audio')[index + 1].play()
+    })
+
+    if (document.getElementsByTagName('audio')[index].played) {
+      this.isPlay = false;
     }
+    if (document.getElementsByTagName('audio')[index].paused) {
+      this.isPlay = true;
+    }
+
+
+  }
+  onClick(index) {
+    document.getElementsByTagName('audio')[index].play()
+    document.getElementsByTagName('audio')[index].classList.toggle("active")
   }
 
-  Play(){
-    document.getElementsByTagName('audio') [this.playedIdx].play();
+  onPause() {
+    document.getElementsByTagName('audio')[this.playedIdx].pause()
+
+    console.log(this.isPlay);
+
+    this.isPlay = true;
+
   }
 
-  next(){
-    document.getElementsByTagName('audio') [this.playedIdx].pause();
-    document.getElementsByTagName('audio') [this.playedIdx+1].play();
+  Play() {
+    if (this.playedIdx == undefined || null) {
+
+      this.playedIdx == 0
+
+      document.getElementsByTagName('audio')[0].play();
+    }
+
+    else {
+      document.getElementsByTagName('audio')[this.playedIdx].play();
+    }
+
+    console.log(this.isPlay)
+
+    this.isPlay = false;
+
   }
 
-  before(){
-    document.getElementsByTagName('audio') [this.playedIdx].pause();
-    document.getElementsByTagName('audio') [this.playedIdx-1].play();
+  next() {
+    document.getElementsByTagName('audio')[this.playedIdx].pause();
+    document.getElementsByTagName('audio')[this.playedIdx + 1].play();
   }
-  
+
+  before() {
+    document.getElementsByTagName('audio')[this.playedIdx].pause();
+    document.getElementsByTagName('audio')[this.playedIdx - 1].play();
+  }
+
   // async onSelectTrack(i): Promise<void> {
   //   this.onPause();
   //   this.playedIdx = i;
