@@ -38,10 +38,12 @@ export class BmPageComponent implements OnInit, AfterViewInit, OnDestroy {
     this.bmId = this.route.snapshot.params['id'];
 
     this.AFService.GetPractices().subscribe(item => {
-      
-     return this.allPractics = item
-      
+
+      this.allPractics = item
+
       console.log(item);
+      console.log(this.allPractics);
+
     })
 
 
@@ -54,17 +56,21 @@ export class BmPageComponent implements OnInit, AfterViewInit, OnDestroy {
     //   console.log(item)
     //    this.practics = item;
     //  })
-    setTimeout(() => {
-     for (let index = 0; index < this.allPractics.length; index++) {
-      if (this.allPractics[index].id == this.bmId) {
-        console.log(this.allPractics[index])
-        this.currentPractice = this.allPractics[index]
-      }
+    let load = setInterval(() => {
+      this.allPractics.forEach(element => {
+        if (element.id == this.bmId) {
+          console.log(element)
+          this.currentPractice = element;
 
-    }
-    }, 1000);
+        }
+        clearInterval(load)
+      });
+    }, 500);
 
- console.log(this.allPractics)
+
+    console.log(this.allPractics)
+
+
 
   }
 
@@ -73,7 +79,14 @@ export class BmPageComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit() {
-    
+
+    // for (let index = 0; index < this.allPractics.length; index++) {
+    //   if (this.allPractics[index].id == this.bmId) {
+    //     console.log(this.allPractics[index])
+    //     this.currentPractice = this.allPractics[index]
+    //   }
+
+    // }
   }
 
 
