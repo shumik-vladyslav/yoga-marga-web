@@ -21,12 +21,7 @@
     <div class="inne" (click)="before()">
         <div class="icon-img img_forward"></div>
     </div>
-    <!-- <div class="inne" (click)="Play()">
-        <div class="icon-img img_play"></div>
-    </div>
-    <div class="inne" (click)="onPause()">
-        <div class="icon-img img_pause"></div>
-    </div> -->
+   
     <div class="inne">
         <img src="../../assets/icons/icons/play-back.svg" alt="" class="icon-img" *ngIf="isPlay" (click)="Play() ">
         <img src="../../assets/icons/icons/pause.png" alt="" class="icon-img" *ngIf="!isPlay" (click)="onPause()"> 

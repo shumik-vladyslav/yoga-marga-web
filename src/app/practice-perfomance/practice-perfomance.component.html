@@ -1,4 +1,3 @@
-
 <div class="conmponent">
     <div class="image" [ngStyle]="{'background-image': 'url('+show.img+')'}">
         <!-- <img class="img" src="{{show.img}}" alt=""> -->
@@ -8,16 +7,24 @@
     </div>
     <div class="text">
         <h1 class="title">{{show.title}}</h1>
-        <p>{{show.description}}</p> 
+        <p>{{time}}</p>
+        <p>{{show.description}}</p>
     </div>
-   
+    <div class="audio" *ngIf="currentExerciseId != null || undefined">
+        <p>работает аудио</p>
+        <audio src="{{show.audio}}" autoplay ></audio>
+    </div>
 
-  
+
+
 </div>
 
- <div class="footer">
-        <div class="inner">1</div>
-        <div class="inner">2</div>
-        <div class="inner">3</div>
-        <div class="inner" [routerLink]="['/practices-search']">Назад</div>
-    </div>
+<div class="footer">
+    <div class="inner" (click)="openText()">скачать</div>
+    <div class="inner">1</div>
+    <div class="inner" (click)="startExercise()">начало</div>
+    <div class="inner" *ngIf="  nowPlaying == false  && currentExerciseId != undefined || null" (click)="pauseExercise()" >Пауза</div>
+    <div class="inner" *ngIf="nowPlaying  " (click)="playExercise()" >воспроизвести</div>
+    <div class="inner" (click)="nextExercise()" *ngIf="currentExerciseId != undefined || null">следующее</div>
+    <div class="inner" [routerLink]="['/practices-search']">Назад</div>
+</div>

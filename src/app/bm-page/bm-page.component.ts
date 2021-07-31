@@ -52,10 +52,7 @@ export class BmPageComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnInit(): void {
 
 
-    //  this.AFService.GetPractices().subscribe(item=>{
-    //   console.log(item)
-    //    this.practics = item;
-    //  })
+    
     let load = setInterval(() => {
       this.allPractics.forEach(element => {
         if (element.id == this.bmId) {
@@ -80,13 +77,7 @@ export class BmPageComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngAfterViewInit() {
 
-    // for (let index = 0; index < this.allPractics.length; index++) {
-    //   if (this.allPractics[index].id == this.bmId) {
-    //     console.log(this.allPractics[index])
-    //     this.currentPractice = this.allPractics[index]
-    //   }
-
-    // }
+    
   }
 
 

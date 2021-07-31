@@ -97,7 +97,7 @@ export class PracticsSearchComponent implements OnInit {
       this.router.navigate(['bm', p.id])
     }
     else{
-      this.router.navigate(['practic']);
+      this.router.navigate(['practic', p.id]);
     }
     
   }
