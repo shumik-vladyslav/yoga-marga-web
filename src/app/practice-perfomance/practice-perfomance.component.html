@@ -7,11 +7,11 @@
     </div>
     <div class="text">
         <h1 class="title">{{show.title}}</h1>
-        <p>{{time}}</p>
+        <p>прошло:{{timeAll}}</p><br><p>осталось:{{timeLeft}}</p><br>
         <p>{{show.description}}</p>
     </div>
     <div class="audio" *ngIf="currentExerciseId != null || undefined">
-        <p>работает аудио</p>
+        <p >работает аудио</p>
         <audio src="{{show.audio}}" autoplay ></audio>
     </div>
 

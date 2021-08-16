@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AngularFireService } from '../angular-fire.service';
-
+import { timer } from 'rxjs';
 
 @Component({
   selector: 'app-practice-perfomance',
@@ -19,6 +19,16 @@ export class PracticePerfomanceComponent implements OnInit {
   practiceId;
 
   nowPlaying: boolean = false;
+
+  timeLeft: number = 30;
+
+  timeAll: number = 0;
+
+  subscribeTimerLeft: any;
+
+  subscribeTimerAll: any;
+
+  onPractic: boolean;
 
   show = {
     img: '',
@@ -48,7 +58,11 @@ export class PracticePerfomanceComponent implements OnInit {
 
     })
 
-    this.startTimer()
+    // this.startTimer()
+   
+
+
+
 
   }
 
@@ -75,19 +89,32 @@ export class PracticePerfomanceComponent implements OnInit {
       this.show.description = this.CurrentPractic.shortDescription;
     }, 1500);
 
+
+ 
   }
 
+
+ 
 
   startExercise() {
     this.currentExerciseId = 0;
     this.show.img = this.CurrentPractic.exercises[this.currentExerciseId].image;
     this.show.title = this.CurrentPractic.exercises[this.currentExerciseId].name;
     this.show.description = this.CurrentPractic.exercises[this.currentExerciseId].description;
-    this.show.audio = this.CurrentPractic.exercises[this.currentExerciseId].audio
+    this.show.audio = this.CurrentPractic.exercises[this.currentExerciseId].audio;
+
+     this.startTimerAll();
+
+     this.onPractic  = true;
+
+    this.startTimerLeft();
+
+     setInterval(() => { if(this.onPractic  == true){this.nextExercise()}  }, this.timeLeft*1000);
 
     if (document.getElementsByTagName('audio')[0].played) {
       this.nowPlaying = false;
     }
+
     if (document.getElementsByTagName('audio')[0].paused) {
       this.nowPlaying = true;
     }
@@ -105,10 +132,19 @@ export class PracticePerfomanceComponent implements OnInit {
   pauseExercise() {
     document.getElementsByTagName('audio')[0].pause();
     this.nowPlaying = true;
+
+    this.pauseTimer();
+    this.pauseTimerAll()
+
+    this.onPractic  = false
   }
   playExercise() {
     document.getElementsByTagName('audio')[0].play();
     this.nowPlaying = false;
+     this.startTimerAll();
+    this.startTimerLeft()
+
+    this.onPractic  = true;
   }
 
   openText() {
@@ -117,12 +153,53 @@ export class PracticePerfomanceComponent implements OnInit {
 
   time: number = 0;
   interval;
+  intervalAll;
   play
 
-  startTimer() {
-    this.play = true;
+  // startTimer() {
+  //   this.play = true;
+  //   this.interval = setInterval(() => {
+  //     this.time++;
+  //   }, 1000)
+  // }
+
+  observableTimerAll() {
+    const source = timer(1000, 2000);
+    const abc = source.subscribe(val => {
+      console.log(val, '+');
+      this.subscribeTimerAll = this.timeAll + val;
+    });
+  }
+
+ observableTimerLeft() {
+    const source = timer(1000, 2000);
+    const abc = source.subscribe(val => {
+      console.log(val, '-');
+      this.subscribeTimerLeft = this.timeLeft - val;
+    });
+  }
+
+startTimerAll(){
+  this.intervalAll = setInterval(()=>{this.timeAll++}, 1000)
+}
+
+  startTimerLeft() {
     this.interval = setInterval(() => {
-      this.time++;
+      if (this.timeLeft > 0) {
+        this.timeLeft--;
+      } else {
+        this.timeLeft = 30;
+      }
     }, 1000)
   }
+
+  pauseTimer() {
+    clearInterval(this.interval);
+  }
+
+  pauseTimerAll(){
+    clearInterval(this.intervalAll);
+  }
 }
+
+
