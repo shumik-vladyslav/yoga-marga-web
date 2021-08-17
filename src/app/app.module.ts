@@ -18,6 +18,7 @@ import { PracticsSearchComponent } from './practics-search/practics-search.compo
 import { MyComplexComponent } from './my-complex/my-complex.component';
 import { PracticePerfomanceComponent } from './practice-perfomance/practice-perfomance.component';
 import { BmPageComponent } from './bm-page/bm-page.component';
+import { TimeTransformPipe } from './time-transform.pipe';
 
 
 export const config = {
@@ -41,7 +42,8 @@ export const config = {
    PracticsSearchComponent,
    MyComplexComponent,
    PracticePerfomanceComponent,
-   BmPageComponent
+   BmPageComponent,
+   TimeTransformPipe
   ],
   imports: [
     BrowserModule,

@@ -1,9 +1,7 @@
 .conmponent{
     max-width: 800px;
     margin: 0px auto;
-  //  position: relative;
-    // border: 2px solid #009688;
-    // border-radius: 10px;
+    padding-bottom: 65px;
 }
 .image{
    // width: 100%;
@@ -81,14 +79,7 @@
     .image{
         height: calc(75vh - 142.8px); 
     }
-    // .conmponent{
-    //     max-width: 800px;
-    //     margin: 0px auto ;
-    //     position: relative;
-    //     border: 2px solid #009688;
-    //     border-radius: 10px;
-        
-    // }
+    
     .footer{
         position: fixed;
         bottom:0;
@@ -100,4 +91,5 @@
        z-index: 2;
        margin-left: 0;
     }
+
 }
