@@ -5,9 +5,7 @@
         <div class="image" [ngStyle]="{'background': 'url('+currentPractice?.img+') 0 0/cover  no-repeat'}">
 
         </div>
-        <!-- <div class="time">
 
-        </div> -->
 
     </div>
     <div class="items" *ngFor="let t of currentPractice?.bmtracks; let i=index" #track>
@@ -29,5 +27,5 @@
     <div class="inne" (click)="next()">
         <div class="icon-img img_next"></div>
     </div>
-    <div class="inne innetx" [routerLink]="['/practices-search']">Назад</div>
+    <div class="inne " ><img src="../../assets/icons/icons/file (3).png" alt="закрыть" class="icon-img" [routerLink]="['/practices-search']"></div>
 </div>

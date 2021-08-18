@@ -41,6 +41,8 @@
     bottom:0;
     border-top : 1px solid rgb(27, 27, 27);
     display: flex;
+    justify-content: space-around;
+    align-items: center;
     height: 60px;
    width: 60%;
    background-color: rgb(207, 207, 207);
@@ -49,7 +51,7 @@
 }
 
 .inner{
-    flex: 1 1 25%;
+   // flex: 1 1 25%;
     margin: 10px;
     background-image: url();
     cursor: pointer;

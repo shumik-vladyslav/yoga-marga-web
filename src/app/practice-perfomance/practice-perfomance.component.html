@@ -1,31 +1,44 @@
 <div class="conmponent">
+
     <div class="image" [ngStyle]="{'background-image': 'url('+show.img+')'}">
-        <!-- <img class="img" src="{{show.img}}" alt=""> -->
+
     </div>
+
     <div class="time">
 
     </div>
+
     <div class="text">
         <h1 class="title">{{show.title}}</h1>
-        <p>прошло:{{timeAll | timeTransform}}</p><br><p>осталось:{{timeLeft}}</p><br>
+        <p>прошло:{{timeAll | timeTransform}}</p><br>
+        <p>осталось:{{timeLeft}}</p><br>
         <p>{{show.description}}</p>
     </div>
-    <div class="audio" *ngIf="currentExerciseId != null || undefined">
-        <p >работает аудио</p>
-        <audio src="{{show.audio}}" autoplay ></audio>
-        
-    </div>
-  <audio src="{{practiceAudio}}" autoplay ></audio>
 
+    <div class="audio" *ngIf="currentExerciseId != null || undefined">
+        <audio src="{{show.audio}}" autoplay></audio>
+        <audio src="{{practiceAudio}}" autoplay></audio>
+    </div>
 
 </div>
 
 <div class="footer">
-    <div class="inner" (click)="openText()">скачать</div>
-    <div class="inner">1</div>
-    <div class="inner" (click)="startExercise()">начало</div>
-    <div class="inner" *ngIf="  nowPlaying == false  && currentExerciseId != undefined || null" (click)="pauseExercise()" >Пауза</div>
-    <div class="inner" *ngIf="nowPlaying  " (click)="playExercise()" >воспроизвести</div>
-    <div class="inner" (click)="nextExercise()" *ngIf="currentExerciseId != undefined || null">следующее</div>
-    <div class="inner" [routerLink]="['/practices-search']">Назад</div>
+
+    <img src="../../assets/icons/icons/file (1).png" alt="скачать" class="icon-img">
+
+    <img src="../../assets/icons/icons/file (2).png" alt="начало" class="icon-img" (click)="startExercise()" *ngIf="ifStarted == false">
+
+    <img src="../../assets/icons/icons/pause (2).png" alt="пауза" class="icon-img"
+        *ngIf="  nowPlaying ==  false && currentExerciseId != undefined || null" (click)="pauseExercise()">
+
+    <img src="../../assets/icons/icons/file (2).png" alt="воспроизвести" class="icon-img" *ngIf="nowPlaying ==  true"
+        (click)="playExercise()">
+
+    <img src="../../assets/icons/icons/next.png" alt="следующее" class="icon-img" (click)="nextExercise()"
+        *ngIf="currentExerciseId != undefined || null">
+
+    <img src="../../assets/icons/icons/file (3).png" alt="закрыть" class="icon-img"
+        [routerLink]="['/practices-search']">
+
+
 </div>

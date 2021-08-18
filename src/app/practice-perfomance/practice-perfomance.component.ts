@@ -32,6 +32,8 @@ export class PracticePerfomanceComponent implements OnInit {
 
   onPractic: boolean;
 
+  ifStarted: boolean = false;
+
   show = {
     img: '',
     imgMirror: false,
@@ -120,14 +122,18 @@ export class PracticePerfomanceComponent implements OnInit {
 
     this.onPractic = true;
 
+    this.ifStarted = true;
 
     if (document.getElementsByTagName('audio')[0].played) {
-      this.nowPlaying = false;
+      this.nowPlaying = true;
     }
 
     if (document.getElementsByTagName('audio')[0].paused) {
-      this.nowPlaying = true;
+      this.nowPlaying = false;
     }
+
+
+  
   }
 
   nextExercise() {
