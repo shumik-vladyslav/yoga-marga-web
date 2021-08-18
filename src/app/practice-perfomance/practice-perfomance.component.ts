@@ -58,12 +58,12 @@ export class PracticePerfomanceComponent implements OnInit {
 
       this.allPractics = item;
 
-  
+
 
     })
 
 
-  
+
 
 
 
@@ -79,7 +79,7 @@ export class PracticePerfomanceComponent implements OnInit {
     this.show.description = this.CurrentPractic?.shortDescription;
 
     //this.practiceAudio = this.CurrentPractic?.audio
-    
+
 
     let load = setInterval(() => {
       this.allPractics.forEach(element => {
@@ -106,9 +106,12 @@ export class PracticePerfomanceComponent implements OnInit {
   }
 
 
-// функции переключения асан
+  // функции переключения асан
 
   startExercise() {
+    //запускает часовой таймер
+
+    this.hourTimer()
 
     this.nextAsanaAndTime()
 
@@ -133,15 +136,42 @@ export class PracticePerfomanceComponent implements OnInit {
     }
 
 
-  
+
   }
 
   nextExercise() {
+
+
     this.currentExerciseId++;
     this.show.img = this.CurrentPractic.exercises[this.currentExerciseId].image;
     this.show.title = this.CurrentPractic.exercises[this.currentExerciseId].name;
     this.show.description = this.CurrentPractic.exercises[this.currentExerciseId].description;
     this.show.audio = this.CurrentPractic.exercises[this.currentExerciseId].audio
+
+
+  }
+
+  nextExerciseTumb() {
+    this.nextExercise()
+
+    this.pauseTimerAll()
+
+    this.intervalAll = setInterval(() => { this.timeAll++ }, 1000)
+
+    this.timeLeft = 29;
+
+    this.interval = setInterval(() => {
+
+      this.timeLeft--;
+
+      if (this.timeLeft == 0) {
+        this.nextAsanaAndTime2()
+      }
+    }, 1000)
+
+  }
+
+  method() {
 
   }
 
@@ -182,11 +212,15 @@ export class PracticePerfomanceComponent implements OnInit {
       if (this.onPractic == true) {
         this.nextExercise()
 
-        //лечение от залипания переключения на остановне паузы
-        if(this.timeLeft !== 30){
+        //лечение от залипания переключения на остановке паузы
+        if (this.timeLeft !== 30) {
           clearInterval(this.timeInterval)
           this.nextAsanaAndTime()
-          
+
+        }
+
+        if (this.timeLeft <= 0) {
+          this.timeLeft = 30
         }
       }
     }, this.timeLeft * 1000)
@@ -238,6 +272,15 @@ export class PracticePerfomanceComponent implements OnInit {
     clearInterval(this.timeInterval)
     clearInterval(this.intervalAll);
     clearInterval(this.interval);
+  }
+
+  hourInt;
+  hourTime = 3600;
+
+  hourTimer() {
+    this.hourInt = setInterval(() => {
+      this.hourTime--
+    }, 1000)
   }
 }
 

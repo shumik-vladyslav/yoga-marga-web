@@ -10,8 +10,19 @@
 
     <div class="text">
         <h1 class="title">{{show.title}}</h1>
-        <p>прошло:{{timeAll | timeTransform}}</p><br>
-        <p>осталось:{{timeLeft}}</p><br>
+
+        <div *ngIf="CurrentPractic?.id == 'Asany-1' " >
+            <p>прошло:{{timeAll | timeTransform}}</p><br>
+            <p>осталось:{{timeLeft | timeTransform}}</p><br>
+        </div>
+        <!-- лечение от проявления во всех практикакх, хотя надо только в асанах -->
+        <div *ngIf="CurrentPractic?.id == 'Asany-2' " >
+            <p>прошло:{{timeAll | timeTransform}}</p><br>
+            <p>осталось:{{timeLeft | timeTransform}}</p><br>
+        </div>
+
+        <div class="hourTimer" *ngIf="CurrentPractic?.id !== 'Asany-1'">{{hourTime | timeTransform}} </div>
+
         <p>{{show.description}}</p>
     </div>
 
@@ -24,9 +35,10 @@
 
 <div class="footer">
 
-    <img src="../../assets/icons/icons/file (1).png" alt="скачать" class="icon-img">
+    <img src="../../assets/icons/icons/file (1).png" alt="скачать" class="icon-img" (click)="openText()">
 
-    <img src="../../assets/icons/icons/file (2).png" alt="начало" class="icon-img" (click)="startExercise()" *ngIf="ifStarted == false">
+    <img src="../../assets/icons/icons/file (2).png" alt="начало" class="icon-img" (click)="startExercise()"
+        *ngIf="ifStarted == false">
 
     <img src="../../assets/icons/icons/pause (2).png" alt="пауза" class="icon-img"
         *ngIf="  nowPlaying ==  false && currentExerciseId != undefined || null" (click)="pauseExercise()">
@@ -34,7 +46,7 @@
     <img src="../../assets/icons/icons/file (2).png" alt="воспроизвести" class="icon-img" *ngIf="nowPlaying ==  true"
         (click)="playExercise()">
 
-    <img src="../../assets/icons/icons/next.png" alt="следующее" class="icon-img" (click)="nextExercise()"
+    <img src="../../assets/icons/icons/next.png" alt="следующее" class="icon-img" (click)="nextExerciseTumb()"
         *ngIf="currentExerciseId != undefined || null">
 
     <img src="../../assets/icons/icons/file (3).png" alt="закрыть" class="icon-img"
