@@ -1,33 +1,39 @@
+<app-menu></app-menu>
+<div class="content" id="content">
 
-<div class="content">
-    
     <div class="container">
         <div class="block__row">
-             <input type="text" class="input" placeholder="Поиск" [(ngModel)]="searchModel" #Search (input)="onSearchChange(Search.value)">
+            <input type="text" class="input" placeholder="Поиск" [(ngModel)]="searchModel" #Search
+                (input)="onSearchChange(Search.value)">
         </div>
-       
+
     </div>
-    
-   <div class="container"   >
-       <div class="block__row">
-        <div class="block__element " *ngFor="let p of filteredPractices " (click)="openPractice(p)">
-            <div class="inner">
-                <div class="image">
-                    <img src="{{p?.ico}}" alt="icon" class="img-icon">
-                </div>
+
+    <div class="container">
+        <div class="block__row">
+            <div class="block__element " *ngFor="let p of filteredPractices " (click)="openPractice(p)">
+                <div class="inner">
+                    <div class="image">
+                        <img src="{{p?.ico}}" alt="icon" class="img-icon">
+                    </div>
                     <div class="text">
                         <p>{{p.name}}</p>
                     </div>
-                    
+
+                </div>
             </div>
+
+
         </div>
 
 
-       </div>
-       
 
-       
+    </div>
+    <div class="footer">
+        <div class="menu-button__block" (click)="onToggleMenu()">
+            <span class="menu-button"> </span>
+        </div>
+
     </div>
 
 </div>
-

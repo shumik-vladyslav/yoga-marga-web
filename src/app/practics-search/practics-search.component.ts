@@ -101,4 +101,13 @@ export class PracticsSearchComponent implements OnInit {
     }
     
   }
+
+  onToggleMenu(){
+
+   let i = document.getElementById("menu");
+   i.classList.toggle("activeMenu")
+
+   let t  = document.getElementById("bg");
+   t.classList.toggle("wrapper__bg")
+  }
 }

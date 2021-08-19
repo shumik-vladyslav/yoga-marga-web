@@ -177,6 +177,8 @@ export class PracticePerfomanceComponent implements OnInit {
 
   pauseExercise() {
     document.getElementsByTagName('audio')[0].pause();
+    //для независимого плеера у приктик с аудио
+    document.getElementsByTagName('audio')[1].pause();
     this.nowPlaying = true;
 
     this.pauseTimerAll()
@@ -189,8 +191,11 @@ export class PracticePerfomanceComponent implements OnInit {
 
     this.nextAsanaAndTime2();
 
+    this.hourTimer()
+
     this.onPractic = true;
     document.getElementsByTagName('audio')[0].play();
+    document.getElementsByTagName('audio')[1].play();
     this.nowPlaying = false;
 
 
@@ -272,6 +277,8 @@ export class PracticePerfomanceComponent implements OnInit {
     clearInterval(this.timeInterval)
     clearInterval(this.intervalAll);
     clearInterval(this.interval);
+
+    clearInterval(this.hourInt)
   }
 
   hourInt;
@@ -281,6 +288,10 @@ export class PracticePerfomanceComponent implements OnInit {
     this.hourInt = setInterval(() => {
       this.hourTime--
     }, 1000)
+  }
+
+  pauseHourTimer(){
+    
   }
 }
 

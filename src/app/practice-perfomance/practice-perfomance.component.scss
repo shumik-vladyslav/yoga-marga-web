@@ -45,7 +45,7 @@
     align-items: center;
     height: 60px;
    width: 60%;
-   background-color: rgb(207, 207, 207);
+   background-color: rgb(207, 207, 207) !important;
    z-index: 2;
    margin: 0 20% ;
 }
@@ -89,7 +89,7 @@
         display: flex;
         height: 50px;
        width: 100%;
-       background-color: white;
+       background-color: white !important;
        z-index: 2;
        margin-left: 0;
     }

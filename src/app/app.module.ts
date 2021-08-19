@@ -19,6 +19,7 @@ import { MyComplexComponent } from './my-complex/my-complex.component';
 import { PracticePerfomanceComponent } from './practice-perfomance/practice-perfomance.component';
 import { BmPageComponent } from './bm-page/bm-page.component';
 import { TimeTransformPipe } from './time-transform.pipe';
+import { MenuComponent } from './menu/menu.component';
 
 
 export const config = {
@@ -43,7 +44,8 @@ export const config = {
    MyComplexComponent,
    PracticePerfomanceComponent,
    BmPageComponent,
-   TimeTransformPipe
+   TimeTransformPipe,
+   MenuComponent
   ],
   imports: [
     BrowserModule,
