@@ -221,10 +221,29 @@ input{
    
     margin: 14px 8px;
 }
-// input::placeholder{
-//    // margin: 14px 8px;
-//    // padding: 10px;
-// }
+
+.block__row{
+
+  display: flex;
+  margin: -5px -5px;
+ // height: 2000px;
+  flex-wrap:wrap;
+  justify-content: center;
+  
+}
+
+  /* flex-элемент */
+  .block__element{
+  
+  padding: 10px 10px;
+  flex: 1 1  20%;
+  
+  }
+
+  .container{
+      max-width: 80%;
+      margin: 0 auto;
+  }
 
 .button{
     margin: 14px 8px;
@@ -255,6 +274,46 @@ button[disabled]{
   
 }
 
+.menu-button{
+  height: 2px;
+  width: 20px;
+  background-color: #009688;
+  position: absolute;
+}
+
+.menu-button::after{
+  content: '';
+  height: 2px;
+  width: 20px;
+  background-color: #009688;
+
+  position: absolute;
+  transform: translateY(-6px);
+  
+}
+
+.menu-button::before{
+  content: '';
+  height: 2px;
+  width: 20px;
+  background-color: #009688;
+  transform: translateY(6px);
+
+  position: absolute;
+  
+}
+
+.menu-button__block{
+  display: flex;
+  width: 40px;height: 40px;
+  border-radius: 50%;
+  border: 1px solid #009688;
+  background: rgb(255, 255, 255);
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
 .footer{
   position: fixed;
   bottom:0;
@@ -270,9 +329,33 @@ background-color: white;
  border-radius: 5px 5px 0 0;
 }
 
+
+
+
+@media(max-width:1150px){ 
+  .block__element{
+ flex: 1 1  25%;
+}  
+
+}
+
 @media(max-width: 800px){
+
+
+  .container{
+      max-width: 95%;
+      margin: 0 auto;
+  }
+
+  .block__element{
+  
+      padding: 5px 5px;
+      flex: 1 1  33.3%;
+      
+      }
+      
   .image{
-      height: calc(75vh - 142.8px); 
+     height: calc(75vh - 142.8px); 
   }
   
   .footer{
@@ -286,7 +369,15 @@ background-color: white;
      z-index: 2;
      margin-left: 0;
   }
+}
 
+@media(max-width: 480px){
+  .block__element{
+  
+      padding: 5px 5px;
+      flex: 1 1  50%;
+      
+      }
 }
 //BREAKPOINTS//
 

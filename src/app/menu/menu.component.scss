@@ -53,14 +53,20 @@
 
 .menu__list{
     color: white;
-    line-height: 40px;
+    line-height: 60px;
     font-size: 20px;
     display: flex;
     flex-direction: column;
 }
 
+.menu__list-item{
+    display: flex;
+    align-items: center;
+}
+
 .menu__text{
     cursor: pointer;
+    padding-left: 20px;
 }
 
 .menu-close{

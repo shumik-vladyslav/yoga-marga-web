@@ -1,0 +1,15 @@
+.footer{
+    background: -webkit-linear-gradient(180deg, rgb(144, 251, 241), rgb(0, 150, 136));
+    background: -moz-linear-gradient(180deg, rgb(144, 251, 241), rgb(0, 150, 136));
+    background: linear-gradient(180deg, rgb(144, 251, 241), rgb(0, 150, 136));
+}
+
+.practic{
+    display: flex;
+    flex-direction: column;
+}
+
+.block__row{
+    display: flex;
+    flex-direction: column;
+}

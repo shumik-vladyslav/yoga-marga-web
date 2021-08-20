@@ -20,6 +20,7 @@ import { PracticePerfomanceComponent } from './practice-perfomance/practice-perf
 import { BmPageComponent } from './bm-page/bm-page.component';
 import { TimeTransformPipe } from './time-transform.pipe';
 import { MenuComponent } from './menu/menu.component';
+import { CatalogComponent } from './catalog/catalog.component';
 
 
 export const config = {
@@ -45,7 +46,8 @@ export const config = {
    PracticePerfomanceComponent,
    BmPageComponent,
    TimeTransformPipe,
-   MenuComponent
+   MenuComponent,
+   CatalogComponent
   ],
   imports: [
     BrowserModule,

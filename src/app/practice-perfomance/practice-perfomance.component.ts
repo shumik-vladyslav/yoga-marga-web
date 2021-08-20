@@ -22,7 +22,7 @@ export class PracticePerfomanceComponent implements OnInit {
 
   nowPlaying: boolean = false;
 
-  timeLeft: number = 30;
+  timeLeft: number = 60;
 
   timeAll: number = 0;
 
@@ -59,7 +59,7 @@ export class PracticePerfomanceComponent implements OnInit {
       this.allPractics = item;
 
 
-
+     
     })
 
 
@@ -158,7 +158,7 @@ export class PracticePerfomanceComponent implements OnInit {
 
     this.intervalAll = setInterval(() => { this.timeAll++ }, 1000)
 
-    this.timeLeft = 29;
+    this.timeLeft = 59;
 
     this.interval = setInterval(() => {
 
@@ -218,14 +218,14 @@ export class PracticePerfomanceComponent implements OnInit {
         this.nextExercise()
 
         //лечение от залипания переключения на остановке паузы
-        if (this.timeLeft !== 30) {
+        if (this.timeLeft !== 60) {
           clearInterval(this.timeInterval)
           this.nextAsanaAndTime()
 
         }
 
         if (this.timeLeft <= 0) {
-          this.timeLeft = 30
+          this.timeLeft = 60
         }
       }
     }, this.timeLeft * 1000)
@@ -245,7 +245,7 @@ export class PracticePerfomanceComponent implements OnInit {
 
   //переменные для таймера
 
-  time: number = 30;
+  time: number = 60;
 
   interval;
 
@@ -267,7 +267,7 @@ export class PracticePerfomanceComponent implements OnInit {
       if (this.timeLeft > 0) {
         this.timeLeft--;
       } else {
-        this.timeLeft = 29;
+        this.timeLeft = 59;
       }
     }, 1000)
   }

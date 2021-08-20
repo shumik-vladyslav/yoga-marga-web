@@ -6,6 +6,7 @@ import { SignupComponent } from './signup/signup.component';
 import { PracticsSearchComponent } from './practics-search/practics-search.component';
 import { PracticePerfomanceComponent } from './practice-perfomance/practice-perfomance.component';
 import { BmPageComponent } from './bm-page/bm-page.component';
+import { CatalogComponent } from './catalog/catalog.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch:'full'},
@@ -15,6 +16,7 @@ const routes: Routes = [
   {path: 'practices-search', component: PracticsSearchComponent},
   {path: 'practic/:id', component: PracticePerfomanceComponent},
   {path: 'bm/:id', component: BmPageComponent},
+  {path: 'practices-catalog', component: CatalogComponent},
   
   
 ];

@@ -1,0 +1,15 @@
+<app-menu></app-menu>
+<div class="content">
+    <div class="container">
+        <div class="block__row">
+            <div class="practic" *ngFor="let practice of allPractics">
+                <p>{{practice.type}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="menu-button__block" (click)="onToggleMenu()">
+            <span class="menu-button"> </span>
+        </div>
+    </div>
+</div>
