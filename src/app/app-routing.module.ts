@@ -7,6 +7,9 @@ import { PracticsSearchComponent } from './practics-search/practics-search.compo
 import { PracticePerfomanceComponent } from './practice-perfomance/practice-perfomance.component';
 import { BmPageComponent } from './bm-page/bm-page.component';
 import { CatalogComponent } from './catalog/catalog.component';
+import { FeedbackComponent } from './feedback/feedback.component';
+import { PersonalInfoComponent } from './personal-info/personal-info.component';
+import { ComplexesComponent } from './complexes/complexes.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch:'full'},
@@ -17,6 +20,9 @@ const routes: Routes = [
   {path: 'practic/:id', component: PracticePerfomanceComponent},
   {path: 'bm/:id', component: BmPageComponent},
   {path: 'practices-catalog', component: CatalogComponent},
+  {path: 'feedback', component: FeedbackComponent},
+  {path: 'about_yourself', component: PersonalInfoComponent},
+  {path: 'complexes', component: ComplexesComponent},
   
   
 ];

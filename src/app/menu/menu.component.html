@@ -14,15 +14,15 @@
             </div>
             <div class="menu__list-item">
                 <img src="../../assets/icons/icons nav/icon-nav2.svg" alt="" class="icon-img"><span
-                    class="menu__text">Комплексы</span>
+                    class="menu__text" (click)="Complexes()">Комплексы</span>
             </div>
             <div class="menu__list-item">
                 <img src="../../assets/icons/icons nav/icon-nav3.svg" alt="" class="icon-img"> <span
-                    class="menu__text">Личный кабинет</span>
+                    class="menu__text" (click)="PersonalInfo()">Личный кабинет</span>
             </div>
             <div class="menu__list-item">
                 <img src="../../assets/icons/icons nav/icon-nav4.svg" alt="" class="icon-img"> <span
-                    class="menu__text">Обратная связь</span>
+                    class="menu__text" [routerLink]="['/feedback']">Обратная связь</span>
             </div>
             <div class="menu__list-item">
                 <img src="../../assets/icons/icons nav/icon-nav5.svg" alt="" class="icon-img"> <span (click)="onToggleMenu2()"
@@ -30,7 +30,7 @@
             </div>
             <div class="menu__list-item">
                 <img src="../../assets/icons/icons nav/icon-nav6.svg" alt="" class="icon-img"> <span
-                    class="menu__text">Выйти</span>
+                    class="menu__text" (click)="logout()">Выйти</span>
             </div>
 
 

@@ -102,7 +102,7 @@ export class SignupComponent implements OnInit {
           this.data.Password 
         )
         .then(auth => {
-          this.router.navigate(["home"]);
+          this.router.navigate(["practices-search"]);
           console.log(JSON.stringify(auth.user));
           if (auth.user) {
             if (this.myForm.value.Status == 'Неофит') {

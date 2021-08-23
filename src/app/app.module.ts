@@ -21,6 +21,9 @@ import { BmPageComponent } from './bm-page/bm-page.component';
 import { TimeTransformPipe } from './time-transform.pipe';
 import { MenuComponent } from './menu/menu.component';
 import { CatalogComponent } from './catalog/catalog.component';
+import { FeedbackComponent } from './feedback/feedback.component';
+import { PersonalInfoComponent } from './personal-info/personal-info.component';
+import { ComplexesComponent } from './complexes/complexes.component';
 
 
 export const config = {
@@ -47,7 +50,10 @@ export const config = {
    BmPageComponent,
    TimeTransformPipe,
    MenuComponent,
-   CatalogComponent
+   CatalogComponent,
+   FeedbackComponent,
+   PersonalInfoComponent,
+   ComplexesComponent
   ],
   imports: [
     BrowserModule,

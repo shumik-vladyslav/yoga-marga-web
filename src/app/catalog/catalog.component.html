@@ -2,8 +2,21 @@
 <div class="content">
     <div class="container">
         <div class="block__row">
-            <div class="practic" *ngFor="let practice of allPractics">
-                <p>{{practice.type}}</p>
+            <div class="practic" *ngFor="let group of groupingPractices">
+                <p>{{group[0]}}</p>
+
+
+                <div class="inner" *ngFor="let pract of group[1] let index as i  ">
+                    <li class="dropdown-item"  >{{pract?.name}}</li>
+
+                     
+                    <!-- <div>
+                        <img src="{{pract?.ico}}" alt="p"> 
+                        <p >{{pract?.name}}</p>
+                        <br>
+                    </div> -->
+
+                </div>
             </div>
         </div>
     </div>
