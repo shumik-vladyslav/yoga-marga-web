@@ -10,6 +10,7 @@ import { CatalogComponent } from './catalog/catalog.component';
 import { FeedbackComponent } from './feedback/feedback.component';
 import { PersonalInfoComponent } from './personal-info/personal-info.component';
 import { ComplexesComponent } from './complexes/complexes.component';
+import { ClasificiedPracticesComponent } from './clasificied-practices/clasificied-practices.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch:'full'},
@@ -23,6 +24,7 @@ const routes: Routes = [
   {path: 'feedback', component: FeedbackComponent},
   {path: 'about_yourself', component: PersonalInfoComponent},
   {path: 'complexes', component: ComplexesComponent},
+  {path: 'Practic-list', component: ClasificiedPracticesComponent},
   
   
 ];

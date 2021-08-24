@@ -26,7 +26,7 @@ export class AngularFireService {
     
  }
 
- 
+  
 
   GetPractices() {
     return this.practics

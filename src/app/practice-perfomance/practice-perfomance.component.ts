@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AngularFireService } from '../angular-fire.service';
 import { timer } from 'rxjs';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-practice-perfomance',
@@ -48,6 +49,7 @@ export class PracticePerfomanceComponent implements OnInit {
     private AFService: AngularFireService,
     private router: Router,
     private route: ActivatedRoute,
+    private _location: Location,
   ) {
     this.practiceId = this.route.snapshot.params['id'];
     this.CurrentPractic = AFService.ChoosedPractic;
@@ -207,6 +209,10 @@ export class PracticePerfomanceComponent implements OnInit {
 
   openText() {
     window.open(this.CurrentPractic.text, '_system');
+  }
+
+  back(){
+    this._location.back();
   }
 
 
