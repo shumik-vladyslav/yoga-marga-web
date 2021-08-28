@@ -24,7 +24,7 @@ const routes: Routes = [
   {path: 'feedback', component: FeedbackComponent},
   {path: 'about_yourself', component: PersonalInfoComponent},
   {path: 'complexes', component: ComplexesComponent},
-  {path: 'Practic-list', component: ClasificiedPracticesComponent},
+  {path: 'Practic-list/:type', component: ClasificiedPracticesComponent},
   
   
 ];

@@ -4,8 +4,7 @@ import { NgForm } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { async } from '@angular/core/testing';
-
+import {Location} from '@angular/common';
 @Component({
   selector: 'app-bm-page',
   templateUrl: './bm-page.component.html',
@@ -31,6 +30,7 @@ export class BmPageComponent implements OnInit, AfterViewInit, OnDestroy {
     private router: Router,
     private route: ActivatedRoute,
     private AFS: AngularFirestore,
+    private _location: Location,
   ) {
 
     this.currentPractice = this.AFService.ChoosedPractic;
@@ -144,6 +144,9 @@ export class BmPageComponent implements OnInit, AfterViewInit, OnDestroy {
   before() {
     document.getElementsByTagName('audio')[this.playedIdx].pause();
     document.getElementsByTagName('audio')[this.playedIdx - 1].play();
+  }
+  close(){
+    this._location.back();
   }
 
   // async onSelectTrack(i): Promise<void> {

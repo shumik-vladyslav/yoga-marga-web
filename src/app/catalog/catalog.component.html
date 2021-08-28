@@ -2,6 +2,16 @@
 <div class="content">
     <div class="container">
         <h1>Каталог</h1>
+        <div class="block__row">
+            <div class="tumbler">
+                <img class="tumbler-img" src="../../assets/icons/tumbler catalog/fromType .svg"
+                    (click)="switchGrouping('type')">
+                <img class="tumbler-img" src="../../assets/icons/tumbler catalog/fromYantra.svg"
+                    (click)="switchGrouping('yantra')">
+            </div>
+        </div>
+
+
         <div class="" *ngFor="let group of groupedGroupingPractices  ">
             <h2>{{group[0]}}</h2>
 
@@ -24,7 +34,7 @@
 
             </div>
 
-            <button class="button" (click)="morePractices()">больше практик</button>
+            <button class="button" (click)="morePractices(group[0])">больше практик</button>
 
 
         </div>

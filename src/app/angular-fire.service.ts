@@ -11,11 +11,13 @@ import { AngularFirestore } from '@angular/fire/firestore';
 })
 export class AngularFireService {
 
-  practics:any
+  practics:any;
 
-  ChoosedPractic
+  ChoosedPractic;
 
-  user
+  user;
+
+  choosedTypeOfPractic: string;
 
  constructor(
     private AFS: AngularFirestore,

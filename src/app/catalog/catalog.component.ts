@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AngularFireService } from '../angular-fire.service';
 
 @Component({
@@ -16,7 +16,8 @@ export class CatalogComponent implements OnInit {
     private afs: AngularFirestore,
     private db: AngularFireDatabase,
     private AFservice: AngularFireService,
-    private router: Router,) {
+    private router: Router,
+    private route: ActivatedRoute,) {
     this.AFService.GetPractices().subscribe(item => {
 
       this.allPractics = item;
@@ -45,6 +46,7 @@ export class CatalogComponent implements OnInit {
 
 
   groupPracticesBy(groupingBy = 'type') {
+    this.groupingPractices = {}
     if (!this.practices || this.practices.length == 0) return;
 
     this.groupingPractices = this.groupBy(this.practices, groupingBy);
@@ -139,6 +141,7 @@ export class CatalogComponent implements OnInit {
   }
 
   switchGrouping(groupingBy = 'type') {
+    this.groupedGroupingPractices = []
     console.log('switch type', groupingBy);
     this.groupPracticesBy(groupingBy);
     console.log('groupingPractices', this.groupingPractices);
@@ -157,8 +160,11 @@ export class CatalogComponent implements OnInit {
     
   }
 
-  morePractices(){
-    this.router.navigate(["Practic-list"])
+  morePractices(title){
+    console.log(title)
+    this.AFService.choosedTypeOfPractic = title;
+    this.router.navigate(["Practic-list", title])
+    
   }
 
 
