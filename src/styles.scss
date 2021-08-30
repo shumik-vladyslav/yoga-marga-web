@@ -265,7 +265,11 @@ input{
 button[disabled]{
     border: 2px solid #c4c4c4 ;
 }
-
+.button:hover{
+  background-color: #009688 ;
+  color: #fff;
+  transition: 1s ;
+}
 .icon-img{
   width: 32px;
   height: 32px;

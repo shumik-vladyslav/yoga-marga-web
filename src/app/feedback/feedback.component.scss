@@ -3,3 +3,13 @@
     background: -moz-linear-gradient(180deg, rgb(144, 251, 241), rgb(0, 150, 136));
     background: linear-gradient(180deg, rgb(144, 251, 241), rgb(0, 150, 136));
 }
+
+.input-text{
+    border: 2px solid rgb(0, 150, 136);
+    min-width: 100%;
+    min-height: 300px;
+    padding: 5px;
+}
+ .button{
+     transition: 1s;
+ }

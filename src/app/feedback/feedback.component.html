@@ -1,7 +1,14 @@
 <app-menu></app-menu>
 <div class="content">
     <div class="container">
-        <p>Works!</p>
+        <h1>Обратная связь</h1>
+        <h1>Пожайлуста, напишите Ваш вопрос/ предложение:</h1>
+        <div class="block__row">
+            <textarea type="text" class="input-text" [(ngModel)]="msgText" placeholder=":)"></textarea>
+            <button class="button" (click)="sendMsg()">
+                отправить
+            </button>
+        </div>
     </div>
     
     <div class="footer">

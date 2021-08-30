@@ -143,7 +143,7 @@ export class SignupComponent implements OnInit {
   openDialog(): void {
     const dialogRef = this.dialog.open(ErrorDialogComponent, {
       width: '400px',
-      data: {Errore: this.Error, ErrMsg: this.ErrorMsg}
+      data: {cause: 'Ошибка' ,Errore: this.Error, ErrMsg: this.ErrorMsg}
       
     });
 

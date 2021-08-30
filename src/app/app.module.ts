@@ -59,8 +59,9 @@ export const config = {
   ],
   imports: [
     BrowserModule,
-    FormsModule,
+    
     ReactiveFormsModule,
+    FormsModule,
     CommonModule,
     MatDialogModule,
    

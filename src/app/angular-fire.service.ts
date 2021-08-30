@@ -11,28 +11,55 @@ import { AngularFirestore } from '@angular/fire/firestore';
 })
 export class AngularFireService {
 
-  practics:any;
+  practics: any;
 
   ChoosedPractic;
 
   user;
 
+  userData
+
   choosedTypeOfPractic: string;
 
- constructor(
+  constructor(
     private AFS: AngularFirestore,
     private AFAuth: AngularFireAuth,
+    private db: AngularFireDatabase,
   ) {
-  this.practics = this.AFS.collection(`practices`).valueChanges()
-    this.user = AFAuth.user.subscribe()
-    
- }
+    this.practics = this.AFS.collection(`practices`).valueChanges();
+    this.user = AFAuth.user.subscribe();
 
-  
+     
+
+
+    // this.AFAuth.authState.subscribe(user => {
+    //   if (user) this.userId = user.uid
+    // })
+
+
+    this.AFAuth.authState.subscribe(user => {
+      if (user) this.userId = user.email
+    })
+  }
+
+  userId;
+
 
   GetPractices() {
     return this.practics
   }
 
- 
+  sendFeedback(msg) {
+    console.log(JSON.stringify({
+      timestamp: Date.now(),
+      user: this.userId,
+      msg: msg
+    }));
+    
+    return this.AFS.collection(`feedbacks`).add({
+      timestamp: Date.now(),
+      user: this.userId,
+      msg: msg
+    })
+  }
 }

@@ -61,7 +61,7 @@ export class LoginComponent implements OnInit {
   openDialog(): void {
     const dialogRef = this.dialog.open(ErrorDialogComponent, {
       width: '400px',
-      data: { Errore: "Проверьте правильность полей, пароль не должен быть меньше 8 символов ", }
+      data: {cause: "Ошибка", Errore: "Проверьте правильность полей, пароль не должен быть меньше 8 символов ", }
 
 
     });
