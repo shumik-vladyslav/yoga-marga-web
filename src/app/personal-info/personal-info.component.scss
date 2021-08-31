@@ -1,5 +1,92 @@
-.footer{
+.footer {
     background: -webkit-linear-gradient(180deg, rgb(144, 251, 241), rgb(0, 150, 136));
     background: -moz-linear-gradient(180deg, rgb(144, 251, 241), rgb(0, 150, 136));
     background: linear-gradient(180deg, rgb(144, 251, 241), rgb(0, 150, 136));
+}
+
+.header {
+    background: rgb(0, 150, 136);
+    color: #fff;
+    padding: 5px;
+}
+.block__row {
+    flex-direction: column;
+    padding: 10px;
+    position: relative;
+}
+.spiritual__name {
+}
+
+.span {
+    font-size: 18px;
+    padding: 10px 5px 5px 50px;
+}
+.spiritual__name::before {
+    content: "";
+    margin-left: -40px;
+
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    background-image: url("../../assets/icons/lichniy-kabinet/duhovnoe-imya.svg"), ;
+}
+.world__name::before {
+    content: "";
+
+    margin-left: -40px;
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    background-image: url("../../assets/icons/lichniy-kabinet/imya.svg");
+}
+
+.gender::before {
+    content: "";
+
+    margin-left: -40px;
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    background-image: url("../../assets/icons/lichniy-kabinet/status.svg");
+}
+
+.status::before {
+    content: "";
+
+    margin-left: -40px;
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    background-image: url("../../assets/icons/lichniy-kabinet/status.svg");
+}
+
+.phone::before {
+    content: "";
+
+    margin-left: -40px;
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    background-image: url("../../assets/icons/lichniy-kabinet/telefon.svg");
+}
+
+.input__cabinet{
+    border: none;
+    border-bottom: 1px solid gray;
+    padding: 5px;
+    font-size: 16px;
+    
+}
+.select__cabinet{
+    background: #fff;
+    height: 45px;
+    border-bottom:1px solid gray ;
+    font-size: 16px;
+    margin: 14px 8px;
+}
+
+.h2__centr{
+    text-align: center;
+    color: rgb(56, 56, 56);
+    margin-top: 20px;
 }

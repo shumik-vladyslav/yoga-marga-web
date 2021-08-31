@@ -11,20 +11,54 @@ import { AngularFireService } from '../angular-fire.service';
 export class PersonalInfoComponent implements OnInit {
 
   constructor(private AFS: AngularFirestore, private AFService: AngularFireService, private AFAuth: AngularFireAuth) {
-    //  AFS.collection(``)
-    //this.user = AFAuth.user.subscribe();
-    this.userData = AFS.doc(`users/2016vad@gmail.com`).snapshotChanges()
 
-    
+
+   // this.user = AFAuth.user.subscribe();
+
+     this.AFAuth.authState.subscribe(user => {
+      this.userId = user.email
+      //.log(this.userId)
+    })
+
     setTimeout(() => {
-      console.log(this.userData.email)
-    }, 1000);
+      this.getUserData()
+      
+
+    }, 800);
+    
+
+    setTimeout(() => {
+
+      //console.log(this.user)
+      //console.log(this.userId)
+
+      //console.log(this.userDataAll);
+
+      this.userData.name = this.userDataAll.full_name
+      this.userData.spiritalName = this.userDataAll.spiritual_name
+      this.userData.status = this.userDataAll.status
+
+
+    }, 1400);
+
   }
 
 
-  userData
+  userDataAll
 
   user
+
+  userId
+
+  userData = {
+    name: "",
+    spiritalName: "",
+    status: "",
+    gender: "",
+    phone: ""
+  }
+
+  userEmail = this.AFService.userId;
 
   ngOnInit(): void {
   }
@@ -37,6 +71,15 @@ export class PersonalInfoComponent implements OnInit {
 
     let t = document.getElementById("bg");
     t.classList.toggle("wrapper__bg")
+  }
+
+ async getUserData(){
+
+  this.AFS.doc(`users/${this.userId}`).valueChanges().subscribe(res => {
+    this.userDataAll = res;
+    //console.log(this.userDataAll)
+  })
+
   }
 
 

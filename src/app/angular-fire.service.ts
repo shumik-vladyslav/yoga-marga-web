@@ -19,6 +19,8 @@ export class AngularFireService {
 
   userData
 
+  userId;
+
   choosedTypeOfPractic: string;
 
   constructor(
@@ -29,7 +31,7 @@ export class AngularFireService {
     this.practics = this.AFS.collection(`practices`).valueChanges();
     this.user = AFAuth.user.subscribe();
 
-     
+
 
 
     // this.AFAuth.authState.subscribe(user => {
@@ -40,9 +42,15 @@ export class AngularFireService {
     this.AFAuth.authState.subscribe(user => {
       if (user) this.userId = user.email
     })
+
+
+
+    // AFS.doc(`users/${this.userId}`).valueChanges().subscribe(res => {
+    //   this.userData = res;
+    // })
   }
 
-  userId;
+
 
 
   GetPractices() {
@@ -55,7 +63,7 @@ export class AngularFireService {
       user: this.userId,
       msg: msg
     }));
-    
+
     return this.AFS.collection(`feedbacks`).add({
       timestamp: Date.now(),
       user: this.userId,
