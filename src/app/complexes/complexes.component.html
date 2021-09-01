@@ -1,9 +1,22 @@
 <app-menu></app-menu>
 <div class="content">
+    <header class="header">
+        <h1> Комплексы практик</h1>
+    </header>
     <div class="container">
-        <p>Works!</p>
+        <h2 class="h2__header"> Общие комплексы</h2>
+        <div class="complex__block">
+            <div class="complex__element" *ngFor="let element of DataAll.array" (click)="openComplex_listPage()">
+                <img src="{{element.ico}}" alt="" class="img-icon">
+                <p>{{element.name}}</p>
+            </div>
+        </div>
+        <h2 class="h2__header"> Личные комплексы</h2>
+        <div class="complex__block">
+            <p>У Вас пока нет комплексов, но Вы можете их создать</p>
+        </div>
     </div>
-    
+
     <div class="footer">
         <div class="menu-button__block" (click)="onToggleMenu()">
             <span class="menu-button"> </span>

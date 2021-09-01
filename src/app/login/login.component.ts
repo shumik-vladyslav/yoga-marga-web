@@ -46,6 +46,7 @@ export class LoginComponent implements OnInit {
     else {
       await this.afAuth.signInWithEmailAndPassword(this.myForm.value.Email, this.myForm.value.Password,).then((res) => {
         this.router.navigate(['practices-search'])
+        console.log(res)
       })
         .catch(error => {
           this.errorMsg = error.message;

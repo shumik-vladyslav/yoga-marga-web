@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-complexes',
@@ -7,7 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ComplexesComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private AFS: AngularFirestore,
+    private router: Router,
+  ) {
+
+    this.AFS.doc(`shared-complexes/data`).valueChanges().subscribe(res => {
+      this.DataAll = res;
+      console.log(this.DataAll.array[0]);
+
+    })
+   }
+
+
+   DataAll;
 
   ngOnInit(): void {
   }
@@ -20,5 +35,10 @@ export class ComplexesComponent implements OnInit {
     let t  = document.getElementById("bg");
     t.classList.toggle("wrapper__bg")
    }
+
+  openComplex_listPage(){
+    this.router.navigate(['complex-list', this.DataAll.array[0].name])
+  }
+
 
 }

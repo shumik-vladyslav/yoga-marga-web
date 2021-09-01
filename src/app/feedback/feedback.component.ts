@@ -4,6 +4,7 @@ import {FormControl,FormGroup} from '@angular/forms';
 
 import {FormsModule,ReactiveFormsModule} from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { AngularFireService } from '../angular-fire.service';
 import { ErrorDialogComponent } from '../error-dialog/error-dialog.component';
 @Component({
@@ -17,6 +18,7 @@ export class FeedbackComponent implements OnInit {
     private AFService: AngularFireService,
     private AFAuth: AngularFireAuth,
     public dialog: MatDialog,
+    private router: Router,
   ) { 
     
   }
@@ -60,7 +62,9 @@ export class FeedbackComponent implements OnInit {
     if(this.msgText && this.msgText !=='')
     this.AFService.sendFeedback(this.msgText).then(
       res => this.openDialog()
-    )
+    ).then(res =>{
+      this.router.navigate(["practices-search"])
+    })
     
    }
 

@@ -9,11 +9,11 @@
 
             <span class="spiritual__name span">Духовное имя</span>
 
-            <input type="text " class="input__cabinet" [(ngModel)]="userData.spiritalName">
+            <input type="text " class="input__cabinet" [(ngModel)]="userDataAll.spiritual_name">
 
             <span class="world__name span">Ф.И.О</span>
 
-            <input type="text" class="input__cabinet" [(ngModel)]="userData.name">
+            <input type="text" class="input__cabinet" [(ngModel)]="userDataAll.full_name">
 
             <span class="gender span">Пол</span>
 
@@ -28,9 +28,9 @@
 
             <span class="status span">Статус</span>
 
-            <select name="" id="" class="select__cabinet" [(ngModel)]="userData.status">
+            <select name="" id="" class="select__cabinet" >
 
-                <option value="1" hidden ng-selected="selected"> nnh{{userData.status}}</option>
+                <option value="1" hidden ng-selected="selected"> {{userDataAll.status }}</option>
                 <option value="Матаджи">Грихастха</option>
                 <option value="Прабху">Карма-Санньяси</option>
                 <option value="Прабху">Пурна-Санньяси</option>
@@ -41,7 +41,7 @@
 
             <input type="text" class="input__cabinet">
 
-            <button class="button">Изменить данные</button>
+            <button class="button" (click)="changeUserData()">Изменить данные</button>
 
             <h2 class="h2__centr">Цели</h2>
 
