@@ -51,6 +51,8 @@ export class PersonalInfoComponent implements OnInit {
 
   userId
 
+  status
+
   userData = {
     name: "",
     spiritalName: "",
@@ -104,6 +106,8 @@ export class PersonalInfoComponent implements OnInit {
     if(this.userDataAll !== null || undefined){
       this.AFS.doc(`users/${this.userId}`).update(this.userDataAll)
     }
+
+    console.log(this.status)
   }
 
 

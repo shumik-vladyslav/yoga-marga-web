@@ -12,6 +12,7 @@ import { PersonalInfoComponent } from './personal-info/personal-info.component';
 import { ComplexesComponent } from './complexes/complexes.component';
 import { ClasificiedPracticesComponent } from './clasificied-practices/clasificied-practices.component';
 import { ComplexListComponent } from './complex-list/complex-list.component';
+import { PracticeSettingsComponent } from './practice-settings/practice-settings.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch:'full'},
@@ -27,6 +28,7 @@ const routes: Routes = [
   {path: 'complexes', component: ComplexesComponent},
   {path: 'Practic-list/:type', component: ClasificiedPracticesComponent},
   {path: 'complex-list/:name', component: ComplexListComponent},
+  {path: 'settings', component: PracticeSettingsComponent},
   
   
 ];

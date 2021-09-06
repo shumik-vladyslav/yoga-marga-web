@@ -36,7 +36,7 @@
     padding : 0 10px;
 }
 
-.footer{
+.footer__practic{
     position: fixed;
     bottom:0;
     border-top : 1px solid rgb(27, 27, 27);
@@ -56,6 +56,12 @@
     background-image: url();
     cursor: pointer;
     
+}
+
+.time_left{
+    font-size: 24px;
+    font-weight:bolder;
+    text-align: center;
 }
 
 @media(max-width : 500px){
@@ -82,7 +88,7 @@
         height: calc(75vh - 142.8px); 
     }
     
-    .footer{
+    .footer__practic{
         position: fixed;
         bottom:0;
         border-top : 1px solid rgb(27, 27, 27);

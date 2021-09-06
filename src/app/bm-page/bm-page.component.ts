@@ -4,7 +4,7 @@ import { NgForm } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/firestore';
-import {Location} from '@angular/common';
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-bm-page',
   templateUrl: './bm-page.component.html',
@@ -24,6 +24,8 @@ export class BmPageComponent implements OnInit, AfterViewInit, OnDestroy {
   bmId;
 
   allPractics;
+
+  volume: boolean = true;
 
   constructor(
     private AFService: AngularFireService,
@@ -52,7 +54,7 @@ export class BmPageComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnInit(): void {
 
 
-    
+
     let load = setInterval(() => {
       this.allPractics.forEach(element => {
         if (element.id == this.bmId) {
@@ -65,7 +67,7 @@ export class BmPageComponent implements OnInit, AfterViewInit, OnDestroy {
     }, 500);
 
 
-    console.log(this.allPractics)
+    //console.log(this.allPractics)
 
 
 
@@ -77,7 +79,7 @@ export class BmPageComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngAfterViewInit() {
 
-    
+
   }
 
 
@@ -105,8 +107,22 @@ export class BmPageComponent implements OnInit, AfterViewInit, OnDestroy {
 
   }
   onClick(index) {
-    document.getElementsByTagName('audio')[index].play()
-    document.getElementsByTagName('audio')[index].classList.toggle("active")
+    if (index == 0) {
+      document.getElementsByTagName('audio')[index].play()
+      document.getElementsByTagName('audio')[index].classList.toggle("active")
+    }
+
+    else {
+      if (document.getElementsByTagName('audio')[index - 1].played) {
+        document.getElementsByTagName('audio')[index - 1].pause()
+      }
+
+      document.getElementsByTagName('audio')[index].play()
+      document.getElementsByTagName('audio')[index].classList.toggle("active")
+
+    }
+    document.getElementsByTagName('audio')[index ].volume = 0;
+
   }
 
   onPause() {
@@ -145,8 +161,12 @@ export class BmPageComponent implements OnInit, AfterViewInit, OnDestroy {
     document.getElementsByTagName('audio')[this.playedIdx].pause();
     document.getElementsByTagName('audio')[this.playedIdx - 1].play();
   }
-  close(){
+  close() {
     this._location.back();
+  }
+
+  volumeTumbler(){
+    this.volume = !this.volume;
   }
 
   // async onSelectTrack(i): Promise<void> {

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AngularFireService } from '../angular-fire.service';
 import { timer } from 'rxjs';
-import {Location} from '@angular/common';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-practice-perfomance',
@@ -35,6 +35,8 @@ export class PracticePerfomanceComponent implements OnInit {
 
   ifStarted: boolean = false;
 
+  volume: boolean = true;
+
   show = {
     img: '',
     imgMirror: false,
@@ -61,7 +63,7 @@ export class PracticePerfomanceComponent implements OnInit {
       this.allPractics = item;
 
 
-     
+
     })
 
 
@@ -105,6 +107,31 @@ export class PracticePerfomanceComponent implements OnInit {
 
 
 
+  }
+
+
+  volumeTumbler() {
+
+    // this.volume= !this.volume
+
+    if (this.volume === true) {
+      this.volume = false;
+      document.getElementsByTagName('audio')[0].volume = 0;
+      document.getElementsByTagName('audio')[1].volume = 0;
+
+    }
+    else {
+      this.volume = true;
+      document.getElementsByTagName('audio')[0].volume = 1;
+      document.getElementsByTagName('audio')[1].volume = 1;
+    }
+    // if(this.volume === false ){
+
+    //  // 
+    //   //
+    // }
+
+    //this.volume = !this.volume;
   }
 
 
@@ -164,12 +191,19 @@ export class PracticePerfomanceComponent implements OnInit {
 
     this.interval = setInterval(() => {
 
-      this.timeLeft--;
-
-      if (this.timeLeft == 0) {
+      if (this.timeLeft === 0) {
         this.nextAsanaAndTime2()
       }
+      this.timeLeft--;
+
+
     }, 1000)
+
+
+
+    if (this.nowPlaying = false) {
+      this.nowPlaying = true
+    }
 
   }
 
@@ -211,7 +245,7 @@ export class PracticePerfomanceComponent implements OnInit {
     window.open(this.CurrentPractic.text, '_system');
   }
 
-  back(){
+  back() {
     this._location.back();
   }
 
@@ -296,8 +330,15 @@ export class PracticePerfomanceComponent implements OnInit {
     }, 1000)
   }
 
-  pauseHourTimer(){
-    
+  pauseHourTimer() {
+
+  }
+
+
+
+
+  openSettings(){
+    this.router.navigate(["settings"])
   }
 
 }

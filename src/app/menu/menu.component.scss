@@ -1,4 +1,4 @@
-.wrapper{
+.wrapper {
     width: 100%;
     height: 100%;
     display: flex;
@@ -8,11 +8,11 @@
     transition: 1s;
 }
 
-.componentt{
+.componentt {
     width: 30%;
     left: 0;
     height: 105%;
-   
+
     background: -webkit-linear-gradient(270deg, rgb(144, 251, 241), rgb(0, 150, 136));
     background: -moz-linear-gradient(270deg, rgb(144, 251, 241), rgb(0, 150, 136));
     background: linear-gradient(270deg, rgb(144, 251, 241), rgb(0, 150, 136));
@@ -21,27 +21,22 @@
     padding: 80px 20px 10px 40px;
 
     position: relative;
-   
-    
 }
 
-.activeMenu{
+.activeMenu {
     transform: translateX(0%);
     //transition: 1s;
-    
 }
-.wbackground{
+.wbackground {
     //transition: 1s;
-    
 }
 
-.invisible{
+.invisible {
     width: 70%;
     height: 105%;
-    
 }
 
-.wrapper__bg{
+.wrapper__bg {
     background: rgba(68, 68, 68, 0.432);
     width: 100%;
     height: 100%;
@@ -51,7 +46,7 @@
     transition: 1s;
 }
 
-.menu__list{
+.menu__list {
     color: white;
     line-height: 60px;
     font-size: 20px;
@@ -59,62 +54,64 @@
     flex-direction: column;
 }
 
-.menu__list-item{
+.menu__list-item {
     display: flex;
     align-items: center;
 }
 
-.menu__text{
+.menu__text {
     cursor: pointer;
     padding-left: 20px;
 }
 
-.menu-close{
+.menu-close {
     display: flex;
-    justify-content:flex-end;
-
+    justify-content: flex-end;
 }
 
-.menu__close-btn{
-display: flex;
-width: 40px;
-height: 40px;
-justify-content: center;
-align-items: center;
-border: 1px solid rgb(0, 150, 136);
-border-radius: 50%;
-background: white;
-left:auto;
-right: 40;
-top: 30px;
-position: absolute;
-
+.menu__close-btn {
+    display: flex;
+    width: 40px;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgb(0, 150, 136);
+    border-radius: 50%;
+    background: white;
+    left: auto;
+    right: 40;
+    top: 30px;
+    position: absolute;
 }
 
-
-.menu__close-line{
-width: 20px;
-height: 1px;
-background: rgb(0, 150, 136);
-transform: rotate(45deg);
-position: absolute;
+.menu__close-line {
+    width: 20px;
+    height: 1px;
+    background: rgb(0, 150, 136);
+    transform: rotate(45deg);
+    position: absolute;
 }
 
-.menu__close-btn::before{
+.menu__close-btn::before {
     content: "";
     width: 20px;
     height: 1px;
     background: rgb(0, 150, 136);
     transform: rotate(135deg);
     position: absolute;
-    }
+}
 
-@media(max-width: 800px){
-    .componentt{
+@media (max-width: 800px) {
+    .componentt {
         width: 70%;
-
     }
-    .invisible{
-        width: 30%
+    .invisible {
+        width: 30%;
+    }
+}
+
+@media (max-width: 380px) {
+    .componentt {
+        padding: 60px 10px 10px 10px;
     }
 }

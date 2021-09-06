@@ -26,6 +26,7 @@ import { PersonalInfoComponent } from './personal-info/personal-info.component';
 import { ComplexesComponent } from './complexes/complexes.component';
 import { ClasificiedPracticesComponent } from './clasificied-practices/clasificied-practices.component';
 import { ComplexListComponent } from './complex-list/complex-list.component';
+import { PracticeSettingsComponent } from './practice-settings/practice-settings.component';
 
 
 export const config = {
@@ -57,7 +58,8 @@ export const config = {
    PersonalInfoComponent,
    ComplexesComponent,
    ClasificiedPracticesComponent,
-   ComplexListComponent
+   ComplexListComponent,
+   PracticeSettingsComponent
   ],
   imports: [
     BrowserModule,

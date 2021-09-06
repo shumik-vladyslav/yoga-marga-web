@@ -1,30 +1,27 @@
-.footer{
+.footer {
     background: -webkit-linear-gradient(180deg, rgb(144, 251, 241), rgb(0, 150, 136));
     background: -moz-linear-gradient(180deg, rgb(144, 251, 241), rgb(0, 150, 136));
     background: linear-gradient(180deg, rgb(144, 251, 241), rgb(0, 150, 136));
 }
 
-.container{
+.container {
     padding-bottom: 60px;
 }
 
-.practic{
+.practic {
     display: flex;
     //flex-direction: column;
 }
 
-
-
-
-.icon-img{
+.icon-img {
     width: 60px;
     height: 60px;
 }
-.inner{
+.inner {
     min-height: 150px;
     border: 2px solid #009688;
     border-radius: 10px;
-   // margin: 5px;
+    // margin: 5px;
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -33,33 +30,53 @@
     cursor: pointer;
 }
 
-.block__element{
-    
+.block__element {
     padding: 10px 10px;
-    flex: 1 1  20%;
-    
+    flex: 1 1 20%;
 }
 
-.block__row{
-
+.block__row {
     display: flex;
     margin: -5px -5px;
     margin: 5px;
-    flex-wrap:wrap;
+    flex-wrap: wrap;
     justify-content: center;
-    
- }
- h2{
-     text-align: center;
-     font-size: 22px;
-     color: rgb(88, 88, 88);
- }
+}
+h2 {
+    text-align: center;
+    font-size: 22px;
+    color: rgb(88, 88, 88);
+}
 
+.tumbler-img {
+    width: 50px;
+    height: 40px;
+    border: 1px solid #009688;
+    padding: 8px;
+    color: #000;
+}
 
- .tumbler-img{
-     width: 50px;
-     height: 40px;
-     border: 1px solid #009688;
-     padding: 8px;
-     color: #000;
- }
+@media (max-width: 1150px) {
+    .block__element {
+        flex: 1 1 25%;
+    }
+}
+
+@media (max-width: 800px) {
+    .container {
+        max-width: 95%;
+        margin: 0 auto;
+    }
+
+    .block__element {
+        padding: 5px 5px;
+        flex: 1 1 33.3%;
+    }
+}
+
+@media (max-width: 480px) {
+    .block__element {
+        padding: 5px 5px;
+        flex: 1 1 50%;
+    }
+}

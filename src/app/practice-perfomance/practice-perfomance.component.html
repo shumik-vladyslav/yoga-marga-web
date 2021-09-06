@@ -11,14 +11,17 @@
     <div class="text">
         <h1 class="title">{{show.title}}</h1>
 
-        <div *ngIf="CurrentPractic?.id == 'Asany-1' " >
+        <div *ngIf="CurrentPractic?.id == 'Asany-1' ">
+            <p class="time_left">{{timeLeft | timeTransform}}</p><br>
             <p>прошло:{{timeAll | timeTransform}}</p><br>
-            <p>осталось:{{timeLeft | timeTransform}}</p><br>
+
+
         </div>
         <!-- лечение от проявления во всех практикакх, хотя надо только в асанах -->
-        <div *ngIf="CurrentPractic?.id == 'Asany-2' " >
+        <div *ngIf="CurrentPractic?.id == 'Asany-2' ">
+            <p class="time_left">{{timeLeft | timeTransform}}</p><br>
             <p>прошло:{{timeAll | timeTransform}}</p><br>
-            <p>осталось:{{timeLeft | timeTransform}}</p><br>
+
         </div>
 
         <div class="hourTimer" *ngIf="CurrentPractic?.id !== 'Asany-1'">{{hourTime | timeTransform}} </div>
@@ -27,13 +30,18 @@
     </div>
 
     <div class="audio" *ngIf="currentExerciseId != null || undefined">
-        <audio src="{{show.audio}}" autoplay></audio>
-        <audio src="{{practiceAudio}}" autoplay></audio>
+        <audio src="{{show.audio}}" autoplay id="audio"></audio>
+        <audio src="{{practiceAudio}}" autoplay id="audio"></audio>
     </div>
 
 </div>
 
-<div class="footer">
+<div class="footer__practic">
+
+    <img src="../../assets/icons/icons/volume-off.png" alt="off" class="icon-img" (click)="volumeTumbler()"
+        *ngIf="volume == true">
+    <img src="../../assets/icons/icons/volume-on.png" alt="on" class="icon-img" (click)="volumeTumbler()"
+        *ngIf="volume == false">
 
     <img src="../../assets/icons/icons/file (1).png" alt="скачать" class="icon-img" (click)="openText()">
 
@@ -49,8 +57,9 @@
     <img src="../../assets/icons/icons/next.png" alt="следующее" class="icon-img" (click)="nextExerciseTumb()"
         *ngIf="currentExerciseId != undefined || null">
 
-    <img src="../../assets/icons/icons/file (3).png" alt="закрыть" class="icon-img"
-        (click)="back()">
+    <img src="../../assets/icons/icons/settings.png" alt="" class="icon-img" (click)="openSettings()">
+
+    <img src="../../assets/icons/icons/file (3).png" alt="закрыть" class="icon-img" (click)="back()">
 
 
 </div>
