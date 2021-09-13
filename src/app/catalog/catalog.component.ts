@@ -51,7 +51,7 @@ export class CatalogComponent implements OnInit {
 
     this.groupingPractices = this.groupBy(this.practices, groupingBy);
 
-    console.log(this.groupingPractices)
+   // console.log(this.groupingPractices)
 
     for (let index = 0; index < this.groupingPractices.length; index++) {
       const element = this.groupingPractices[index];
@@ -60,7 +60,7 @@ export class CatalogComponent implements OnInit {
 
       this.groupedGroupingPractices.push(exp)
 
-      console.log(element[0])
+      //console.log(element[0])
 
 
       for (let index = 0; index < 1; index++) {
@@ -69,7 +69,7 @@ export class CatalogComponent implements OnInit {
 
         exp.push(element2);
 
-        console.log(exp)
+       // console.log(exp)
 
       }
 
@@ -82,7 +82,7 @@ export class CatalogComponent implements OnInit {
 
         exp.push(sliced);
 
-        console.log(exp)
+       // console.log(exp)
 
       }
 

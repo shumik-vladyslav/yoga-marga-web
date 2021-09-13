@@ -64,7 +64,31 @@ export class PracticsSearchComponent implements OnInit {
   }
 
 
-  
+
+// для приоритета првктик
+  // methodeg(){
+  //   const uspr = this.practices;
+
+  //   const glpr = Object.values(this.practices).filter(
+  //     (p: any) => p.active !== false
+  //   );
+
+  //   this.practices = glpr.map((gp: any) => ({ ...uspr[gp.id], ...gp }));
+  //   this.practices = this.practices.sort((a, b) => {
+  //     const ap = a.priority ? a.priority : 0;
+  //     const bp = b.priority ? b.priority : 0;
+  //     return bp - ap;
+  //   });
+  //   let com = UserProvider.getComplexes();
+
+  //   if (com) {
+  //     this.practices = [...com, ...this.practices];
+  //   } else {
+  //     this.practices = [...this.practices];
+  //   }
+
+  //   this.filtered = [...this.practices];
+  // }
 
   onSearchChange(value) {
     

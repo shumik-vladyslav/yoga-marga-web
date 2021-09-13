@@ -70,4 +70,13 @@ export class AngularFireService {
       msg: msg
     })
   }
+
+
+  updateUser(settings, id) {
+   
+    this.AFS.doc(`users/${id}`).update(settings).catch(err => {
+      console.log(err)
+    });
+  }
+
 }

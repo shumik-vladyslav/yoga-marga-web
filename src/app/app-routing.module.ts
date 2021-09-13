@@ -28,7 +28,7 @@ const routes: Routes = [
   {path: 'complexes', component: ComplexesComponent},
   {path: 'Practic-list/:type', component: ClasificiedPracticesComponent},
   {path: 'complex-list/:name', component: ComplexListComponent},
-  {path: 'settings', component: PracticeSettingsComponent},
+  {path: ':id/settings', component: PracticeSettingsComponent},
   
   
 ];

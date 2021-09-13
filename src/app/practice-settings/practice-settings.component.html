@@ -10,16 +10,16 @@
             <p class="text">
                 Установите приоритет (чем больше число, тем выше практика в списке)
             </p>
-            <input type="number">
+            <input type="number" [(ngModel)]='settings.priority'>
         </div>
         <div class="setting__block">
             <p class="text">
                 Установите время всей практики
             </p>
-            <input type="number">
+            <input type="number"[(ngModel)]="allTimePr">
         </div>
-
-        <div class="setting__block">
+        <!--     -->
+        <div class="setting__block" >
             <p class="text">
                 Также вы можете установить время на каждое упражнение
             </p>
@@ -40,5 +40,8 @@
             </p>
             <input type="number">
         </div>
+        <button class="button" (click)="submit()">
+            Применить
+        </button>
     </div>
 </div>

@@ -1,15 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AngularFireService } from '../angular-fire.service';
 import { timer } from 'rxjs';
 import { Location } from '@angular/common';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { PracticeSettings } from '../PracticesSetting.model';
 
 @Component({
   selector: 'app-practice-perfomance',
   templateUrl: './practice-perfomance.component.html',
   styleUrls: ['./practice-perfomance.component.scss']
 })
-export class PracticePerfomanceComponent implements OnInit {
+export class PracticePerfomanceComponent implements OnInit, OnDestroy {
 
   CurrentPractic;
 
@@ -47,31 +50,30 @@ export class PracticePerfomanceComponent implements OnInit {
     audio: null
   }
 
+  userId
+
+  userDataAll
+
+  settings = new PracticeSettings;
+
   constructor(
     private AFService: AngularFireService,
     private router: Router,
     private route: ActivatedRoute,
     private _location: Location,
+    private AFAuth: AngularFireAuth,
+    private AFS: AngularFirestore,
   ) {
     this.practiceId = this.route.snapshot.params['id'];
     this.CurrentPractic = AFService.ChoosedPractic;
-
-
 
     this.AFService.GetPractices().subscribe(item => {
 
       this.allPractics = item;
 
-
-
     })
 
-
-
-
-
-
-
+    this.settings = PracticeSettings.createInstance();
 
 
   }
@@ -105,7 +107,30 @@ export class PracticePerfomanceComponent implements OnInit {
       console.log(this.practiceAudio)
     }, 1500);
 
+    //Для настроек практик
 
+    this.AFAuth.authState.subscribe(user => {
+      this.userId = user.email;
+
+      console.log(this.userId);
+
+      this.AFS.doc(`users/${this.userId}`).valueChanges().subscribe(res => {
+        this.userDataAll = res;
+        console.log(this.userDataAll);
+
+        if (!this.userDataAll.practices) {
+          this.userDataAll.practices = {}
+        }
+
+        if (!this.userDataAll.practices[this.practiceId]) {
+          console.log("no")
+          this.userDataAll.practices[this.practiceId] = this.settings
+        }
+
+
+      })
+
+    })
 
   }
 
@@ -138,9 +163,15 @@ export class PracticePerfomanceComponent implements OnInit {
   // функции переключения асан
 
   startExercise() {
+    this.ifStarted = true;
     //запускает часовой таймер
 
-    this.hourTimer()
+    this.hourTimer();
+    this.startTimerAll();
+
+    //загружает настройки по умолчанию
+    this.AFService.updateUser(this.userDataAll, this.userId)
+
 
     this.nextAsanaAndTime()
 
@@ -150,11 +181,13 @@ export class PracticePerfomanceComponent implements OnInit {
     this.show.description = this.CurrentPractic.exercises[this.currentExerciseId].description;
     this.show.audio = this.CurrentPractic.exercises[this.currentExerciseId].audio;
 
-    this.startTimerAll();
+
 
     this.onPractic = true;
 
-    this.ifStarted = true;
+
+
+
 
     if (document.getElementsByTagName('audio')[0].played) {
       this.nowPlaying = true;
@@ -246,6 +279,8 @@ export class PracticePerfomanceComponent implements OnInit {
   }
 
   back() {
+    this.userDataAll.practices[this.practiceId].spentTime = this.timeAll +this.userDataAll.practices[this.practiceId].spentTime;
+
     this._location.back();
   }
 
@@ -301,6 +336,7 @@ export class PracticePerfomanceComponent implements OnInit {
 
 
   startTimerAll() {
+
     this.intervalAll = setInterval(() => { this.timeAll++ }, 1000)
 
     this.interval = setInterval(() => {
@@ -337,8 +373,17 @@ export class PracticePerfomanceComponent implements OnInit {
 
 
 
-  openSettings(){
-    this.router.navigate(["settings"])
+  openSettings() {
+    this.router.navigate([this.practiceId, "settings"])
+  }
+
+
+
+  
+ 
+
+  ngOnDestroy(){
+    this.AFService.updateUser(this.userDataAll, this.userId)
   }
 
 }

@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { NgForm, FormBuilder, FormGroup, Validators,  FormControl,FormsModule ,ReactiveFormsModule, ValidatorFn, AbstractControl, ValidationErrors, FormGroupDirective  } from '@angular/forms';
+import { NgForm, FormBuilder, FormGroup, Validators, FormControl, FormsModule, ReactiveFormsModule, ValidatorFn, AbstractControl, ValidationErrors, FormGroupDirective } from '@angular/forms';
 import { AngularFireAuth } from "@angular/fire/auth";
 import { AngularFirestore } from "@angular/fire/firestore";
 import { Router } from '@angular/router';
-import { NgModule }      from '@angular/core';
-import {MatDialog} from '@angular/material/dialog';
+import { NgModule } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ErrorDialogComponent } from '../error-dialog/error-dialog.component';
 
 
@@ -21,16 +21,14 @@ export class SignupComponent implements OnInit {
     private AFStore: AngularFirestore,
     private formBuilder: FormBuilder,
     public dialog: MatDialog
-  ) 
-  
-  {
+  ) {
     this.groups$ = AFStore
-    .collection(`groups`)
-    .valueChanges();
-   }
+      .collection(`groups`)
+      .valueChanges();
+  }
 
-  Status="Status";
-  
+  Status = "Status";
+
   ErrorMsg: string;
 
   myForm: FormGroup;
@@ -53,20 +51,20 @@ export class SignupComponent implements OnInit {
 
   ngOnInit(): void {
     this.myForm = new FormGroup
-     ({
+      ({
         spiritualName: new FormControl(""),
         fullName: new FormControl("", Validators.required),
         Status: new FormControl("", Validators.required),
         Email: new FormControl("", [Validators.required, Validators.email]),
         // Password : ['', [ Validators.required, Validators.pattern("(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}")]],
         Password: new FormControl("", [Validators.required, Validators.pattern(".{8,}"), Validators.minLength(6)]),
-        RepeatPassword: new FormControl("",[Validators.required] ),
+        RepeatPassword: new FormControl("", [Validators.required]),
       })
-     
-    
+
+
   }
 
-  
+
 
   // async SignUp(){
   //   await this.AfAuth.createUserWithEmailAndPassword(email, password).then( auth=>{
@@ -89,17 +87,17 @@ export class SignupComponent implements OnInit {
   //     console.log('Ошибка сервера', 'Возможно такая почта уже зарегистрирована, или отсутствует подключение к сети');
   //     this.ErrorMsg = err
   //   })
-    
+
   // }
 
   signUp() {
     console.log(this.myForm);
     if (this.myForm.valid && this.myForm.controls.Password.value == this.myForm.controls.RepeatPassword.value) {
-      
+
       this.AfAuth
         .createUserWithEmailAndPassword(
           this.myForm.value.Email,
-          this.data.Password 
+          this.data.Password
         )
         .then(auth => {
           this.router.navigate(["practices-search"]);
@@ -121,7 +119,7 @@ export class SignupComponent implements OnInit {
               })
               .then(res => console.log("user extra data saved"))
               .catch(err => {
-                this.Error= 'Проверьте подключение к сети';
+                this.Error = 'Проверьте подключение к сети';
                 console.log("user saving extra data error", err);
                 this.openDialog()
               });
@@ -129,12 +127,12 @@ export class SignupComponent implements OnInit {
         })
         .catch(err => {
           console.log(err);
-          this.Error= 'Возможно такая почта уже зарегистрирована, или отсутствует подключение к сети';
+          this.Error = 'Возможно такая почта уже зарегистрирована, или отсутствует подключение к сети';
           this.openDialog()
-          
+
         })
     } else {
-      this.Error= 'Проверьте правильность полей';
+      this.Error = 'Проверьте правильность полей';
       this.customeValidation = false;
       this.openDialog()
     }
@@ -143,35 +141,35 @@ export class SignupComponent implements OnInit {
   openDialog(): void {
     const dialogRef = this.dialog.open(ErrorDialogComponent, {
       width: '400px',
-      data: {cause: 'Ошибка' ,Errore: this.Error, ErrMsg: this.ErrorMsg}
-      
+      data: { cause: 'Ошибка', Errore: this.Error, ErrMsg: this.ErrorMsg }
+
     });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-      
+
     });
   }
 
   MatchPassword() {
-    
-    
+
+
   }
 
 
 
   MustMatch(password: string, repearPassword: string) {
     return (formGroup: FormGroup) => {
-     
-     
 
-      if(password != repearPassword){
+
+
+      if (password != repearPassword) {
 
       }
-        else{
+      else {
 
-        }
-        
+      }
+
     }
- }
+  }
 }

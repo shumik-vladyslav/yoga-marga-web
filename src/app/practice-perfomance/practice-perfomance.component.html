@@ -17,6 +17,7 @@
 
 
         </div>
+        <p>прошло:{{timeAll | timeTransform}}</p><br>
         <!-- лечение от проявления во всех практикакх, хотя надо только в асанах -->
         <div *ngIf="CurrentPractic?.id == 'Asany-2' ">
             <p class="time_left">{{timeLeft | timeTransform}}</p><br>
