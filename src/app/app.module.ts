@@ -2,6 +2,9 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common'; 
 
+import {MatSliderModule} from '@angular/material/slider';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+
 import {  ReactiveFormsModule, FormsModule} from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -68,6 +71,8 @@ export const config = {
     FormsModule,
     CommonModule,
     MatDialogModule,
+    MatSliderModule,
+    MatSlideToggleModule,
    
     AppRoutingModule,
     ServiceWorkerModule.register('ngsw-worker.js', {

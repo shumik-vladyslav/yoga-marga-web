@@ -10,35 +10,54 @@
             <p class="text">
                 Установите приоритет (чем больше число, тем выше практика в списке)
             </p>
-            <input type="number" [(ngModel)]='settings.priority'>
+            <input type="number" [(ngModel)]="localSettings.priority" class="settings-input">
+            <!-- [(ngModel)]='settings.priority' -->
         </div>
         <div class="setting__block">
             <p class="text">
                 Установите время всей практики
             </p>
-            <input type="number"[(ngModel)]="allTimePr">
+            <input type="number" [(ngModel)]="practicTimeInFormat.timePractice" class="settings-input">
+            <!--  -->
         </div>
         <!--     -->
         <div class="setting__block" >
             <p class="text">
                 Также вы можете установить время на каждое упражнение
             </p>
-            <input type="number">
+            <input type="number" [(ngModel)]="practicTimeInFormat.timeExersice" class="settings-input">
         </div>
+        <!-- *ngIf="currPr.exercises.length > 0"
+ 
+-->
+
 
         <div class="setting__block">
             <p class="text">
                 Установите время, через которое вы получите сообщение о неотвлечении
             </p>
-            <input type="number">
+            <input type="number" [(ngModel)]="practicTimeInFormat.timereminder" class="settings-input">
+            <mat-slide-toggle color="primary" class="toggle-button"  (click)="checkSingle()"  [(ngModel)]="localSettings.singleReminder">
+                Однократное напоминание</mat-slide-toggle>
+            <mat-slide-toggle color="primary" class="toggle-button"
+                (click)="checkMulti()"  [(ngModel)]="localSettings.multiReminder">
+                Многократное напоминание</mat-slide-toggle>
 
 
         </div>
         <div class="setting__block">
             <p class="text">
+                настройте метроном
+            </p>
+            <input type="number" class="settings-input">
+            <!--  -->
+        </div>
+
+        <div class="setting__block">
+            <p class="text">
                 Цель: время проведенное в практике (часов)
             </p>
-            <input type="number">
+            <input type="number"  class="settings-input">
         </div>
         <button class="button" (click)="submit()">
             Применить

@@ -34,6 +34,15 @@
         <audio src="{{show.audio}}" autoplay id="audio"></audio>
         <audio src="{{practiceAudio}}" autoplay id="audio"></audio>
     </div>
+    <div class="reminder">
+        <audio src="../../assets/sound/pomni.mp3" id="audio__riminder" *ngIf="reminderFlag == true"></audio>
+    </div>
+
+
+    <div class="metronome">
+        <audio src="../../assets/sound/metronom.mp3" id="audio__metronome"></audio>
+        <audio src="../../assets/sound/gong.mp3" id="audio__metronome"></audio>
+    </div>
 
 </div>
 

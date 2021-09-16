@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { COMPILER_OPTIONS, Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AngularFireService } from '../angular-fire.service';
 import { timer } from 'rxjs';
@@ -56,6 +56,12 @@ export class PracticePerfomanceComponent implements OnInit, OnDestroy {
 
   settings = new PracticeSettings;
 
+  localSettings;
+
+
+  reminderFlag
+  metronomeFlag
+
   constructor(
     private AFService: AngularFireService,
     private router: Router,
@@ -67,10 +73,19 @@ export class PracticePerfomanceComponent implements OnInit, OnDestroy {
     this.practiceId = this.route.snapshot.params['id'];
     this.CurrentPractic = AFService.ChoosedPractic;
 
+
     this.AFService.GetPractices().subscribe(item => {
 
       this.allPractics = item;
 
+      console.log(item)
+
+      item.forEach(element => {
+        if (element.id == this.practiceId) {
+          this.CurrentPractic = element
+          console.log(element)
+        }
+      });
     })
 
     this.settings = PracticeSettings.createInstance();
@@ -79,10 +94,10 @@ export class PracticePerfomanceComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-
-    this.show.img = this.CurrentPractic?.img;
-    this.show.title = this.CurrentPractic?.name;
-    this.show.description = this.CurrentPractic?.shortDescription;
+    console.log(document.getElementsByTagName('audio'))
+    // this.show.img = this.CurrentPractic?.img;
+    // this.show.title = this.CurrentPractic?.name;
+    // this.show.description = this.CurrentPractic?.shortDescription;
 
     //this.practiceAudio = this.CurrentPractic?.audio
 
@@ -103,6 +118,9 @@ export class PracticePerfomanceComponent implements OnInit, OnDestroy {
       this.show.title = this.CurrentPractic.name;
       this.show.description = this.CurrentPractic.shortDescription;
 
+      this.reminderFlag = this.localSettings.singleReminder
+      this.metronomeFlag = this.CurrentPractic.hasMetronome
+
       this.practiceAudio = this.CurrentPractic?.audio
       console.log(this.practiceAudio)
     }, 1500);
@@ -117,6 +135,9 @@ export class PracticePerfomanceComponent implements OnInit, OnDestroy {
       this.AFS.doc(`users/${this.userId}`).valueChanges().subscribe(res => {
         this.userDataAll = res;
         console.log(this.userDataAll);
+
+        this.localSettings = this.userDataAll.practices[this.practiceId]
+        console.log(this.localSettings)
 
         if (!this.userDataAll.practices) {
           this.userDataAll.practices = {}
@@ -162,10 +183,13 @@ export class PracticePerfomanceComponent implements OnInit, OnDestroy {
 
   // функции переключения асан
 
+  // первая-- запуск всей практики
   startExercise() {
+    //флаг
     this.ifStarted = true;
-    //запускает часовой таймер
 
+
+    //запускает часовой таймер
     this.hourTimer();
     this.startTimerAll();
 
@@ -173,19 +197,35 @@ export class PracticePerfomanceComponent implements OnInit, OnDestroy {
     this.AFService.updateUser(this.userDataAll, this.userId)
 
 
+
+
     this.nextAsanaAndTime()
 
+    //подключаем напоминалку
+    //одиночная
+    if (this.localSettings.singleReminder === true) {
+      this.singleReminder(this.localSettings.reminderInterval)
+    }
+    //множественная
+    if (this.localSettings.multiReminder === true) {
+      this.multiReminder(this.localSettings.reminderInterval)
+    }
+
+    if (this.CurrentPractic.hasMetronome == true) {
+      console.log("metronome!!!")
+      this.metronome()
+      
+    }
+
+    // для практик с упражнениями, переназначаем практики, ПЕРЕДЕЛАтЬ!!!
     this.currentExerciseId = 0;
     this.show.img = this.CurrentPractic.exercises[this.currentExerciseId].image;
     this.show.title = this.CurrentPractic.exercises[this.currentExerciseId].name;
     this.show.description = this.CurrentPractic.exercises[this.currentExerciseId].description;
     this.show.audio = this.CurrentPractic.exercises[this.currentExerciseId].audio;
-
-
+    //
 
     this.onPractic = true;
-
-
 
 
 
@@ -196,8 +236,6 @@ export class PracticePerfomanceComponent implements OnInit, OnDestroy {
     if (document.getElementsByTagName('audio')[0].paused) {
       this.nowPlaying = false;
     }
-
-
 
   }
 
@@ -240,8 +278,40 @@ export class PracticePerfomanceComponent implements OnInit, OnDestroy {
 
   }
 
-  method() {
+  //Напоминалка
+  //одиночная
+  singleReminder(time) {
+    let singleReminder = setInterval(() => {
 
+      document.getElementsByTagName('audio')[2].volume = 1
+      document.getElementsByTagName('audio')[2].play()
+      console.log("!!22!!!))((#3")
+
+
+      console.log('Не отвлекайся!', document.getElementsByTagName('audio')[2]);
+
+      clearInterval(singleReminder);
+    }, time)
+  }
+  //множественная
+  multiReminder(time) {
+    let multiReminder = setInterval(() => {
+
+      document.getElementsByTagName('audio')[2].volume = 1
+      document.getElementsByTagName('audio')[2].play()
+      console.log("!!22!!!))((#3")
+
+      console.log("Не отвлекайся, Бди свою концентрацию!", document.getElementsByTagName('audio')[2]);
+      //document.getElementsByTagName("audio")[2].play
+    }, time)
+  }
+
+  //метроном
+  metronome() {
+    document.getElementsByTagName('audio')[0].play();
+    let metronomeInterval = setInterval(() => {
+      document.getElementsByTagName('audio')[1].play();
+    }, 4000)
   }
 
   pauseExercise() {
@@ -279,7 +349,7 @@ export class PracticePerfomanceComponent implements OnInit, OnDestroy {
   }
 
   back() {
-    this.userDataAll.practices[this.practiceId].spentTime = this.timeAll +this.userDataAll.practices[this.practiceId].spentTime;
+    this.userDataAll.practices[this.practiceId].spentTime = this.timeAll + this.userDataAll.practices[this.practiceId].spentTime;
 
     this._location.back();
   }
@@ -379,10 +449,10 @@ export class PracticePerfomanceComponent implements OnInit, OnDestroy {
 
 
 
-  
- 
 
-  ngOnDestroy(){
+
+
+  ngOnDestroy() {
     this.AFService.updateUser(this.userDataAll, this.userId)
   }
 
