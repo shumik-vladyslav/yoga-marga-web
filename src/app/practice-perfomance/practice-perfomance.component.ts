@@ -2,7 +2,7 @@ import { COMPILER_OPTIONS, Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AngularFireService } from '../angular-fire.service';
 import { timer } from 'rxjs';
-import { Location } from '@angular/common';
+import { Location, NgIf } from '@angular/common';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { PracticeSettings } from '../PracticesSetting.model';
@@ -123,6 +123,10 @@ export class PracticePerfomanceComponent implements OnInit, OnDestroy {
 
       this.practiceAudio = this.CurrentPractic?.audio
       console.log(this.practiceAudio)
+      console.log(this.localSettings.intervals)
+      if(this.localSettings.intervals[0] == null ){
+        this.localSettings.intervals[0] = {"value" : 4}
+      }
     }, 1500);
 
     //Для настроек практик
@@ -214,7 +218,7 @@ export class PracticePerfomanceComponent implements OnInit, OnDestroy {
     if (this.CurrentPractic.hasMetronome == true) {
       console.log("metronome!!!")
       this.metronome()
-      
+
     }
 
     // для практик с упражнениями, переназначаем практики, ПЕРЕДЕЛАтЬ!!!
@@ -307,11 +311,41 @@ export class PracticePerfomanceComponent implements OnInit, OnDestroy {
   }
 
   //метроном
+  metronomeInterval
+  metronomeInterval2
+  index = 0
   metronome() {
+    this.metronom1()
     document.getElementsByTagName('audio')[0].play();
-    let metronomeInterval = setInterval(() => {
-      document.getElementsByTagName('audio')[1].play();
-    }, 4000)
+
+   
+  }
+
+  metronom1() {
+    this.metronomeInterval = setInterval(() => {
+      document.getElementsByTagName('audio')[3].play()
+      this.index++
+      if(this.index >=this.localSettings.intervals.length){this.index=0}
+      console.log(this.index)
+      this.metronom2()
+      clearInterval(this.metronomeInterval)
+    }, 1000 * this.localSettings.intervals[this.index].value)
+  }
+
+  metronom2() {
+    this.metronomeInterval2 = setInterval(() => {
+      document.getElementsByTagName('audio')[3].play()
+      this.index++;
+      if(this.index >=this.localSettings.intervals.length){this.index=0}
+      console.log(this.index)
+      this.metronom1()
+      clearInterval(this.metronomeInterval2)
+    }, 1000 * this.localSettings.intervals[this.index].value)
+  }
+
+  pauseMetronome() {
+    document.getElementsByTagName('audio')[2].pause();
+    clearInterval(this.metronomeInterval)
   }
 
   pauseExercise() {
@@ -322,12 +356,14 @@ export class PracticePerfomanceComponent implements OnInit, OnDestroy {
 
     this.pauseTimerAll()
 
+    this.pauseMetronome()
+
     this.onPractic = false
   }
 
   playExercise() {
     this.startTimerAll();
-
+    this.metronome()
     this.nextAsanaAndTime2();
 
     this.hourTimer()
@@ -335,6 +371,8 @@ export class PracticePerfomanceComponent implements OnInit, OnDestroy {
     this.onPractic = true;
     document.getElementsByTagName('audio')[0].play();
     document.getElementsByTagName('audio')[1].play();
+    document.getElementsByTagName('audio')[2].currentTime = 0
+    document.getElementsByTagName('audio')[2].play();
     this.nowPlaying = false;
 
 
@@ -423,7 +461,9 @@ export class PracticePerfomanceComponent implements OnInit, OnDestroy {
     clearInterval(this.timeInterval)
     clearInterval(this.intervalAll);
     clearInterval(this.interval);
-
+    
+    clearInterval(this.metronomeInterval)
+    clearInterval(this.metronomeInterval2)
     clearInterval(this.hourInt)
   }
 
@@ -454,6 +494,7 @@ export class PracticePerfomanceComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.AFService.updateUser(this.userDataAll, this.userId)
+    clearInterval(this.metronomeInterval)
   }
 
 }

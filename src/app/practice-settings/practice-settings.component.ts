@@ -45,6 +45,10 @@ export class PracticeSettingsComponent implements OnInit, OnDestroy {
   checked1 = false;
   checked2 = false;
 
+  metronomeFlag;
+
+  intervalsMetronome
+
   practicTimeInFormat = {
     timePractice: null,
     timereminder: null,
@@ -63,6 +67,7 @@ export class PracticeSettingsComponent implements OnInit, OnDestroy {
         if (element.id == this.practiceId) {
           this.currPr = element
           console.log(this.currPr)
+          this.metronomeFlag = this.currPr.hasMetronome
         }
       });
 
@@ -96,6 +101,8 @@ export class PracticeSettingsComponent implements OnInit, OnDestroy {
 
         this.practicTimeInFormat.timePractice = this.localSettings.practiceDuration / 1000 / 60 / 60;
         this.practicTimeInFormat.timereminder = this.localSettings.reminderInterval / 1000 / 60;
+       // this.intervalsMetronome = this.localSettings.intervals
+        
 
         if (!this.userDataAll.practices) {
           this.userDataAll.practices = {}
@@ -180,6 +187,14 @@ export class PracticeSettingsComponent implements OnInit, OnDestroy {
     // .catch(err => {
     //   console.log(err)
     // });
+  }
+
+  addMetronomTime(){
+    this.localSettings.intervals.push({"value": 1})
+  }
+
+  deleteMetronomTime(i){
+    this.localSettings.intervals.splice(i, 1)
   }
 
   ngOnDestroy() {
