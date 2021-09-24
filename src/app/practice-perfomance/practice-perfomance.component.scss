@@ -28,6 +28,9 @@
 .time{
     height: 40px;
     background: #009688;
+    display: flex;
+    align-items: center;
+    justify-content:space-evenly;
 }
 .text{
     overflow-y:scroll;
@@ -62,6 +65,21 @@
     font-size: 24px;
     font-weight:bolder;
     text-align: center;
+}
+
+.img-clock__icon{
+    width: 40px;
+    height: 40px;
+  //  background-color: #fff;
+}
+
+.img__block{
+    display: flex;
+    align-items: center;
+}
+
+p{
+    margin-bottom: 0;
 }
 
 @media(max-width : 500px){

@@ -10,40 +10,96 @@ import { AngularFireService } from '../angular-fire.service';
 })
 export class PersonalInfoComponent implements OnInit {
 
-  constructor(private AFS: AngularFirestore, private AFService: AngularFireService, private AFAuth: AngularFireAuth) {
-
-
-    // this.user = AFAuth.user.subscribe();
-
-
-
-    setTimeout(() => {
-      // this.getUserData()
-
-
-
-
-
-
-    }, 1000);
-
+  constructor(
+    private AFS: AngularFirestore,
+    private AFService: AngularFireService,
+    private AFAuth: AngularFireAuth,
+  ) {
 
     setTimeout(() => {
 
-      //console.log(this.user)
-      //console.log(this.userId)
 
-      //console.log(this.userDataAll);
+      console.log(this.userDataAll.practices)
 
 
 
+      console.log(this.userDataAll.practices.hasOwnProperty("spentTimeGoal"));
 
+      for (const key in this.userDataAll.practices) {
+
+        if (Object.prototype.hasOwnProperty.call(this.userDataAll.practices, key)) {
+
+          const element = this.userDataAll.practices[key];
+
+          if (element.hasOwnProperty("spentTimeGoal") && element.spentTimeGoal >0  ) {
+
+            let Goalindex = ((element.spentTime / element.spentTimeGoal) * 100).toFixed(0)
+
+
+            this.goalsArr.push([ [key], element, Goalindex] )
+
+
+            console.log(this.goalsArr)
+
+            this.practices.forEach(element => {
+
+              if (element.id == [key]) {
+                console.log([key])
+                this.goalsArr.forEach(setting => {
+                  if (setting[0] == element.id && setting[3] !== null || undefined) {
+                    setting.push(element)
+                  }
+                });
+
+
+              }
+
+            });
+
+          }
+           if(element.hasOwnProperty("amountCounterGoal") ){
+            console.log("uraaa!!!")
+            let Goalindex1 = ((element.amountCounter / element.amountCounterGoal) * 100).toFixed(0)
+
+
+            this.goalsArr.push([ [key], element, Goalindex1] )
+
+
+            console.log(this.goalsArr)
+
+            this.practices.forEach(element => {
+
+              if (element.id == [key]) {
+                console.log([key])
+                this.goalsArr.forEach(setting => {
+                  if (setting[0] == element.id && setting[3] !== null || undefined) {
+                    setting.push(element)
+                  }
+                });
+
+
+              }
+
+            });
+          }
+
+        }
+      }
+      console.log(this.goalsArr)
     }, 2400);
 
-    //this.getUserData()
+
+
+
+    this.AFService.GetPractices().subscribe(res => {
+      this.practices = res;
+      console.log(this.practices)
+    })
+
+
 
   }
-
+  practices
 
   userDataAll
 
@@ -61,7 +117,11 @@ export class PersonalInfoComponent implements OnInit {
     phone: ""
   }
 
+  goalsArr: any = []
+
   userEmail = this.AFService.userId;
+
+  practiceName
 
   ngOnInit(): void {
 
@@ -89,21 +149,18 @@ export class PersonalInfoComponent implements OnInit {
       this.AFS.doc(`users/${this.userId}`).valueChanges().subscribe(res => {
         this.userDataAll = res;
         console.log(this.userDataAll);
-
+        this.userData.spiritalName = this.userDataAll.spiritual_name
+        this.userData.name = this.userDataAll.full_name
+        this.userData.status = this.userDataAll.status
       })
     })
-
-
-
-
-    // await this.getData()
 
 
   }
 
 
-  changeUserData(){
-    if(this.userDataAll !== null || undefined){
+  changeUserData() {
+    if (this.userDataAll !== null || undefined) {
       this.AFS.doc(`users/${this.userId}`).update(this.userDataAll)
     }
 
@@ -112,29 +169,3 @@ export class PersonalInfoComponent implements OnInit {
 
 
 }
- //   return new Promise(()=>{
-//       this.AFAuth.authState.subscribe(user => {
-//       this.userId = user.email
-//       console.log(this.userId)
-//     })
-//     }).then(res => {
-//     console.log(res)
-//     this.AFS.doc(`users/${this.userId}`).valueChanges().subscribe(ret => {
-
-//       this.userDataAll = ret;
-//       console.log(ret)
-//     })
-
-
-
-//   }).then(res => {
-//     this.userData.name = this.userDataAll.full_name
-//     this.userData.spiritalName = this.userDataAll.spiritual_name
-//     this.userData.status = this.userDataAll.status
-//     console.log(this.userData.status)
-//   })
-
-
-
-//   }
-

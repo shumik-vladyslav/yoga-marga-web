@@ -5,6 +5,15 @@
     </div>
 
     <div class="time">
+        <!-- <img src="../../assets/icons/icons/clock.png" alt="" class="img-clock__icon"> -->
+        <div class="img__block">
+            <img src="https://img.icons8.com/glyph-neue/64/000000/clock.png" class="img-clock__icon" />
+            <p>{{localSettings?.spentTime | millisecondsToHours}}</p>
+        </div>
+        <div class="img__block" *ngIf="hasAmountCounter">
+            <img src="../../assets/icons/icons/count.png" class="img-clock__icon" />
+            <p>{{localSettings?.amountCounter}}</p>
+        </div>
 
     </div>
 
@@ -40,11 +49,13 @@
 
 
     <div class="metronome" *ngIf="metronomeFlag == true">
-        <audio src="../../assets/sound/metronom.mp3" id="audio__metronome"></audio>
+        <!-- <audio src="../../assets/sound/metronom.mp3" id="audio__metronome"></audio> -->
         <audio src="../../assets/sound/gong.mp3" id="audio__metronome"></audio>
     </div>
 
 </div>
+<!-- <button (click)="metronome()" >rrr</button> -->
+
 
 <div class="footer__practic">
 

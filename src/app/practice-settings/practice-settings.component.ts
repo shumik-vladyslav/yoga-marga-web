@@ -6,6 +6,8 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { ActivatedRoute } from '@angular/router';
 import { AngularFireService } from '../angular-fire.service';
 import { AriaDescriber } from '@angular/cdk/a11y';
+import { ThemePalette } from '@angular/material/core';
+import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
 
 
 
@@ -47,12 +49,16 @@ export class PracticeSettingsComponent implements OnInit, OnDestroy {
 
   metronomeFlag;
 
+  hasAmountCounter: boolean = false;
+
   intervalsMetronome
 
   practicTimeInFormat = {
     timePractice: null,
     timereminder: null,
-    timeExersice: null
+    timeExersice: null,
+    spentTimeGoal: null,
+    amountCounterGoal: null,
   }
 
   localSettings = new PracticeSettings
@@ -68,6 +74,7 @@ export class PracticeSettingsComponent implements OnInit, OnDestroy {
           this.currPr = element
           console.log(this.currPr)
           this.metronomeFlag = this.currPr.hasMetronome
+          this.hasAmountCounter = this.currPr.hasAmountCounter
         }
       });
 
@@ -81,7 +88,7 @@ export class PracticeSettingsComponent implements OnInit, OnDestroy {
   }
 
   click() {
-   
+
   }
 
   async getUserData() {
@@ -101,8 +108,9 @@ export class PracticeSettingsComponent implements OnInit, OnDestroy {
 
         this.practicTimeInFormat.timePractice = this.localSettings.practiceDuration / 1000 / 60 / 60;
         this.practicTimeInFormat.timereminder = this.localSettings.reminderInterval / 1000 / 60;
-       // this.intervalsMetronome = this.localSettings.intervals
-        
+        this.practicTimeInFormat.spentTimeGoal = this.localSettings.spentTimeGoal / 1000 / 60 / 60;
+        this.practicTimeInFormat.amountCounterGoal = this.localSettings.amountCounterGoal
+
 
         if (!this.userDataAll.practices) {
           this.userDataAll.practices = {}
@@ -189,16 +197,18 @@ export class PracticeSettingsComponent implements OnInit, OnDestroy {
     // });
   }
 
-  addMetronomTime(){
-    this.localSettings.intervals.push({"value": 1})
+  addMetronomTime() {
+    this.localSettings.intervals.push({ "value": 1 })
   }
 
-  deleteMetronomTime(i){
+  deleteMetronomTime(i) {
     this.localSettings.intervals.splice(i, 1)
   }
 
   ngOnDestroy() {
-    this.localSettings.reminderInterval = this.practicTimeInFormat.timereminder *1000 *60
+    this.localSettings.reminderInterval = this.practicTimeInFormat.timereminder * 1000 * 60
+    this.localSettings.spentTimeGoal = this.practicTimeInFormat.spentTimeGoal * 1000 * 60 * 60;
+    this.localSettings.amountCounterGoal = this.practicTimeInFormat.amountCounterGoal;
     this.userDataAll.practices[this.practiceId] = this.localSettings
     this.AFService.updateUser(this.userDataAll, this.userId)
   }

@@ -54,7 +54,7 @@ export class AngularFireService {
 
 
   GetPractices() {
-    return this.practics
+    return this.AFS.collection(`practices`).valueChanges();
   }
 
   sendFeedback(msg) {

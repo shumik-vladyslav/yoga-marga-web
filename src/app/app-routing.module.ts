@@ -13,6 +13,7 @@ import { ComplexesComponent } from './complexes/complexes.component';
 import { ClasificiedPracticesComponent } from './clasificied-practices/clasificied-practices.component';
 import { ComplexListComponent } from './complex-list/complex-list.component';
 import { PracticeSettingsComponent } from './practice-settings/practice-settings.component';
+import { AmountCounterComponent } from './amount-counter/amount-counter.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch:'full'},
@@ -29,6 +30,7 @@ const routes: Routes = [
   {path: 'Practic-list/:type', component: ClasificiedPracticesComponent},
   {path: 'complex-list/:name', component: ComplexListComponent},
   {path: ':id/settings', component: PracticeSettingsComponent},
+  {path: 'amount-counter/:id', component: AmountCounterComponent},
   
   
 ];

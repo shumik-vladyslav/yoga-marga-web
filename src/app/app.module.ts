@@ -30,7 +30,11 @@ import { ComplexesComponent } from './complexes/complexes.component';
 import { ClasificiedPracticesComponent } from './clasificied-practices/clasificied-practices.component';
 import { ComplexListComponent } from './complex-list/complex-list.component';
 import { PracticeSettingsComponent } from './practice-settings/practice-settings.component';
-
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { NgxAudioPlayerModule } from 'ngx-audio-player';
+import { ProgressChartDirective } from './progress-chart.directive';
+import { AmountCounterComponent } from './amount-counter/amount-counter.component';
+import { MillisecondsToHoursPipe } from './milliseconds-to-hours.pipe';
 
 export const config = {
   firebase: {
@@ -62,7 +66,10 @@ export const config = {
    ComplexesComponent,
    ClasificiedPracticesComponent,
    ComplexListComponent,
-   PracticeSettingsComponent
+   PracticeSettingsComponent,
+   ProgressChartDirective,
+   AmountCounterComponent,
+   MillisecondsToHoursPipe
   ],
   imports: [
     BrowserModule,
@@ -73,6 +80,7 @@ export const config = {
     MatDialogModule,
     MatSliderModule,
     MatSlideToggleModule,
+    MatProgressSpinnerModule,
    
     AppRoutingModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
@@ -84,7 +92,9 @@ export const config = {
    
     AngularFireModule.initializeApp(config.firebase),
    
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    
+    NgxAudioPlayerModule,
     
   ],
   entryComponents: [

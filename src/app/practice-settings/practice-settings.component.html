@@ -62,8 +62,17 @@
             <p class="text">
                 Цель: время проведенное в практике (часов)
             </p>
-            <input type="number" class="settings-input">
+            <input type="number" class="settings-input" [(ngModel)]="practicTimeInFormat.spentTimeGoal">
         </div>
+
+        <div class="setting__block" *ngIf="hasAmountCounter == true">
+            <p class="text">
+                Цель: выполнить раз (например количество простираний)
+            </p>
+            <input type="number" class="settings-input" [(ngModel)]="practicTimeInFormat.amountCounterGoal">
+        </div>
+
+        
         <button class="button" (click)="submit()">
             Применить
         </button>

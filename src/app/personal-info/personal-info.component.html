@@ -9,11 +9,11 @@
 
             <span class="spiritual__name span">Духовное имя</span>
 
-            <input type="text " class="input__cabinet" [(ngModel)]="userDataAll.spiritual_name">
+            <input type="text " class="input__cabinet" [(ngModel)]="userData.spiritalName">
 
             <span class="world__name span">Ф.И.О</span>
 
-            <input type="text" class="input__cabinet" [(ngModel)]="userDataAll.full_name">
+            <input type="text" class="input__cabinet" [(ngModel)]="userData.name">
 
             <span class="gender span">Пол</span>
 
@@ -26,17 +26,17 @@
 
             </select>
 
-            <span class="status span">Статус</span> 
+            <span class="status span">Статус</span>
 
-            <select name="" id="" class="select__cabinet" [(ngModel)]="userDataAll.status">
+            <select name="" id="" class="select__cabinet" [(ngModel)]="userData.status">
 
-                <option value="{{userDataAll.status }}" hidden ng-selected="selected" >  {{userDataAll.status }}</option>
+                <option value="{{userData.status }}" hidden ng-selected="selected"> {{userData.status }}</option>
                 <option value="Грихастха">Грихастха</option>
                 <option value="Карма-Санньяси">Карма-Санньяси</option>
                 <option value="Пурна-Санньяси">Пурна-Санньяси</option>
 
             </select>
-           
+
             <span class="phone span">Телефон</span>
 
             <input type="text" class="input__cabinet">
@@ -44,6 +44,26 @@
             <button class="button" (click)="changeUserData()">Изменить данные</button>
 
             <h2 class="h2__centr">Цели</h2>
+
+            <!-- <mat-progress-spinner class="example-margin" color="warn" mode="determinate" value="10"></mat-progress-spinner> -->
+
+
+
+
+            <div class="progress__block">
+                <div class="progress__item" *ngFor="let item of goalsArr">
+
+                    <div class="image"><img src="{{item[3].ico}}" alt="" class="img-icon"></div>
+                    <div class="progress__description">
+                        <p class="text">{{item[3].name}}</p>
+                    </div>
+                    <div class="progress__circle">
+                        <progress-chart [progress]="item[2]"></progress-chart>
+                    </div>
+
+
+                </div>
+            </div>
 
         </div>
 

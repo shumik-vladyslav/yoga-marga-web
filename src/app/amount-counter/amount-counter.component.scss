@@ -1,0 +1,46 @@
+.input{
+    font-size: 18px;
+    font-weight: bold;
+    color: rgb(0, 150, 136);
+    text-align: center;
+  //  line-height: 14px;
+}
+
+.menu-close {
+    display: flex;
+    //  justify-content:flex-end;
+}
+
+.menu__close-btn {
+    display: flex;
+    width: 40px;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgb(0, 150, 136);
+    border-radius: 50%;
+    background: white;
+    left: auto;
+    right: 40;
+    top: 30px;
+    cursor: pointer;
+}
+
+.menu__close-line {
+    width: 10px;
+    height: 1px;
+    background: rgb(0, 150, 136);
+   bottom: 25px; 
+   left: 46.5% ;
+    transform: rotate(45deg);
+
+    position: absolute;
+}
+.menu__close-btn::before {
+    content: "";
+    width: 20px;
+    height: 1px;
+    background: rgb(0, 150, 136);
+    transform: rotate(135deg);
+    position: absolute;
+}

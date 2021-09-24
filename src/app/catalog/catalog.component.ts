@@ -69,7 +69,7 @@ export class CatalogComponent implements OnInit {
 
         exp.push(element2);
 
-       // console.log(exp)
+        console.log(exp)
 
       }
 
@@ -98,7 +98,7 @@ export class CatalogComponent implements OnInit {
   groupBy(xs, key) {
     const resObj = xs.reduce(function (rv, x) {
       (rv[x[key]] = rv[x[key]] || []).push(x);
-      //  console.log(rv)
+       console.log(rv)
       return rv;
     }, {});
 

@@ -116,12 +116,18 @@ export class BmPageComponent implements OnInit, AfterViewInit, OnDestroy {
       if (document.getElementsByTagName('audio')[index - 1].played) {
         document.getElementsByTagName('audio')[index - 1].pause()
       }
+      if (document.getElementsByTagName('audio')[index - 2].played) {
+        document.getElementsByTagName('audio')[index - 2].pause()
+      }
+      if (document.getElementsByTagName('audio')[index - 2].played) {
+        document.getElementsByTagName('audio')[index - 2].pause()
+      }
 
       document.getElementsByTagName('audio')[index].play()
       document.getElementsByTagName('audio')[index].classList.toggle("active")
 
     }
-    document.getElementsByTagName('audio')[index ].volume = 0;
+    document.getElementsByTagName('audio')[index].volume = 0;
 
   }
 
@@ -139,7 +145,7 @@ export class BmPageComponent implements OnInit, AfterViewInit, OnDestroy {
 
       this.playedIdx == 0
 
-      document.getElementsByTagName('audio')[0].play();
+      document.getElementsByTagName('audio')[this.playedIdx].play();
     }
 
     else {
@@ -165,7 +171,7 @@ export class BmPageComponent implements OnInit, AfterViewInit, OnDestroy {
     this._location.back();
   }
 
-  volumeTumbler(){
+  volumeTumbler() {
     this.volume = !this.volume;
   }
 
