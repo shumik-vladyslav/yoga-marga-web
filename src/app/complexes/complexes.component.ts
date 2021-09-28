@@ -30,10 +30,12 @@ export class ComplexesComponent implements OnInit {
 
   userId
 
-  userDataAll
+  userDataAll;
+
+  userComplexes: any = []
 
   ngOnInit(): void {
-
+    this.getUserData()
   }
 
   onToggleMenu() {
@@ -45,8 +47,8 @@ export class ComplexesComponent implements OnInit {
     t.classList.toggle("wrapper__bg")
   }
 
-  openComplex_listPage() {
-    this.router.navigate(['complex-list', this.DataAll.array[0].name])
+  openComplex_listPage(name) {
+    this.router.navigate(['complex-list', name])
   }
 
 
@@ -61,10 +63,11 @@ export class ComplexesComponent implements OnInit {
       this.AFS.doc(`users/${this.userId}`).valueChanges().subscribe(res => {
         this.userDataAll = res;
         console.log(this.userDataAll);
-
-
-        this.AFS.collection(`users/${this.userId}/complexes`  ).valueChanges().subscribe(res =>{
+        console.log(this.userDataAll.complexes);
+        this.userComplexes = this.userDataAll.complexes
+        this.AFS.collection(`users/${this.userId}/complexes`).valueChanges().subscribe(res => {
           console.log(res)
+
         })
       })
 

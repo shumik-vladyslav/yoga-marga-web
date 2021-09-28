@@ -178,6 +178,14 @@ export class PracticeSettingsComponent implements OnInit, OnDestroy {
   }
 
   submit() {
+    this.localSettings.reminderInterval = this.practicTimeInFormat.timereminder * 1000 * 60
+    this.localSettings.spentTimeGoal = this.practicTimeInFormat.spentTimeGoal * 1000 * 60 * 60;
+    if (this.practicTimeInFormat.amountCounterGoal>0) {
+      this.localSettings.amountCounterGoal = this.practicTimeInFormat.amountCounterGoal;
+    }
+    this.userDataAll.practices[this.practiceId] = this.localSettings
+    this.AFService.updateUser(this.userDataAll, this.userId)
+
     this._location.back();
   }
 
@@ -206,11 +214,7 @@ export class PracticeSettingsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.localSettings.reminderInterval = this.practicTimeInFormat.timereminder * 1000 * 60
-    this.localSettings.spentTimeGoal = this.practicTimeInFormat.spentTimeGoal * 1000 * 60 * 60;
-    this.localSettings.amountCounterGoal = this.practicTimeInFormat.amountCounterGoal;
-    this.userDataAll.practices[this.practiceId] = this.localSettings
-    this.AFService.updateUser(this.userDataAll, this.userId)
+
   }
 }
 

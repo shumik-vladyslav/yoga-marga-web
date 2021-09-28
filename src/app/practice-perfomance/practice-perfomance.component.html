@@ -39,9 +39,9 @@
         <p>{{show.description}}</p>
     </div>
 
-    <div class="audio" *ngIf="currentExerciseId != null || undefined">
-        <audio src="{{show.audio}}" autoplay id="audio"></audio>
-        <audio src="{{practiceAudio}}" autoplay id="audio"></audio>
+    <div class="audio">
+        <audio src="{{show.audio}}"  id="audio" ></audio>
+        <audio src="{{practiceAudio}}"  id="audio"></audio>
     </div>
     <div class="reminder">
         <audio src="../../assets/sound/pomni.mp3" id="audio__riminder" *ngIf="reminderFlag == true"></audio>

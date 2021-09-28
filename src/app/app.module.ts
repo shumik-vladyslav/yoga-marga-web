@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { CommonModule } from '@angular/common'; 
+import { CommonModule } from '@angular/common';
 
-import {MatSliderModule} from '@angular/material/slider';
-import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
-import {  ReactiveFormsModule, FormsModule} from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
@@ -15,7 +15,7 @@ import { AngularFireModule } from '@angular/fire';
 import { HomePageComponent } from './home-page/home-page.component';
 import { SignupComponent } from './signup/signup.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 import { ErrorDialogComponent } from './error-dialog/error-dialog.component';
 import { PracticsSearchComponent } from './practics-search/practics-search.component';
 import { MyComplexComponent } from './my-complex/my-complex.component';
@@ -30,20 +30,21 @@ import { ComplexesComponent } from './complexes/complexes.component';
 import { ClasificiedPracticesComponent } from './clasificied-practices/clasificied-practices.component';
 import { ComplexListComponent } from './complex-list/complex-list.component';
 import { PracticeSettingsComponent } from './practice-settings/practice-settings.component';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { NgxAudioPlayerModule } from 'ngx-audio-player';
 import { ProgressChartDirective } from './progress-chart.directive';
 import { AmountCounterComponent } from './amount-counter/amount-counter.component';
 import { MillisecondsToHoursPipe } from './milliseconds-to-hours.pipe';
+import { AngularFirestore, AngularFirestoreModule } from '@angular/fire/firestore';
 
 export const config = {
   firebase: {
-      apiKey: "AIzaSyB_GbsCOx3bVOQ8ewbi0wmET7rV5yh-nq0",
-      authDomain: "yoga-marga.firebaseapp.com",
-      databaseURL: "https://yoga-marga.firebaseio.com",
-      projectId: "yoga-marga",
-      storageBucket: "yoga-marga.appspot.com",
-      messagingSenderId: "286651682132"
+    apiKey: "AIzaSyB_GbsCOx3bVOQ8ewbi0wmET7rV5yh-nq0",
+    authDomain: "yoga-marga.firebaseapp.com",
+    databaseURL: "https://yoga-marga.firebaseio.com",
+    projectId: "yoga-marga",
+    storageBucket: "yoga-marga.appspot.com",
+    messagingSenderId: "286651682132"
   }
 }
 @NgModule({
@@ -52,28 +53,28 @@ export const config = {
     LoginComponent,
     HomePageComponent,
     SignupComponent,
-   // ,MatDialogModule
+    // ,MatDialogModule
     ErrorDialogComponent,
-   PracticsSearchComponent,
-   MyComplexComponent,
-   PracticePerfomanceComponent,
-   BmPageComponent,
-   TimeTransformPipe,
-   MenuComponent,
-   CatalogComponent,
-   FeedbackComponent,
-   PersonalInfoComponent,
-   ComplexesComponent,
-   ClasificiedPracticesComponent,
-   ComplexListComponent,
-   PracticeSettingsComponent,
-   ProgressChartDirective,
-   AmountCounterComponent,
-   MillisecondsToHoursPipe
+    PracticsSearchComponent,
+    MyComplexComponent,
+    PracticePerfomanceComponent,
+    BmPageComponent,
+    TimeTransformPipe,
+    MenuComponent,
+    CatalogComponent,
+    FeedbackComponent,
+    PersonalInfoComponent,
+    ComplexesComponent,
+    ClasificiedPracticesComponent,
+    ComplexListComponent,
+    PracticeSettingsComponent,
+    ProgressChartDirective,
+    AmountCounterComponent,
+    MillisecondsToHoursPipe
   ],
   imports: [
     BrowserModule,
-    
+
     ReactiveFormsModule,
     FormsModule,
     CommonModule,
@@ -81,7 +82,7 @@ export const config = {
     MatSliderModule,
     MatSlideToggleModule,
     MatProgressSpinnerModule,
-   
+
     AppRoutingModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
@@ -89,16 +90,20 @@ export const config = {
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
     }),
-   
+
     AngularFireModule.initializeApp(config.firebase),
-   
+
+    AngularFirestoreModule.enablePersistence(),
+    
     BrowserAnimationsModule,
-    
+
     NgxAudioPlayerModule,
-    
+
+
+
   ],
   entryComponents: [
-   ErrorDialogComponent
+    ErrorDialogComponent
   ],
 
   providers: [],

@@ -3,6 +3,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { ActivatedRoute, Router, Routes } from '@angular/router';
 import { AngularFireService } from '../angular-fire.service';
 import {Location} from '@angular/common';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-complex-list',
@@ -17,6 +18,7 @@ export class ComplexListComponent implements OnInit {
     private AFS: AngularFirestore,
     private AFservice: AngularFireService,
     private _location: Location,
+    private AFAuth:AngularFireAuth,
   ) {
     this.complexName = route.snapshot.params["name"];
     console.log(this.complexName)
@@ -40,6 +42,33 @@ export class ComplexListComponent implements OnInit {
 
 
       });
+
+      if(this.Data == null || undefined){
+        this.AFAuth.authState.subscribe(user => {
+          this.userId = user.email;
+    
+          console.log(this.userId);
+    
+          this.AFS.doc(`users/${this.userId}`).valueChanges().subscribe(res => {
+            this.userDataAll = res;
+            console.log(this.userDataAll);
+            console.log(this.userDataAll.complexes);
+            this.userComplexes = this.userDataAll.complexes
+            this.userComplexes.forEach(element => {
+              if (element.name == this.complexName) {
+                this.Data = element;
+                //  console.log(this.Data)
+                this.practicesList = this.Data.practices;
+                console.log(this.practicesList)
+                return
+              }
+            });
+          })
+    
+    
+    
+        })
+      }
 
     })
 
@@ -78,6 +107,9 @@ export class ComplexListComponent implements OnInit {
   practicsAll
 
   filteredPractices: any = [];
+  userId
+  userDataAll
+  userComplexes
 
   ngOnInit(): void {
   }

@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { FormBuilder, FormControl, FormGroup, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
-import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFireAuth, AngularFireAuthModule } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { ErrorDialogComponent } from '../error-dialog/error-dialog.component';
@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
     private router: Router,
     public dialog: MatDialog,
     private formBuilder: FormBuilder,
+    private AFAuth: AngularFireAuth
 
   ) { }
 
@@ -29,6 +30,8 @@ export class LoginComponent implements OnInit {
 
   customeValidation;
 
+  userId
+
   ngOnInit(): void {
     this.myForm = new FormGroup({
 
@@ -36,6 +39,8 @@ export class LoginComponent implements OnInit {
       Password: new FormControl("", [Validators.required, Validators.pattern(".{8,}")])
 
     });
+
+    this.getUserData()
   }
 
   async onSignin() {
@@ -87,6 +92,23 @@ export class LoginComponent implements OnInit {
       console.log('The dialog was closed');
 
     });
+
+  }
+
+  async getUserData() {
+
+
+    await this.AFAuth.authState.subscribe(user => {
+      this.userId = user.email;
+
+      console.log(this.userId);
+      if(this.userId !== null||undefined){
+        this.router.navigate(['practices-search'])
+      }
+
+     
+    })
+
 
   }
 }

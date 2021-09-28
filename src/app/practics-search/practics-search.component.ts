@@ -18,21 +18,6 @@ export class PracticsSearchComponent implements OnInit {
     private AFservice: AngularFireService,
     private router: Router,
   ) {}
-
-  title;
-
-  notes;
-
-  location;
-
-  startDate;
-
-  startTime;
-
-  endDate;
-
-  endTime;
-
   practices;
 
   filteredPractices;
@@ -45,22 +30,13 @@ export class PracticsSearchComponent implements OnInit {
   results
   
   ngOnInit(): void {
-     
-    // this.practices = this.AFS.collection(`practices`).valueChanges()
-    // console.log(this.practices)
-
-    // this.practices.subscribe(item=>{ this.item$ = item})
-    // console.log(this.item$)
+    
     this.AFservice.GetPractices().subscribe(item =>{
       console.log(item)
       this.practices = item;
       this.filteredPractices = this.practices;
     })
 
-  //  setTimeout(() => {
-  //    this.filteredPractices = this.practices;
-  //    console.log(this.filteredPractices)
-  //  }, 1000); 
   }
 
 

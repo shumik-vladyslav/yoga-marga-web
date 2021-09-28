@@ -15,7 +15,7 @@ export class BmPageComponent implements OnInit, AfterViewInit, OnDestroy {
 
   audio
 
-  playedIdx
+  playedIdx = 0
 
   played
 
@@ -45,6 +45,14 @@ export class BmPageComponent implements OnInit, AfterViewInit, OnDestroy {
 
       console.log(item);
       console.log(this.allPractics);
+       this.allPractics.forEach(element => {
+        if (element.id == this.bmId) {
+          console.log(element)
+          this.currentPractice = element;
+
+        }
+        
+      });
 
     })
 
@@ -54,20 +62,6 @@ export class BmPageComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnInit(): void {
 
 
-
-    let load = setInterval(() => {
-      this.allPractics.forEach(element => {
-        if (element.id == this.bmId) {
-          console.log(element)
-          this.currentPractice = element;
-
-        }
-        clearInterval(load)
-      });
-    }, 500);
-
-
-    //console.log(this.allPractics)
 
 
 
@@ -116,18 +110,19 @@ export class BmPageComponent implements OnInit, AfterViewInit, OnDestroy {
       if (document.getElementsByTagName('audio')[index - 1].played) {
         document.getElementsByTagName('audio')[index - 1].pause()
       }
-      if (document.getElementsByTagName('audio')[index - 2].played) {
-        document.getElementsByTagName('audio')[index - 2].pause()
-      }
-      if (document.getElementsByTagName('audio')[index - 2].played) {
-        document.getElementsByTagName('audio')[index - 2].pause()
-      }
+      
+      // if (document.getElementsByTagName('audio')[index - 2].played) {
+      //   document.getElementsByTagName('audio')[index - 2].pause()
+      // }
+      // if (document.getElementsByTagName('audio')[index - 2].played) {
+      //   document.getElementsByTagName('audio')[index - 2].pause()
+      // }
 
       document.getElementsByTagName('audio')[index].play()
       document.getElementsByTagName('audio')[index].classList.toggle("active")
 
     }
-    document.getElementsByTagName('audio')[index].volume = 0;
+   // document.getElementsByTagName('audio')[index].volume = 0;
 
   }
 
