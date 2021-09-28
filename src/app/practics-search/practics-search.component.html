@@ -1,5 +1,5 @@
 <app-menu></app-menu>
-<div class="content" id="content">
+<div class="content" id="content" manifest = "example.appcache">
 
     <div class="container ">
         <div class="block__row">
@@ -14,7 +14,7 @@
             <div class="block__element " *ngFor="let p of filteredPractices " (click)="openPractice(p)">
                 <div class="inner">
                     <div class="image">
-                        <img src="{{p?.ico}}" alt="icon" class="img-icon icon">
+                        <img src="{{p?.ico}}"  class="img-icon icon">
                     </div>
                     <div class="text">
                         <p>{{p.name}}</p>

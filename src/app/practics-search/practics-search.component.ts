@@ -75,6 +75,8 @@ export class PracticsSearchComponent implements OnInit {
     this.filteredPractices = this.practices.filter(
      (p)  => p.name.toLowerCase().indexOf(value.toLowerCase()) !== -1
     );
+
+    //imageView.kf.setImage(with: url)
   }
 
   // onSearchChange(value) {
