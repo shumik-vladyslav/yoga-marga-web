@@ -1,0 +1,51 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 60px;
+}
+.text{
+    margin: 10px;
+    text-align: center;
+    font-size: 18px;
+    color: rgb(138, 138, 138);
+}
+
+hr{
+    height: 1px;
+    width: 95%;
+    background-color: rgb(138, 138, 138);
+}
+
+.doth{
+    height: 8px;
+    width: 8px;
+    border-radius: 50%;
+    background-color: #009688;
+}
+
+.practice-item{
+    display: flex;
+    left: 0 ;
+    align-items: center;
+}
+
+.text-practice{
+margin-top: 10px;
+margin-left: 5px;
+}
+
+.practice{
+left: 0;
+}
+
+.selected{
+    .doth{
+        height: 8px;
+        width: 8px;
+        border-radius: 50%;
+        background-color: #2d0096;
+    }
+    
+}

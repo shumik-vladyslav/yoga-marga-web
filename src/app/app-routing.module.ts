@@ -14,6 +14,8 @@ import { ClasificiedPracticesComponent } from './clasificied-practices/clasifici
 import { ComplexListComponent } from './complex-list/complex-list.component';
 import { PracticeSettingsComponent } from './practice-settings/practice-settings.component';
 import { AmountCounterComponent } from './amount-counter/amount-counter.component';
+import { AddComplexNameComponent } from './add-complex-name/add-complex-name.component';
+import { AddComplexPracticesComponent } from './add-complex-practices/add-complex-practices.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch:'full'},
@@ -31,6 +33,8 @@ const routes: Routes = [
   {path: 'complex-list/:name', component: ComplexListComponent},
   {path: ':id/settings', component: PracticeSettingsComponent},
   {path: 'amount-counter/:id', component: AmountCounterComponent},
+  {path: 'add-complex-name', component: AddComplexNameComponent},
+  {path: 'add-complex-practice/:name', component: AddComplexPracticesComponent},
   
   
 ];

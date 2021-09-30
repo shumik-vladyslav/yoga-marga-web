@@ -79,5 +79,7 @@ export class ComplexesComponent implements OnInit {
 
   }
 
-
+  toCreateComplexName(){
+    this.router.navigate(["add-complex-name"])
+  }
 }

@@ -1,3 +1,9 @@
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
 .footer {
     background: -webkit-linear-gradient(180deg, rgb(144, 251, 241), rgb(0, 150, 136));
     background: -moz-linear-gradient(180deg, rgb(144, 251, 241), rgb(0, 150, 136));
@@ -29,4 +35,9 @@
     margin: 20px;
     font-size: 18px;
     color: rgb(122, 122, 122);
+}
+
+.button{
+    transition: 0.5s;
+
 }

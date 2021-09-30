@@ -1,0 +1,42 @@
+<div class="content">
+    <div class="container">
+        <p class="text">
+            Кликните по тем практикам, которые ва хотите добавить в комплекс
+        </p>
+        <div class="practice">
+            <div class="practice-item selected" *ngFor="let practice of choocedPractices; let i= index"
+                (click)="uploadPractice(practice, i)">
+                <div class="doth"></div>
+                <p class="text-practice">
+                    {{practice.name}}
+                </p>
+            </div>
+        </div>
+         <hr> 
+        <!-- <div class="practice">
+            <div class="practice-item selected" *ngFor="let practice of choocedPractices; let i= index" >
+                <div class="doth"></div>
+                <p class="text-practice">
+                    {{practice.name}}
+                </p>
+            </div>
+        </div> -->
+        <!---->
+        <div class="practice">
+            <div class="practice-item " id="practice-item{{i}}" *ngFor="let practice of allPractices; let i= index"
+                (click)="selectPractice(i, practice)">
+                <div class="doth"></div>
+                <p class="text-practice">
+                    {{practice.name}}
+                </p>
+            </div>
+        </div>
+
+    </div>
+    <div class="footer">
+        <div class="menu-button__block" (click)="next()">
+            
+        </div>
+    </div>
+    с
+</div>

@@ -36,6 +36,8 @@ import { ProgressChartDirective } from './progress-chart.directive';
 import { AmountCounterComponent } from './amount-counter/amount-counter.component';
 import { MillisecondsToHoursPipe } from './milliseconds-to-hours.pipe';
 import { AngularFirestore, AngularFirestoreModule } from '@angular/fire/firestore';
+import { AddComplexNameComponent } from './add-complex-name/add-complex-name.component';
+import { AddComplexPracticesComponent } from './add-complex-practices/add-complex-practices.component';
 
 export const config = {
   firebase: {
@@ -70,7 +72,9 @@ export const config = {
     PracticeSettingsComponent,
     ProgressChartDirective,
     AmountCounterComponent,
-    MillisecondsToHoursPipe
+    MillisecondsToHoursPipe,
+    AddComplexNameComponent,
+    AddComplexPracticesComponent
   ],
   imports: [
     BrowserModule,
