@@ -1,51 +1,72 @@
-.container{
+.container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     padding-bottom: 60px;
 }
-.text{
+.text {
     margin: 10px;
     text-align: center;
     font-size: 18px;
     color: rgb(138, 138, 138);
 }
 
-hr{
+hr {
     height: 1px;
     width: 95%;
     background-color: rgb(138, 138, 138);
 }
 
-.doth{
+.doth {
     height: 8px;
     width: 8px;
     border-radius: 50%;
     background-color: #009688;
 }
 
-.practice-item{
+.practice-item {
     display: flex;
-    left: 0 ;
+    left: 0;
     align-items: center;
+    cursor: pointer;
 }
 
-.text-practice{
-margin-top: 10px;
-margin-left: 5px;
+.text-practice {
+    margin-top: 10px;
+    margin-left: 5px;
 }
 
-.practice{
-left: 0;
+.practice {
+    left: 0;
 }
 
-.selected{
-    .doth{
+.selected {
+    .doth {
         height: 8px;
         width: 8px;
         border-radius: 50%;
         background-color: #2d0096;
     }
-    
+}
+
+i {
+    border: solid #009688;
+    border-width: 0 5px 5px 0;
+    display: inline-block;
+    padding: 3px;
+}
+
+.right {
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+}
+
+.left {
+    transform: rotate(135deg);
+    -webkit-transform: rotate(135deg);
+}
+
+.arrow {
+    margin: 0;
 }

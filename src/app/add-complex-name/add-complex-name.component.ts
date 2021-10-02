@@ -23,4 +23,8 @@ export class AddComplexNameComponent implements OnInit {
 
   }
 
+  previously(){
+    this.router.navigate(["complexes"]);
+  }
+
 }
