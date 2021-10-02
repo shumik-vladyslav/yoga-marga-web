@@ -91,7 +91,10 @@ export class AddComplexPracticesComponent implements OnInit {
       this.myComplex.name = this.complexName;
       this.myComplex.practices = arr;
       console.log(this.myComplex)
-
+      if(this.userDataAll.complexes == null || undefined){
+        this.userDataAll.complexes = []
+        console.log(this.userDataAll)
+      }
       this.userDataAll.complexes.push(this.myComplex)
       console.log(this.userDataAll)
 
