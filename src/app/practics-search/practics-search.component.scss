@@ -100,6 +100,9 @@
     background: -moz-linear-gradient(180deg, rgb(144, 251, 241), rgb(0, 150, 136));
     background: linear-gradient(180deg, rgb(144, 251, 241), rgb(0, 150, 136));
 }
+.progress{
+width: 100px;
+}
 
 @media (max-width: 1150px) {
     .block__element {

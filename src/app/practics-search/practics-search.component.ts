@@ -3,6 +3,7 @@ import { AngularFireService } from '../angular-fire.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { Router } from '@angular/router';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 
 @Component({
@@ -17,7 +18,9 @@ export class PracticsSearchComponent implements OnInit {
     private db: AngularFireDatabase,
     private AFservice: AngularFireService,
     private router: Router,
-  ) {}
+    private AFAuth: AngularFireAuth,
+
+  ) { }
   practices;
 
   filteredPractices;
@@ -28,20 +31,18 @@ export class PracticsSearchComponent implements OnInit {
 
 
   results
-  
+
   ngOnInit(): void {
-    
-    this.AFservice.GetPractices().subscribe(item =>{
-      console.log(item)
-      this.practices = item;
-      this.filteredPractices = this.practices;
-    })
+
+
+
+    this.getUserData()
 
   }
 
 
 
-// для приоритета првктик
+  // для приоритета првктик
   // methodeg(){
   //   const uspr = this.practices;
 
@@ -67,13 +68,13 @@ export class PracticsSearchComponent implements OnInit {
   // }
 
   onSearchChange(value) {
-    
+
     console.log(value);
     if (!value) {
       return this.filteredPractices = this.practices;
     }
     this.filteredPractices = this.practices.filter(
-     (p)  => p.name.toLowerCase().indexOf(value.toLowerCase()) !== -1
+      (p) => p.name.toLowerCase().indexOf(value.toLowerCase()) !== -1
     );
 
     //imageView.kf.setImage(with: url)
@@ -81,7 +82,7 @@ export class PracticsSearchComponent implements OnInit {
 
   // onSearchChange(value) {
 
-    
+
   //   let self = this;
   //   self.results = self.AFS.collection(`practices`, ref => ref
   //     .orderBy("practices")
@@ -92,24 +93,88 @@ export class PracticsSearchComponent implements OnInit {
   //     console.log(self.results)
   // }
 
-  openPractice(p){
+  openPractice(p) {
     this.AFservice.ChoosedPractic = p;
     console.log(this.AFservice.ChoosedPractic);
-    if(p.isBm){
+    if (p.isBm) {
       this.router.navigate(['bm', p.id])
     }
-    else{
+    else {
       this.router.navigate(['practic', p.id]);
     }
-    
+
   }
 
-  onToggleMenu(){
+  onToggleMenu() {
 
-   let i = document.getElementById("menu");
-   i.classList.toggle("activeMenu")
+    let i = document.getElementById("menu");
+    i.classList.toggle("activeMenu")
 
-   let t  = document.getElementById("bg");
-   t.classList.toggle("wrapper__bg")
+    let t = document.getElementById("bg");
+    t.classList.toggle("wrapper__bg")
+  }
+
+  practiceGoalLine() {
+    let arr = []
+    this.filteredPractices.forEach(element => {
+
+      for (const iterator in this.userStartedPractices) {
+        let num: number;
+        if (this.userStartedPractices[iterator].spentTimeGoal > 0) {
+          num = ((this.userStartedPractices[iterator].spentTime / this.userStartedPractices[iterator].spentTimeGoal) * 100)
+        }
+        else if (this.userStartedPractices[iterator].amountCounterGoal > 0) {
+          num = ((this.userStartedPractices[iterator].amountCounter / this.userStartedPractices[iterator].amountCounterGoal) * 100)
+        }
+
+        //  console.log(iterator, this.userStartedPractices[iterator], num)
+        if (iterator == element.id && num > 0) {
+          element.goalNum = Math.round(num)
+          console.log(element)
+        }
+      }
+
+      arr.push(element)
+
+    });
+
+    console.log(arr)
+    this.filteredPractices = arr
+
+  }
+  userId;
+
+  userDataAll;
+  userStartedPractices
+
+  async getUserData() {
+
+
+    await this.AFAuth.authState.subscribe(user => {
+      this.userId = user.email;
+
+      console.log(this.userId);
+      this.AFS.doc(`users/${this.userId}`).valueChanges().subscribe(res => {
+        this.userDataAll = res;
+        console.log(this.userDataAll);
+        this.userStartedPractices = this.userDataAll.practices
+        console.log(this.userStartedPractices)
+
+
+        this.AFservice.GetPractices().subscribe(item => {
+          console.log(item)
+          this.practices = item;
+          this.filteredPractices = this.practices;
+          this.practiceGoalLine()
+          console.log("yygyftft")
+        })
+
+
+
+
+      })
+    })
+
+
   }
 }
