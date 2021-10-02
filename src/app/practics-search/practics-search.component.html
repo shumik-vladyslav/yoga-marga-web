@@ -20,7 +20,7 @@
                     <div class="text">
                         <p>{{p.name}}</p>
                     </div>
-                    <div class="progress" *ngIf='p.goalNum > 0'>
+                    <div class="progress" *ngIf='p.goalNum >=0'>
                         <mat-progress-bar mode="determinate" value="{{p.goalNum}}"></mat-progress-bar>
                     </div>
                     
