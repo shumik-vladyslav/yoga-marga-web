@@ -7,11 +7,15 @@
       "installMode": "prefetch",
       "resources": {
         "files": [
+          "https://firebasestorage.googleapis.com/v0/b/yoga-marga.appspot.com/o/practices%2F21_om%2FGroup%20165.svg?alt=media&token=3485bbe2-0f45-40f9-a665-f9d1c446e47a",
           "/favicon.ico",
           "/index.html",
           "/manifest.webmanifest",
           "/*.css",
           "/*.js"
+        ],
+        "urls": [
+          "https\\:\\/\\/firebasestorage\\.googleapis\\.com\\/v0\\/b\\/yoga-marga.appspot.com"
         ]
       }
     },
@@ -42,8 +46,9 @@
         "strategy": "performance",
         "maxAge": "1d",
         "timeout": "5s",
-        "maxSize": 800
+        "maxSize": 8000
       }
+
     }
   ]
 }

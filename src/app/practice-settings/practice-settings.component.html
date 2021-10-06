@@ -47,12 +47,15 @@
 
         </div>
         <div class="setting__block" *ngIf="metronomeFlag == true">
-            <p class="text">
-                настройте метроном
-            </p>
-            <button class="button" (click)="addMetronomTime()">+</button>
+            <div class="metronome__settings">
+                <p class="text">
+                    Настройте метроном
+                </p>
+                <button class="button" (click)="addMetronomTime()">+</button>
+            </div>
             <div class="bl" *ngFor="let interval of localSettings.intervals; let i = index">
-                <input type="number" class="settings-input" [(ngModel)]="localSettings.intervals[i].value" > <button class="button" (click)="deleteMetronomTime(i)">-</button>
+                <input type="number" class="settings-input" [(ngModel)]="localSettings.intervals[i].value"> <button
+                    class="button" (click)="deleteMetronomTime(i)">-</button>
             </div>
 
             <!--  -->
@@ -72,9 +75,11 @@
             <input type="number" class="settings-input" [(ngModel)]="practicTimeInFormat.amountCounterGoal">
         </div>
 
-        
-        <button class="button" (click)="submit()">
-            Применить
-        </button>
+        <div class="settings__sublit">
+            <button class="button button__submit" (click)="submit()">
+                Применить
+            </button>
+        </div>
+
     </div>
 </div>

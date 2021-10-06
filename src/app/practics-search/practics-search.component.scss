@@ -4,22 +4,25 @@
     // height: 2000px;
     flex-wrap: wrap;
     justify-content: center;
+
 }
 
 /* flex-элемент */
 .block__element {
     padding: 10px 10px;
     flex: 1 1 20%;
+   
 }
 
 .container {
     max-width: 80%;
     margin: 0 auto;
-}
+    
+} 
 
 .container-practic {
     padding-bottom: 60px;
-}
+    
 
 .inner {
     min-height: 150px;
@@ -32,6 +35,8 @@
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    background: #fff;
+}
 }
 
 .image {
@@ -96,9 +101,11 @@
     cursor: pointer;
 }
 .footer {
-    background: -webkit-linear-gradient(180deg, rgb(144, 251, 241), rgb(0, 150, 136));
-    background: -moz-linear-gradient(180deg, rgb(144, 251, 241), rgb(0, 150, 136));
-    background: linear-gradient(180deg, rgb(144, 251, 241), rgb(0, 150, 136));
+    // background: -webkit-linear-gradient(180deg, rgb(144, 251, 241), rgb(0, 150, 136));
+    // background: -moz-linear-gradient(180deg, rgb(144, 251, 241), rgb(0, 150, 136));
+    // background: linear-gradient(180deg, rgb(144, 251, 241), rgb(0, 150, 136));
+
+    background: radial-gradient(circle, rgba(174,238,194,1) 0%, rgba(0,150,136,1) 100%);
 }
 .progress{
 width: 100px;

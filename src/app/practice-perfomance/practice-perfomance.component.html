@@ -1,86 +1,92 @@
 <div class="conmponent">
+    <div class="block">
 
-    <div class="image" [ngStyle]="{'background-image': 'url('+show.img+')'}">
 
-    </div>
 
-    <div class="time">
-        <!-- <img src="../../assets/icons/icons/clock.png" alt="" class="img-clock__icon"> -->
-        <div class="img__block">
-            <img src="https://img.icons8.com/glyph-neue/64/000000/clock.png" class="img-clock__icon" />
-            <p>{{localSettings?.spentTime | millisecondsToHours}}</p>
-        </div>
-        <div class="img__block" *ngIf="hasAmountCounter">
-            <img src="../../assets/icons/icons/count.png" class="img-clock__icon" />
-            <p>{{localSettings?.amountCounter}}</p>
+        <div class="image" [ngStyle]="{'background-image': 'url('+show.img+')'}">
+
         </div>
 
-    </div>
+        <div class="time">
+            <!-- <img src="../../assets/icons/icons/clock.png" alt="" class="img-clock__icon"> -->
+            <div class="img__block">
+                <img src="https://img.icons8.com/glyph-neue/64/000000/clock.png" class="img-clock__icon" />
+                <p>{{localSettings?.spentTime | millisecondsToHours}}</p>
+            </div>
+            <div class="img__block" *ngIf="hasAmountCounter">
+                <img src="../../assets/icons/icons/count.png" class="img-clock__icon" />
+                <p>{{localSettings?.amountCounter}}</p>
+            </div>
 
-    <div class="text">
-        <h1 class="title">{{show.title}}</h1>
+        </div>
 
-        <div *ngIf="CurrentPractic?.id == 'Asany-1' ">
+        <div class="text">
+            <h1 class="title">{{show.title}}</h1>
+
+            <!-- <div *ngIf="CurrentPractic?.id == 'Asany-1'  ">
             <p class="time_left">{{timeLeft | timeTransform}}</p><br>
             <p>прошло:{{timeAll | timeTransform}}</p><br>
 
 
-        </div>
-        <p>прошло:{{timeAll | timeTransform}}</p><br>
-        <!-- лечение от проявления во всех практикакх, хотя надо только в асанах -->
-        <div *ngIf="CurrentPractic?.id == 'Asany-2' ">
-            <p class="time_left">{{timeLeft | timeTransform}}</p><br>
+        </div> -->
+
             <p>прошло:{{timeAll | timeTransform}}</p><br>
+            <!-- лечение от проявления во всех практикакх, хотя надо только в асанах -->
 
+            <div *ngIf="CurrentPractic.exercises.length > 0">
+                <p class="time_left">{{timeLeft | timeTransform}}</p><br>
+                <!-- <p>прошло:{{timeAll | timeTransform}}</p><br> -->
+
+            </div>
+
+            <div class="hourTimer" *ngIf="CurrentPractic?.id !== 'Asany-1'">{{hourTime | timeTransform}} </div>
+
+            <p>{{show.description}}</p>
         </div>
 
-        <div class="hourTimer" *ngIf="CurrentPractic?.id !== 'Asany-1'">{{hourTime | timeTransform}} </div>
+        <div class="audio">
+            <audio src="{{show.audio}}" id="audio"></audio>
+            <audio src="{{practiceAudio}}" id="audio"></audio>
+        </div>
+        <div class="reminder">
+            <audio src="../../assets/sound/pomni.mp3" id="audio__riminder" *ngIf="reminderFlag == true"></audio>
+        </div>
 
-        <p>{{show.description}}</p>
+
+        <div class="metronome" *ngIf="metronomeFlag == true">
+            <!-- <audio src="../../assets/sound/metronom.mp3" id="audio__metronome"></audio> -->
+            <audio src="../../assets/sound/gong.mp3" id="audio__metronome"></audio>
+        </div>
+
+
+
     </div>
+    <div class="footer__practic">
 
-    <div class="audio">
-        <audio src="{{show.audio}}"  id="audio" ></audio>
-        <audio src="{{practiceAudio}}"  id="audio"></audio>
+        <img src="../../assets/icons/icons/volume-off.png" alt="off" class="icon-img" (click)="volumeTumbler()"
+            *ngIf="volume == true">
+        <img src="../../assets/icons/icons/volume-on.png" alt="on" class="icon-img" (click)="volumeTumbler()"
+            *ngIf="volume == false">
+
+        <img src="../../assets/icons/icons/file (1).png" alt="скачать" class="icon-img" (click)="openText()">
+
+        <img src="../../assets/icons/icons/file (2).png" alt="начало" class="icon-img" (click)="startExercise()"
+            *ngIf="ifStarted == false">
+
+        <img src="../../assets/icons/icons/pause (2).png" alt="пауза" class="icon-img"
+            *ngIf="  nowPlaying ==  false && currentExerciseId != undefined || null" (click)="pauseExercise()">
+
+        <img src="../../assets/icons/icons/file (2).png" alt="воспроизвести" class="icon-img"
+            *ngIf="nowPlaying ==  true" (click)="playExercise()">
+
+        <img src="../../assets/icons/icons/next.png" alt="следующее" class="icon-img" (click)="nextExerciseTumb()"
+            *ngIf="currentExerciseId != undefined || null">
+
+        <img src="../../assets/icons/icons/settings.png" alt="" class="icon-img" (click)="openSettings()">
+
+        <img src="../../assets/icons/icons/file (3).png" alt="закрыть" class="icon-img" (click)="back()">
+
+
     </div>
-    <div class="reminder">
-        <audio src="../../assets/sound/pomni.mp3" id="audio__riminder" *ngIf="reminderFlag == true"></audio>
-    </div>
-
-
-    <div class="metronome" *ngIf="metronomeFlag == true">
-        <!-- <audio src="../../assets/sound/metronom.mp3" id="audio__metronome"></audio> -->
-        <audio src="../../assets/sound/gong.mp3" id="audio__metronome"></audio>
-    </div>
-
 </div>
 <!-- <button (click)="metronome()" >rrr</button> -->
-
-
-<div class="footer__practic">
-
-    <img src="../../assets/icons/icons/volume-off.png" alt="off" class="icon-img" (click)="volumeTumbler()"
-        *ngIf="volume == true">
-    <img src="../../assets/icons/icons/volume-on.png" alt="on" class="icon-img" (click)="volumeTumbler()"
-        *ngIf="volume == false">
-
-    <img src="../../assets/icons/icons/file (1).png" alt="скачать" class="icon-img" (click)="openText()">
-
-    <img src="../../assets/icons/icons/file (2).png" alt="начало" class="icon-img" (click)="startExercise()"
-        *ngIf="ifStarted == false">
-
-    <img src="../../assets/icons/icons/pause (2).png" alt="пауза" class="icon-img"
-        *ngIf="  nowPlaying ==  false && currentExerciseId != undefined || null" (click)="pauseExercise()">
-
-    <img src="../../assets/icons/icons/file (2).png" alt="воспроизвести" class="icon-img" *ngIf="nowPlaying ==  true"
-        (click)="playExercise()">
-
-    <img src="../../assets/icons/icons/next.png" alt="следующее" class="icon-img" (click)="nextExerciseTumb()"
-        *ngIf="currentExerciseId != undefined || null">
-
-    <img src="../../assets/icons/icons/settings.png" alt="" class="icon-img" (click)="openSettings()">
-
-    <img src="../../assets/icons/icons/file (3).png" alt="закрыть" class="icon-img" (click)="back()">
-
-
-</div>

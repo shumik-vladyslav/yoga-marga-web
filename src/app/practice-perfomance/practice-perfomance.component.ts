@@ -113,6 +113,7 @@ export class PracticePerfomanceComponent implements OnInit, OnDestroy {
         console.log(this.userDataAll);
 
         this.localSettings = this.userDataAll.practices[this.practiceId]
+        if(this.localSettings.amountCounter == NaN ){this.localSettings.amountCounter == 0}
         console.log(this.localSettings)
 
         if (!this.userDataAll.practices) {
@@ -160,6 +161,8 @@ export class PracticePerfomanceComponent implements OnInit, OnDestroy {
             if (this.localSettings.intervals[0] == null) {
               this.localSettings.intervals[0] = { "value": 4 }
             }
+            if(this.localSettings.amountCounter == NaN ){this.localSettings.amountCounter == 0}
+            //console.log(this.localSettings)
 
 
           }
@@ -309,7 +312,9 @@ export class PracticePerfomanceComponent implements OnInit, OnDestroy {
     this.audioPr.src = this.practiceAudio;
     this.audioPr.load()
 
-    this.audioPr.play()
+    this.audioPr.play().then(res =>{console.log("rrrrrrrrr")})
+      
+    
   }
 
   playAudioExercise() {
@@ -365,7 +370,7 @@ export class PracticePerfomanceComponent implements OnInit, OnDestroy {
 
     this.metronomeInterval1 = setInterval(() => {
       this.metronomeAudioTik.play()
-    }, 500)
+    }, 2000)
     this.metronom1()
 
   }
@@ -382,7 +387,7 @@ export class PracticePerfomanceComponent implements OnInit, OnDestroy {
       console.log(this.index)
       this.metronom2()
       clearInterval(this.metronomeInterval)
-    }, 1000 * this.localSettings.intervals[this.index].value)
+    }, 2000 * this.localSettings.intervals[this.index].value)
   }
 
   metronom2() {
@@ -393,7 +398,7 @@ export class PracticePerfomanceComponent implements OnInit, OnDestroy {
       console.log(this.index)
       this.metronom1()
       clearInterval(this.metronomeInterval2)
-    }, 1000 * this.localSettings.intervals[this.index].value)
+    }, 2000 * this.localSettings.intervals[this.index].value)
   }
 
   pauseMetronome() {

@@ -53,7 +53,7 @@ export class AmountCounterComponent implements OnInit, OnDestroy {
 
   localSettings;
 
-  amountCounter
+  amountCounter: number;
 
   ngOnInit(): void {
   }
@@ -77,12 +77,19 @@ export class AmountCounterComponent implements OnInit, OnDestroy {
 
 
   }
-  
-  back(){
+
+  back() {
     this.router.navigate([`practices-search`])
   }
   ngOnDestroy() {
-    this.localSettings.amountCounter = this.localSettings.amountCounter + this.amountCounter;
+    if (this.localSettings.amountCounter = 'NaN') {
+      console.log("niuehfihefounsohf");
+      this.localSettings.amountCounter = 0
+    }
+    if (this.amountCounter > 0) {
+      this.localSettings.amountCounter = this.localSettings.amountCounter + this.amountCounter;
+    }
+
     this.userDataAll.practices[this.practiceId] = this.localSettings;
     this.AFService.updateUser(this.userDataAll, this.userId);
   }

@@ -4,6 +4,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { SwUpdate } from '@angular/service-worker';
 
 
 @Component({
@@ -19,6 +20,7 @@ export class PracticsSearchComponent implements OnInit {
     private AFservice: AngularFireService,
     private router: Router,
     private AFAuth: AngularFireAuth,
+    private swUpdate: SwUpdate
 
   ) { }
   practices;
@@ -37,6 +39,14 @@ export class PracticsSearchComponent implements OnInit {
 
 
     this.getUserData()
+
+    if (this.swUpdate.isEnabled) {
+      this.swUpdate.available.subscribe(() => {
+        if (confirm("New version available. Load New Version?")) {
+          window.location.reload();
+        }
+      });
+    }
 
   }
 
@@ -120,17 +130,30 @@ export class PracticsSearchComponent implements OnInit {
 
       for (const iterator in this.userStartedPractices) {
         let num: number;
+        let priority: number;
         if (this.userStartedPractices[iterator].spentTimeGoal > 0) {
           num = ((this.userStartedPractices[iterator].spentTime / this.userStartedPractices[iterator].spentTimeGoal) * 100)
         }
         else if (this.userStartedPractices[iterator].amountCounterGoal > 0) {
           num = ((this.userStartedPractices[iterator].amountCounter / this.userStartedPractices[iterator].amountCounterGoal) * 100)
         }
-
-        //  console.log(iterator, this.userStartedPractices[iterator], num)
+        if (this.userStartedPractices[iterator].priority >= 0) {
+          priority = this.userStartedPractices[iterator].priority
+        }
+        console.log(iterator, this.userStartedPractices[iterator])
         if (iterator == element.id && num > 0) {
           element.goalNum = Math.round(num)
+
           console.log(element)
+        }
+
+        if (iterator == element.id) {
+          if (priority == null || undefined) {
+            element.priority = 0
+          }
+          else if (priority >= 0) {
+            element.priority = priority
+          }
         }
       }
 
@@ -139,9 +162,23 @@ export class PracticsSearchComponent implements OnInit {
     });
 
     console.log(arr)
+
+
+
     this.filteredPractices = arr
 
+    this.filteredPractices.sort((a, b) => {
+      const ap = a.priority ? a.priority : 0;
+      const bp = b.priority ? b.priority : 0;
+      return bp - ap;
+    });
+
   }
+
+  compareNumbers(a, b) {
+
+  }
+
   userId;
 
   userDataAll;
