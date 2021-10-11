@@ -1,1 +1,3 @@
-<div class="wrapper" id="wrapper__bg" [ngClass]="{Gold: true}"><router-outlet></router-outlet> </div>
+<div class="wrapper" id="wrapper__bg" ><router-outlet (onChanged)="onChanged($event)"></router-outlet> </div>
+
+<!-- [ngClass]="{Gold: true}" -->

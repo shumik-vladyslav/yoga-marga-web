@@ -32,7 +32,7 @@ export class AppComponent {
     });
 
     this.UserData = AFService.getUserData();
-    
+
 
 
   }
@@ -40,5 +40,17 @@ export class AppComponent {
   title = 'Yoga Marga';
 
   UserData
+
+
+  ChangeBackground() {
+
+  }
+
+  clicks: number = 0;
+  onChanged(increased: any) {
+    console.log(increased)
+    let bg = document.getElementById("wrapper__bg")
+    increased == true ? bg.classList.add("Golden") : bg.classList.remove("Golden");
+  }
 
 }

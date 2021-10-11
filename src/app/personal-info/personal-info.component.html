@@ -64,7 +64,7 @@
 
                     <mat-slide-toggle [(ngModel)]="CheckButton">Slide me!</mat-slide-toggle>
                     <mat-checkbox class="example-margin" [(ngModel)]="goldThemeCheckbox"
-                        (change)="setAll($event.checked)">Check
+                        (change)="change($event.checked)">Check
                         me!</mat-checkbox>
 
                     <button class="button" (click)="changeUserData()">Изменить данные</button>

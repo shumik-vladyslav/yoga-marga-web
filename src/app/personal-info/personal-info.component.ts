@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireService } from '../angular-fire.service';
@@ -90,7 +90,7 @@ export class PersonalInfoComponent implements OnInit {
     })
 
 
-    
+
 
 
   }
@@ -185,6 +185,15 @@ export class PersonalInfoComponent implements OnInit {
       }
     }, 1000);
 
+  }
+
+
+
+  @Output() onChanged = new EventEmitter<boolean>();
+
+  change(increased: any) {
+    console.log(increased)
+    this.onChanged.emit(true);
   }
 
 }
