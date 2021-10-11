@@ -56,7 +56,9 @@ h2 {
     display: flex;
     //  justify-content:flex-end;
 }
-
+.inner {
+    background: #fff;
+}
 .menu__close-btn {
     display: flex;
     width: 40px;

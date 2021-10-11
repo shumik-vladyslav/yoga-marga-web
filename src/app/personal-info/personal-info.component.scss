@@ -1,5 +1,9 @@
-.container{
+.container {
     padding-bottom: 60px;
+   // background: #fff;
+    display: flex;
+    min-height: 100vh;
+    align-items: start;
 }
 
 .footer {
@@ -9,21 +13,45 @@
 }
 
 .header {
+    background: #fff;
     background: rgb(0, 150, 136);
     color: #fff;
     padding: 5px;
 }
 .block__row {
+    display: flex;
     flex-direction: column;
     padding: 10px;
-    position: relative;
+    
+   min-width: 450px;
+    justify-content: center;
+}
+.block__row1 {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+  //  position: relative;
+   // max-width: 50%;
+   margin: -5px -5px;
+}
+
+
+.inner__profile {
+    // width: 90%;
+   display: flex;
+     flex-direction: column;
+ 
 }
 .spiritual__name {
 }
-
+.our__cabinet {
+    text-align: center;
+}
 .span {
     font-size: 18px;
     padding: 10px 5px 5px 50px;
+    font-weight: 500;
+    //color: #fff;
 }
 .spiritual__name::before {
     content: "";
@@ -32,7 +60,7 @@
     width: 30px;
     height: 30px;
     position: absolute;
-    background-image: url("../../assets/icons/lichniy-kabinet/duhovnoe-imya.svg"), ;
+    background-image: url("../../assets/icons/lichniy-kabinet/duhovnoe-imya.svg");
 }
 .world__name::before {
     content: "";
@@ -74,54 +102,125 @@
     background-image: url("../../assets/icons/lichniy-kabinet/telefon.svg");
 }
 
-.input__cabinet{
+.input__cabinet {
     border: none;
     border-bottom: 1px solid gray;
     padding: 5px;
     font-size: 16px;
-    
+    min-width: 240px;
+    //width: 100%;
 }
-.select__cabinet{
+.select__cabinet {
     background: #fff;
     height: 45px;
-    border-bottom:1px solid gray ;
+    border-bottom: 1px solid gray;
     font-size: 16px;
     margin: 14px 8px;
+    min-width: 240px;
 }
 
-.h2__centr{
+.h2__centr {
     text-align: center;
     color: rgb(56, 56, 56);
     margin-top: 20px;
 }
 
-.progress__item{
- display: flex;
- justify-content: center;
- align-items: center;
- flex-direction: column;
- margin: 10px;
- max-width:180px;
-
+.inner{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
 }
-.progress__block{
-  display: flex;
-    flex: 1 1 30%;
+
+.inner__item {
+    width: 100%;
+    display: flex;
+ 
     flex-wrap: wrap;
     justify-content: center;
+    align-items: center;
+  //  
 }
 
-.progress__circle{
+.progress__item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 10px;
+    max-width: 180px;
+    flex: 0 1 30%
+    //flex-wrap: wrap;
+}
+.progress__block {
+    display: flex;
+    
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.progress__circle {
     width: 180px;
     height: 180px;
     //margin: 30px;
 }
 
-.image{
+.image {
     display: flex;
     justify-content: center;
 }
 
-.text{
+.text {
     text-align: center;
+}
+
+.inpput__block {
+    display: flex;
+    //justify-content: center;
+    align-items: center;
+   min-width: 180px;
+
+}
+
+.inner__goal {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+@media (max-width: 750px) {
+    .select__cabinet {
+        width: 100%;
+    }
+
+    .input__cabinet {
+        width: 100%;
+    }
+    .container {
+        flex-direction: column;
+    }
+
+    .block__row {
+        width: 100%;
+        min-width: auto;
+    }
+
+    .inner__profile {
+        width: 100%;
+        display: block;
+    }
+
+    .span {
+        text-align: none;
+    }
+    .progress__block {
+        flex: 1 1 100%;
+        width: 100%;
+    }
+
+    .inpput__block {
+        width: auto;
+    }
 }

@@ -1,10 +1,10 @@
 .conmponent {
     position: relative;
-    min-height: 1000px;
+    min-height: 100vh;
 }
 
 .block {
-    height: auto;
+    min-height: 100vh;
     max-width: 800px;
     margin: 0px auto;
     // padding-bottom: 65px;
@@ -84,6 +84,11 @@
 .img__block {
     display: flex;
     align-items: center;
+}
+.mirror{
+    transform: scale(-1, 1);
+
+   
 }
 
 p {

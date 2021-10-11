@@ -57,6 +57,13 @@ export class AngularFireService {
     return this.AFS.collection(`practices`).valueChanges();
   }
 
+
+  getUserData(){
+    this.AFS.doc(`users/${this.userId}`).valueChanges().subscribe(res => {
+      return res
+    })
+  }
+
   sendFeedback(msg) {
     console.log(JSON.stringify({
       timestamp: Date.now(),

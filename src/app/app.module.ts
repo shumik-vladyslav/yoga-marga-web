@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
@@ -88,6 +89,7 @@ export const config = {
     MatSlideToggleModule,
     MatProgressSpinnerModule,
     MatProgressBarModule,
+    MatCheckboxModule,
 
     AppRoutingModule,
     ServiceWorkerModule.register('ngsw-worker.js', {

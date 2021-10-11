@@ -1,38 +1,49 @@
-<form action="" class="form"  [formGroup]="myForm" #form="ngForm">
-    <div class="component">
-        
-        <img  class="img-sing-in" src="/assets/logo/logo.jpg" alt="img-sing-in"  >
-         <p padding-horizontal text-center>
-            Для использования приложения, пожалуйста, зарегистрируйтесь!
-         </p>
-        <input type="text" class="input" placeholder="Духовное Имя" [(ngModel)]="data.spiritualName"  formControlName="spiritualName" >
-        <input type="text" class="input" placeholder="ФИО"  [(ngModel)]="data.fullName" formControlName="fullName" [ngClass]="{'error-validation': (myForm.controls.fullName.invalid) && (customeValidation === false)}" >
-        <input type="text" class="input" placeholder="Email"    [(ngModel)]="data.Email" formControlName="Email" [ngClass]="{'error-validation': (myForm.controls.Email.invalid) && (customeValidation === false)}">
-        <!-- <label for="">Статус</label> -->
-        <select name="Status" id=""   class="select"  [(ngModel)]="data.Status" formControlName="Status" [ngClass]="{'error-validation': (myForm.controls.Status.invalid) && (customeValidation === false)}" >
-            <option value="Грихастха">Грихастха</option>
-			<option value="Заочный символ веры">Заочный символ веры</option>
-			<option value="Карма-санньяси">Карма-санньяси</option>
-            <option value="Очный символ веры">Очный символ веры</option>
-            <option value="Неофит">Неофит</option>
-            <option value="Пурна-санньяси">Пурна-санньяси</option>
-            <option value="Символ веры">Символ веры</option>
-            <option value="Разработчик">Разработчик</option>
-            <option value="" disabled hidden ng-selected="selected" > Статус</option>
-            
-            
-        </select>
-        <input type="password" class="input" placeholder="Пароль"   formControlName="Password"  [(ngModel)]="data.Password" [ngClass]="{'error-validation': (myForm.controls.Password.invalid) && (customeValidation === false)}" >
-        <input type="password" class="input" placeholder="Подтвердите пароль"  [(ngModel)]="data.RepeatPassword"  formControlName="RepeatPassword"  [ngClass]="{'error-validation': (myForm.controls.RepeatPassword.invalid) && (customeValidation === false)}">
-        <button class="button button-submit" type="submit" (click)="signUp()" >Зарегестрироваться</button>
-        
-        <p class="text">Есть аккаунт? <a routerLink="/login">Войти</a></p>
-        
-        <!-- ff
+
+
+
+    <form action="" class="form" [formGroup]="myForm" #form="ngForm">
+        <div class="component">
+
+            <img class="img-sing-in" src="/assets/logo/logo.jpg" alt="img-sing-in">
+            <h2 class="header2">
+                Для использования приложения, пожалуйста, зарегистрируйтесь!
+            </h2>
+            <input type="text" class="input" placeholder="Духовное Имя" [(ngModel)]="data.spiritualName"
+                formControlName="spiritualName">
+            <input type="text" class="input" placeholder="ФИО" [(ngModel)]="data.fullName" formControlName="fullName"
+                [ngClass]="{'error-validation': (myForm.controls.fullName.invalid) && (customeValidation === false)}">
+            <input type="text" class="input" placeholder="Email" [(ngModel)]="data.Email" formControlName="Email"
+                [ngClass]="{'error-validation': (myForm.controls.Email.invalid) && (customeValidation === false)}">
+            <!-- <label for="">Статус</label> -->
+            <select name="Status" id="" class="select" [(ngModel)]="data.Status" formControlName="Status"
+                [ngClass]="{'error-validation': (myForm.controls.Status.invalid) && (customeValidation === false)}">
+                <option value="Грихастха">Грихастха</option>
+                <option value="Заочный символ веры">Заочный символ веры</option>
+                <option value="Карма-санньяси">Карма-санньяси</option>
+                <option value="Очный символ веры">Очный символ веры</option>
+                <option value="Неофит">Неофит</option>
+                <option value="Пурна-санньяси">Пурна-санньяси</option>
+                <option value="Символ веры">Символ веры</option>
+                <option value="Разработчик">Разработчик</option>
+                <option value="" disabled hidden ng-selected="selected"> Статус</option>
+
+
+            </select>
+            <input type="password" class="input" placeholder="Пароль" formControlName="Password"
+                [(ngModel)]="data.Password"
+                [ngClass]="{'error-validation': (myForm.controls.Password.invalid) && (customeValidation === false)}">
+            <input type="password" class="input" placeholder="Подтвердите пароль" [(ngModel)]="data.RepeatPassword"
+                formControlName="RepeatPassword"
+                [ngClass]="{'error-validation': (myForm.controls.RepeatPassword.invalid) && (customeValidation === false)}">
+            <button class="button button-submit" type="submit" (click)="signUp()">Зарегестрироваться</button>
+
+            <p class="text">Есть аккаунт? <a routerLink="/login">Войти</a></p>
+
+            <!-- ff
         #passwordSignup="ngModel" ngModel
         #passwordrepeat="ngModel" ngModel
         
         -->
-        
-    </div>
-</form>
+
+        </div>
+    </form>

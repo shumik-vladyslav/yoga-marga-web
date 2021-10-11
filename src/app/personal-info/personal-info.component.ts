@@ -19,73 +19,6 @@ export class PersonalInfoComponent implements OnInit {
     setTimeout(() => {
 
 
-      console.log(this.userDataAll.practices)
-
-
-
-      console.log(this.userDataAll.practices.hasOwnProperty("spentTimeGoal"));
-
-      for (const key in this.userDataAll.practices) {
-
-        if (Object.prototype.hasOwnProperty.call(this.userDataAll.practices, key)) {
-
-          const element = this.userDataAll.practices[key];
-
-          if (element.hasOwnProperty("spentTimeGoal") && element.spentTimeGoal >0  ) {
-
-            let Goalindex = ((element.spentTime / element.spentTimeGoal) * 100).toFixed(0)
-
-
-            this.goalsArr.push([ [key], element, Goalindex] )
-
-
-            console.log(this.goalsArr)
-
-            this.practices.forEach(element => {
-
-              if (element.id == [key]) {
-                console.log([key])
-                this.goalsArr.forEach(setting => {
-                  if (setting[0] == element.id && setting[3] !== null || undefined) {
-                    setting.push(element)
-                  }
-                });
-
-
-              }
-
-            });
-
-          }
-           if(element.hasOwnProperty("amountCounterGoal") ){
-            console.log("uraaa!!!")
-            let Goalindex1 = ((element.amountCounter / element.amountCounterGoal) * 100).toFixed(0)
-
-
-            this.goalsArr.push([ [key], element, Goalindex1] )
-
-
-            console.log(this.goalsArr)
-
-            this.practices.forEach(element => {
-
-              if (element.id == [key]) {
-                console.log([key])
-                this.goalsArr.forEach(setting => {
-                  if (setting[0] == element.id && setting[3] !== null || undefined) {
-                    setting.push(element)
-                  }
-                });
-
-
-              }
-
-            });
-          }
-
-        }
-      }
-      console.log(this.goalsArr)
     }, 2400);
 
 
@@ -152,10 +85,78 @@ export class PersonalInfoComponent implements OnInit {
         this.userData.spiritalName = this.userDataAll.spiritual_name
         this.userData.name = this.userDataAll.full_name
         this.userData.status = this.userDataAll.status
+        this.init()
       })
     })
 
 
+    
+
+
+  }
+
+  init() {
+    for (const key in this.userDataAll.practices) {
+
+      if (Object.prototype.hasOwnProperty.call(this.userDataAll.practices, key)) {
+
+        const element = this.userDataAll.practices[key];
+
+        if (element.hasOwnProperty("spentTimeGoal") && element.spentTimeGoal > 0) {
+
+          let Goalindex = ((element.spentTime / element.spentTimeGoal) * 100).toFixed(0)
+
+
+          this.goalsArr.push([[key], element, Goalindex])
+
+
+          console.log(this.goalsArr)
+
+          this.practices.forEach(element => {
+
+            if (element.id == [key]) {
+              console.log([key])
+              this.goalsArr.forEach(setting => {
+                if (setting[0] == element.id && setting[3] !== null || undefined) {
+                  setting.push(element)
+                }
+              });
+
+
+            }
+
+          });
+
+        }
+        if (element.hasOwnProperty("amountCounterGoal")) {
+          console.log("uraaa!!!")
+          let Goalindex1 = ((element.amountCounter / element.amountCounterGoal) * 100).toFixed(0)
+
+
+          this.goalsArr.push([[key], element, Goalindex1])
+
+
+          console.log(this.goalsArr)
+
+          this.practices.forEach(element => {
+
+            if (element.id == [key]) {
+              console.log([key])
+              this.goalsArr.forEach(setting => {
+                if (setting[0] == element.id && setting[3] !== null || undefined) {
+                  setting.push(element)
+                }
+              });
+
+
+            }
+
+          });
+        }
+
+      }
+    }
+    console.log(this.goalsArr)
   }
 
 
@@ -167,5 +168,23 @@ export class PersonalInfoComponent implements OnInit {
     console.log(this.status)
   }
 
+  CheckButto() {
+    console.log("checed")
+  }
+  CheckButton
+
+  goldThemeCheckbox
+
+  setAll(completed: boolean) {
+    this.userDataAll.themeGold = completed;
+    console.log(this.userDataAll);
+    setTimeout(() => {
+      if (this.userDataAll.themeGold == true) {
+        let bg = document.getElementById('wrapper__bg');
+        bg.classList.toggle("Gold")
+      }
+    }, 1000);
+
+  }
 
 }

@@ -3,7 +3,7 @@
 
 
 
-        <div class="image" [ngStyle]="{'background-image': 'url('+show.img+')'}">
+        <div class="image" [ngStyle]="{'background-image': 'url('+show.img+')'}"  [ngClass]='{mirror : show.imgMirror === true }'>
 
         </div>
 

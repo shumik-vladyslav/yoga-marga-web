@@ -113,7 +113,7 @@ export class PracticePerfomanceComponent implements OnInit, OnDestroy {
         console.log(this.userDataAll);
 
         this.localSettings = this.userDataAll.practices[this.practiceId]
-        if(this.localSettings.amountCounter == NaN ){this.localSettings.amountCounter == 0}
+        if (this.localSettings.amountCounter == NaN) { this.localSettings.amountCounter == 0 }
         console.log(this.localSettings)
 
         if (!this.userDataAll.practices) {
@@ -161,7 +161,7 @@ export class PracticePerfomanceComponent implements OnInit, OnDestroy {
             if (this.localSettings.intervals[0] == null) {
               this.localSettings.intervals[0] = { "value": 4 }
             }
-            if(this.localSettings.amountCounter == NaN ){this.localSettings.amountCounter == 0}
+            if (this.localSettings.amountCounter == NaN) { this.localSettings.amountCounter == 0 }
             //console.log(this.localSettings)
 
 
@@ -240,6 +240,7 @@ export class PracticePerfomanceComponent implements OnInit, OnDestroy {
     this.show.title = this.CurrentPractic.exercises[this.currentExerciseId].name;
     this.show.description = this.CurrentPractic.exercises[this.currentExerciseId].description;
     this.show.audio = this.CurrentPractic.exercises[this.currentExerciseId].audio;
+    this.show.imgMirror = this.CurrentPractic.exercises[this.currentExerciseId].mirror;
     //
     this.playAudioExercise()
 
@@ -261,6 +262,11 @@ export class PracticePerfomanceComponent implements OnInit, OnDestroy {
 
 
   nextExercise() {
+    let alpha
+    if (this.currentExerciseId > 0) {
+      alpha = this.CurrentPractic.exercises[this.currentExerciseId - 1].image
+    }
+
 
 
     this.currentExerciseId++;
@@ -268,10 +274,15 @@ export class PracticePerfomanceComponent implements OnInit, OnDestroy {
     this.show.title = this.CurrentPractic.exercises[this.currentExerciseId].name;
     this.show.description = this.CurrentPractic.exercises[this.currentExerciseId].description;
     this.show.audio = this.CurrentPractic.exercises[this.currentExerciseId].audio
+    this.show.imgMirror = this.CurrentPractic.exercises[this.currentExerciseId].mirror;
 
+
+    if (alpha == this.CurrentPractic.exercises[this.currentExerciseId].image) {
+      console.log("mirror")
+    }
 
   }
-
+  audGong
   nextExerciseTumb() {
 
     this.nextExercise()
@@ -289,9 +300,15 @@ export class PracticePerfomanceComponent implements OnInit, OnDestroy {
     this.timeLeft = 59;
 
     this.interval = setInterval(() => {
+      if (this.timeLeft == 1) {
+        console.log("one sec")
 
+      }
       if (this.timeLeft === 0) {
+
         this.nextAsanaAndTime2()
+
+
       }
       this.timeLeft--;
 
@@ -308,13 +325,8 @@ export class PracticePerfomanceComponent implements OnInit, OnDestroy {
 
   playAudioPr() {
     this.audioPr = new Audio()
-
     this.audioPr.src = this.practiceAudio;
     this.audioPr.load()
-
-    this.audioPr.play().then(res =>{console.log("rrrrrrrrr")})
-      
-    
   }
 
   playAudioExercise() {
@@ -460,6 +472,12 @@ export class PracticePerfomanceComponent implements OnInit, OnDestroy {
         if (this.timeLeft <= 0) {
           this.timeLeft = 60
         }
+        if (this.timeLeft == 1) {
+          let audGong = new Audio()
+          audGong.src = "../../assets/sound/gong.mp3"
+          audGong.load;
+          audGong.play
+        }
       }
     }, this.timeLeft * 1000)
   }
@@ -502,6 +520,23 @@ export class PracticePerfomanceComponent implements OnInit, OnDestroy {
         this.timeLeft--;
       } else {
         this.timeLeft = 59;
+      }
+
+      if (this.timeLeft == 0) {
+        console.log("time over!")
+        this.audGong = new Audio()
+        this.audGong.src = "../../assets/sound/gong.mp3"
+        this.audGong.load();
+        this.audGong.play()
+        setTimeout(() => {
+          this.audioExercise.pause()
+
+          this.audioExercise.src = this.show.audio
+          this.audioExercise.load()
+          this.audioExercise.play()
+        }, 1000)
+
+
       }
     }, 1000)
   }

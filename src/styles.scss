@@ -391,6 +391,10 @@ button[disabled] {
   padding-bottom: 60px;
 }
 
+.content{
+  min-height: 100vh;
+}
+
 .inner {
   min-height: 150px;
   border: 2px solid #009688;

@@ -5,67 +5,102 @@
     </header>
 
     <div class="container">
+
         <div class="block__row">
 
-            <span class="spiritual__name span">Духовное имя</span>
+            <div class="inner">
+                <div class="inner__profile">
 
-            <input type="text " class="input__cabinet" [(ngModel)]="userData.spiritalName">
-
-            <span class="world__name span">Ф.И.О</span>
-
-            <input type="text" class="input__cabinet" [(ngModel)]="userData.name">
-
-            <span class="gender span">Пол</span>
-
-            <select name="" id="" class="select__cabinet">
-
-                <option value="1" hidden ng-selected="selected"></option>
-
-                <option value="Матаджи">Матаджи</option>
-                <option value="Прабху">Прабху</option>
-
-            </select>
-
-            <span class="status span">Статус</span>
-
-            <select name="" id="" class="select__cabinet" [(ngModel)]="userData.status">
-
-                <option value="{{userData.status }}" hidden ng-selected="selected"> {{userData.status }}</option>
-                <option value="Грихастха">Грихастха</option>
-                <option value="Карма-Санньяси">Карма-Санньяси</option>
-                <option value="Пурна-Санньяси">Пурна-Санньяси</option>
-
-            </select>
-
-            <span class="phone span">Телефон</span>
-
-            <input type="text" class="input__cabinet">
-
-            <button class="button" (click)="changeUserData()">Изменить данные</button>
-
-            <h2 class="h2__centr">Цели</h2>
-
-            <!-- <mat-progress-spinner class="example-margin" color="warn" mode="determinate" value="10"></mat-progress-spinner> -->
+                    <h2 class="our__cabinet">Профиль</h2>
 
 
+                  <div class="inpput__block"> <span class="spiritual__name span">Духовное имя</span></div> 
 
-
-            <div class="progress__block">
-                <div class="progress__item" *ngFor="let item of goalsArr">
-
-                    <div class="image"><img src="{{item[3].ico}}" alt="" class="img-icon"></div>
-                    <div class="progress__description">
-                        <p class="text">{{item[3].name}}</p>
-                    </div>
-                    <div class="progress__circle">
-                        <progress-chart [progress]="item[2]"></progress-chart>
+                    <div class="inpput__block">
+                        <input type="text " class="input__cabinet" [(ngModel)]="userData.spiritalName">
                     </div>
 
 
+
+                    <div class="inpput__block"> <span class="world__name span">Ф.И.О</span></div> 
+                    <div class="inpput__block">
+                        <input type="text" class="input__cabinet" [(ngModel)]="userData.name">
+                    </div>
+
+
+                    <div class="inpput__block"><span class="gender span">Пол</span> </div>  
+                    <div class="inpput__block">
+                        <select name="" id="" class="select__cabinet">
+
+                            <option value="1" hidden ng-selected="selected"></option>
+
+                            <option value="Матаджи">Матаджи</option>
+                            <option value="Прабху">Прабху</option>
+
+                        </select>
+                    </div>
+
+
+
+                    <div class="inpput__block"><span class="status span">Статус</span> </div>  
+                    <div class="inpput__block">
+                        <select name="" id="" class="select__cabinet" [(ngModel)]="userData.status">
+
+                            <option value="{{userData.status }}" hidden ng-selected="selected"> {{userData.status }}
+                            </option>
+                            <option value="Грихастха">Грихастха</option>
+                            <option value="Карма-Санньяси">Карма-Санньяси</option>
+                            <option value="Пурна-Санньяси">Пурна-Санньяси</option>
+
+                        </select>
+                    </div>
+
+
+                    <div class="inpput__block"><span class="phone span">Телефон</span> </div>   
+                    <div class="inpput__block">
+                        <input type="text" class="input__cabinet">
+                    </div>
+
+
+                    <mat-slide-toggle [(ngModel)]="CheckButton">Slide me!</mat-slide-toggle>
+                    <mat-checkbox class="example-margin" [(ngModel)]="goldThemeCheckbox"
+                        (change)="setAll($event.checked)">Check
+                        me!</mat-checkbox>
+
+                    <button class="button" (click)="changeUserData()">Изменить данные</button>
+
+
+                    <!-- <mat-progress-spinner class="example-margin" color="warn" mode="determinate" value="10"></mat-progress-spinner> -->
+                </div>
+
+            </div>
+        </div>
+
+        <div class="progress__block">
+            <div class="block__row1">
+                <div class="inner">
+                    <h2 class="h2__centr">Цели</h2>
+                    <div class="inner__item">
+
+
+                        <div class="progress__item" *ngFor="let item of goalsArr">
+
+                            <div class="image"><img src="{{item[3].ico}}" alt="" class="img-icon"></div>
+                            <div class="progress__description">
+                                <p class="text">{{item[3].name}}</p>
+                            </div>
+                            <div class="progress__circle">
+                                <progress-chart [progress]="item[2]"></progress-chart>
+                            </div>
+
+
+                        </div>
+                    </div>
                 </div>
             </div>
-
         </div>
+
+
 
 
     </div>

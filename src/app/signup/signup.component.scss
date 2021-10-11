@@ -1,5 +1,13 @@
+form{
+    background: #fff;
+}
+.content{
+    background: #fff;
+}
+
 .select{
     font-size: 16px;
+    max-width: 475px;
 }
 .text{
     text-align: center;
@@ -16,4 +24,9 @@ option::before{
 }
 option{
     margin: 0px;
+}
+
+.header2{
+    text-align: center;
+    font-weight: normal;
 }
