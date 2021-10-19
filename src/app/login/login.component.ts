@@ -5,7 +5,7 @@ import { AngularFireAuth, AngularFireAuthModule } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { ErrorDialogComponent } from '../error-dialog/error-dialog.component';
-
+import { SwUpdate } from '@angular/service-worker';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -18,7 +18,8 @@ export class LoginComponent implements OnInit {
     private router: Router,
     public dialog: MatDialog,
     private formBuilder: FormBuilder,
-    private AFAuth: AngularFireAuth
+    private AFAuth: AngularFireAuth,
+    private swUpdate: SwUpdate
 
   ) { }
 
@@ -41,6 +42,14 @@ export class LoginComponent implements OnInit {
     });
 
     this.getUserData()
+
+    if (this.swUpdate.isEnabled) {
+      this.swUpdate.available.subscribe(() => {
+        if (confirm("New version available. Load New Version?")) {
+          window.location.reload();
+        }
+      });
+    }
   }
 
   async onSignin() {
@@ -50,8 +59,9 @@ export class LoginComponent implements OnInit {
     }
     else {
       await this.afAuth.signInWithEmailAndPassword(this.myForm.value.Email, this.myForm.value.Password,).then((res) => {
-        this.router.navigate(['practices-search'])
         console.log(res)
+        this.router.navigate(['practices-search'])
+        
       })
         .catch(error => {
           this.errorMsg = error.message;

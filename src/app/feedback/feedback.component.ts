@@ -23,7 +23,7 @@ export class FeedbackComponent implements OnInit {
     
   }
 
-  msgText;
+  msgText: string = '';
 
   Error
 
@@ -44,10 +44,10 @@ export class FeedbackComponent implements OnInit {
     t.classList.toggle("wrapper__bg")
    }
 
-   openDialog(): void {
+   openDialog(res): void {
     const dialogRef = this.dialog.open(ErrorDialogComponent, {
       width: '400px',
-      data: {cause: 'Успешно' ,Errore: this.Error, ErrMsg: this.ErrorMsg}
+      data: {cause: res ,Errore: this.Error, ErrMsg: this.ErrorMsg}
       
     });
 
@@ -59,12 +59,14 @@ export class FeedbackComponent implements OnInit {
 
 
    sendMsg(){
-    if(this.msgText && this.msgText !=='')
+    if( this.msgText !=='')
     this.AFService.sendFeedback(this.msgText).then(
-      res => this.openDialog()
+      res => this.openDialog("Успешно!")
     ).then(res =>{
       this.router.navigate(["practices-search"])
-    })
+    }).catch(
+      Err => this.openDialog("Ошибка")
+    )
     
    }
 

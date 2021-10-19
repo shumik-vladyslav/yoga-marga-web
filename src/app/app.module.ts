@@ -6,6 +6,8 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
@@ -17,7 +19,7 @@ import { AngularFireModule } from '@angular/fire';
 import { HomePageComponent } from './home-page/home-page.component';
 import { SignupComponent } from './signup/signup.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatDialogModule } from '@angular/material/dialog';
+
 import { ErrorDialogComponent } from './error-dialog/error-dialog.component';
 import { PracticsSearchComponent } from './practics-search/practics-search.component';
 import { MyComplexComponent } from './my-complex/my-complex.component';
@@ -32,8 +34,8 @@ import { ComplexesComponent } from './complexes/complexes.component';
 import { ClasificiedPracticesComponent } from './clasificied-practices/clasificied-practices.component';
 import { ComplexListComponent } from './complex-list/complex-list.component';
 import { PracticeSettingsComponent } from './practice-settings/practice-settings.component';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { NgxAudioPlayerModule } from 'ngx-audio-player';
+
+
 import { ProgressChartDirective } from './progress-chart.directive';
 import { AmountCounterComponent } from './amount-counter/amount-counter.component';
 import { MillisecondsToHoursPipe } from './milliseconds-to-hours.pipe';
@@ -94,8 +96,7 @@ export const config = {
     AppRoutingModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
-      // Register the ServiceWorker as soon as the app is stable
-      // or after 30 seconds (whichever comes first).
+
       registrationStrategy: 'registerWhenStable:30000'
     }),
 
@@ -105,7 +106,7 @@ export const config = {
     
     BrowserAnimationsModule,
 
-    NgxAudioPlayerModule,
+    
 
 
 

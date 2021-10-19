@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ErrorDialogComponent } from '../error-dialog/error-dialog.component';
-
+import { SwUpdate} from '@angular/service-worker';
 
 @Component({
   selector: 'app-signup',
@@ -20,7 +20,8 @@ export class SignupComponent implements OnInit {
     private AfAuth: AngularFireAuth,
     private AFStore: AngularFirestore,
     private formBuilder: FormBuilder,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private swUpdate: SwUpdate,
   ) {
     this.groups$ = AFStore
       .collection(`groups`)
@@ -61,7 +62,13 @@ export class SignupComponent implements OnInit {
         RepeatPassword: new FormControl("", [Validators.required]),
       })
 
-
+      if (this.swUpdate.isEnabled) {
+        this.swUpdate.available.subscribe(() => {
+          if (confirm("New version available. Load New Version?")) {
+            window.location.reload();
+          }
+        });
+      }
   }
 
 

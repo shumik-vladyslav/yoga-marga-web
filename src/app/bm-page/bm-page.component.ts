@@ -168,6 +168,12 @@ export class BmPageComponent implements OnInit, AfterViewInit, OnDestroy {
 
   volumeTumbler() {
     this.volume = !this.volume;
+    if(this.volume == false){
+      document.getElementsByTagName('audio')[this.playedIdx].volume = 0;
+    }
+    else(
+      document.getElementsByTagName('audio')[this.playedIdx].volume = 1
+    )
   }
 
   // async onSelectTrack(i): Promise<void> {

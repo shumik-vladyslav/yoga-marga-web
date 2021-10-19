@@ -79,16 +79,23 @@ export class AmountCounterComponent implements OnInit, OnDestroy {
   }
 
   back() {
+    this.updateData()
     this.router.navigate([`practices-search`])
   }
-  ngOnDestroy() {
-    if (this.localSettings.amountCounter = 'NaN') {
+
+  async updateData() {
+   if (this.localSettings.amountCounter == 'NaN') {
       console.log("niuehfihefounsohf");
       this.localSettings.amountCounter = 0
     }
     if (this.amountCounter > 0) {
       this.localSettings.amountCounter = this.localSettings.amountCounter + this.amountCounter;
     }
+ 
+  }
+  ngOnDestroy() {
+
+
 
     this.userDataAll.practices[this.practiceId] = this.localSettings;
     this.AFService.updateUser(this.userDataAll, this.userId);

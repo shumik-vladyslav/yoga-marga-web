@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AngularFireService } from '../angular-fire.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { SwUpdate } from '@angular/service-worker';
+import { CachingServiceService } from '../caching-service.service';
 
 
 @Component({
@@ -13,14 +14,15 @@ import { SwUpdate } from '@angular/service-worker';
   styleUrls: ['./practics-search.component.scss']
 })
 export class PracticsSearchComponent implements OnInit {
-
+ @ViewChild('img',{static: true}) image: ElementRef
   constructor(
     private AFS: AngularFirestore,
     private db: AngularFireDatabase,
     private AFservice: AngularFireService,
     private router: Router,
     private AFAuth: AngularFireAuth,
-    private swUpdate: SwUpdate
+    private swUpdate: SwUpdate,
+   // private cache: CachingServiceService,
 
   ) { }
   practices;
@@ -48,34 +50,14 @@ export class PracticsSearchComponent implements OnInit {
       });
     }
 
+    // const url = 'https://picsum.photos/id/237/200/300';
+    // this.cache.chacheUrls = [url];
+    // let tt
+    //  tt=  this.cache.getImage(url)
+    //  console.log(tt)
+
   }
 
-
-
-  // для приоритета првктик
-  // methodeg(){
-  //   const uspr = this.practices;
-
-  //   const glpr = Object.values(this.practices).filter(
-  //     (p: any) => p.active !== false
-  //   );
-
-  //   this.practices = glpr.map((gp: any) => ({ ...uspr[gp.id], ...gp }));
-  //   this.practices = this.practices.sort((a, b) => {
-  //     const ap = a.priority ? a.priority : 0;
-  //     const bp = b.priority ? b.priority : 0;
-  //     return bp - ap;
-  //   });
-  //   let com = UserProvider.getComplexes();
-
-  //   if (com) {
-  //     this.practices = [...com, ...this.practices];
-  //   } else {
-  //     this.practices = [...this.practices];
-  //   }
-
-  //   this.filtered = [...this.practices];
-  // }
 
   onSearchChange(value) {
 
@@ -86,22 +68,9 @@ export class PracticsSearchComponent implements OnInit {
     this.filteredPractices = this.practices.filter(
       (p) => p.name.toLowerCase().indexOf(value.toLowerCase()) !== -1
     );
-
-    //imageView.kf.setImage(with: url)
   }
 
-  // onSearchChange(value) {
-
-
-  //   let self = this;
-  //   self.results = self.AFS.collection(`practices`, ref => ref
-  //     .orderBy("practices")
-  //     .startAt(value.toLowerCase())
-  //     .endAt(value.toLowerCase()+"\uf8ff")
-  //     .limit(10))
-  //     .valueChanges();
-  //     console.log(self.results)
-  // }
+  
 
   openPractice(p) {
     this.AFservice.ChoosedPractic = p;
@@ -144,7 +113,7 @@ export class PracticsSearchComponent implements OnInit {
         if (iterator == element.id && num > 0) {
           element.goalNum = Math.round(num)
 
-          console.log(element)
+          //console.log(element)
         }
 
         if (iterator == element.id) {
@@ -161,7 +130,7 @@ export class PracticsSearchComponent implements OnInit {
 
     });
 
-    console.log(arr)
+   // console.log(arr)
 
 
 
@@ -203,7 +172,7 @@ export class PracticsSearchComponent implements OnInit {
           this.practices = item;
           this.filteredPractices = this.practices;
           this.practiceGoalLine()
-          console.log("yygyftft")
+          
         })
 
 

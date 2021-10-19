@@ -10,7 +10,7 @@
     </div>
     <div class="items" *ngFor="let t of currentPractice?.bmtracks; let i=index" #track>
         <div class="inner" (click)="onClick(i)">
-            {{i+1}}. {{t.name}}
+           <p class="text"> {{i+1}}. {{t.name}}</p>
             <audio src="{{t.url}}" class="audio " id='{{i}}' controls (play)="onPlay(i, $event)"
                 (pause)="onPlay(i, $event)"> </audio>
         </div>

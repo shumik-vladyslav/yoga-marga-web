@@ -13,18 +13,6 @@ platformBrowserDynamic().bootstrapModule(AppModule)
 
 
 
-// self.addEventListener('install',  (event) => {
-//   event.timeStamp(
-//     caches.open(cacheName).then(function (cache) {
-//       return cache.addAll(
-//         [
-//           '/css/bootstrap.css',
-//           '/css/main.css',
-//           '/js/bootstrap.min.js',
-//           '/js/jquery.min.js',
-//           '/offline.html'
-//         ]
-//       );
-//     })
-//   );
-// });
+self.addEventListener('fetch', _event => {
+
+})

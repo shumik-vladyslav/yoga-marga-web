@@ -15,7 +15,8 @@
           "/*.js"
         ],
         "urls": [
-          "https\\:\\/\\/firebasestorage\\.googleapis\\.com\\/v0\\/b\\/yoga-marga.appspot.com"
+          "https\\:\\/\\/firebasestorage\\.googleapis\\.com\\/v0\\/b\\/yoga-marga.appspot.com/**",
+          "https://firebasestorage.googleapis.com/v0/b/yoga-marga.appspot.com/o/practices%2Fkriya%2FGroup%20188.svg?alt=media&token=70757109-af84-4d3d-b91f-5ac6dfa133f4"
         ]
       }
     },
@@ -29,6 +30,17 @@
           "/*.(eot|svg|cur|jpg|png|webp|gif|otf|ttf|woff|woff2|ani)"
         ]
       }
+    },
+    {
+      "name": "photo",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "resources": {
+        "urls": [
+          "https://firebasestorage.googleapis.com/v0/b/yoga-marga.appspot.com/**",
+          "https://firebasestorage.googleapis.com/v0/b/yoga-marga.appspot.com/o/**"
+        ]
+      }
     }
   ],
   "dataGroups": [
@@ -36,19 +48,34 @@
       "name": "myAPI",
       "urls": [
         "https://yoga-marga.firebaseio.com/**",
-        " https://firebasestorage.googleapis.com/**",
+        
         "https://firebasestorage.googleapis.com/v0/b/yoga-marga.appspot.com/**",
         "https://firebasestorage.googleapis.com/v0/b/yoga-marga.appspot.com/o/complex.svg?alt=media&token=9060348b-7d72-4425-8812-406d96dc6e4c",
         "https://firebasestorage.googleapis.com/v0/b/yoga-marga.appspot.com/o/practices%2F21_om%2FGroup%20165.svg?alt=media&token=3485bbe2-0f45-40f9-a665-f9d1c446e47a",
         "https://firebasestorage.googleapis.com/v0/b/yoga-marga.appspot.com/o/practices%2F21_om%2Fm.jpg?alt=media&token=d43d2f98-0960-4838-9141-f6986d0f5f64"
       ],
       "cacheConfig": {
-        "strategy": "performance",
-        "maxAge": "1d",
+        "strategy": "freshness",
+        "maxAge": "10d",
         "timeout": "5s",
         "maxSize": 8000
       }
 
-    }
+    }, 
+    {"name": "Photo",
+      "urls": [
+       
+        "https://firebasestorage.googleapis.com/v0/b/yoga-marga.appspot.com/**",
+        "https://firebasestorage.googleapis.com/v0/b/yoga-marga.appspot.com/o/complex.svg?alt=media&token=9060348b-7d72-4425-8812-406d96dc6e4c",
+        "https://firebasestorage.googleapis.com/v0/b/yoga-marga.appspot.com/o/practices%2F21_om%2FGroup%20165.svg?alt=media&token=3485bbe2-0f45-40f9-a665-f9d1c446e47a",
+        "https://firebasestorage.googleapis.com/v0/b/yoga-marga.appspot.com/o/practices%2F21_om%2Fm.jpg?alt=media&token=d43d2f98-0960-4838-9141-f6986d0f5f64",
+        "https://firebasestorage.googleapis.com/v0/b/yoga-marga.appspot.com/o/**"
+      ],
+      "cacheConfig": {
+        "strategy": "freshness",
+        "maxAge": "10d",
+        "timeout": "5s",
+        "maxSize": 8000
+      }}
   ]
 }
