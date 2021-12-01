@@ -25,6 +25,7 @@ export class PracticeSettingsComponent implements OnInit, OnDestroy {
     private AFAuth: AngularFireAuth,
     private route: ActivatedRoute,
     private AFService: AngularFireService,
+
   ) {
     this.practiceId = this.route.snapshot.params['id'];
     console.log(this.practiceId)
@@ -63,6 +64,7 @@ export class PracticeSettingsComponent implements OnInit, OnDestroy {
 
   localSettings = new PracticeSettings
 
+  public startAt = new Date(2018, 3, 10, 0, 0, 0)
 
   ngOnInit(): void {
 
@@ -180,7 +182,7 @@ export class PracticeSettingsComponent implements OnInit, OnDestroy {
   submit() {
     this.localSettings.reminderInterval = this.practicTimeInFormat.timereminder * 1000 * 60
     this.localSettings.spentTimeGoal = this.practicTimeInFormat.spentTimeGoal * 1000 * 60 * 60;
-    if (this.practicTimeInFormat.amountCounterGoal>0) {
+    if (this.practicTimeInFormat.amountCounterGoal > 0) {
       this.localSettings.amountCounterGoal = this.practicTimeInFormat.amountCounterGoal;
     }
     this.userDataAll.practices[this.practiceId] = this.localSettings
@@ -212,7 +214,9 @@ export class PracticeSettingsComponent implements OnInit, OnDestroy {
   deleteMetronomTime(i) {
     this.localSettings.intervals.splice(i, 1)
   }
-
+  back() {
+    this._location.back();
+  }
   ngOnDestroy() {
 
   }

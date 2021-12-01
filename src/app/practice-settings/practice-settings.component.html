@@ -26,6 +26,8 @@
                 Также вы можете установить время на каждое упражнение
             </p>
             <input type="number" [(ngModel)]="practicTimeInFormat.timeExersice" class="settings-input">
+            <input [owlDateTimeTrigger]="dt2" [owlDateTime]="dt2" class="settings-input">
+            <owl-date-time [pickerType]="'timer'" #dt2 [startAt]="startAt" [showSecondsTimer]="true"></owl-date-time>
         </div>
         <!-- *ngIf="currPr.exercises.length > 0"
  
@@ -75,11 +77,13 @@
             <input type="number" class="settings-input" [(ngModel)]="practicTimeInFormat.amountCounterGoal">
         </div>
 
-        <div class="settings__sublit">
+        <div class="settings__button">
+            <button class="button button__submit" (click)="back()">
+                Назад
+            </button>
             <button class="button button__submit" (click)="submit()">
                 Применить
             </button>
         </div>
-
     </div>
 </div>

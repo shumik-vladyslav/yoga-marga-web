@@ -37,13 +37,13 @@
 .footer {
     position: fixed;
     bottom: 0;
-    border-top: 1px solid rgb(27, 27, 27);
+   // border-top: 1px solid rgb(27, 27, 27);
     display: flex;
     height: 60px;
     width: 60%;
-    background-color: rgb(207, 207, 207) !important;
     z-index: 2;
     margin: 0 20%;
+    background-color: rgb(207, 207, 207) !important;
 }
 
 .inner {
@@ -89,7 +89,7 @@
     cursor: pointer;
 }
 .img_forward {
-    background: url(../../assets/icons/icons/backward.svg) 0 0/cover  no-repeat;
+    background: url(../../assets/icons/icons/previous-track_icon.png) 0 0/cover  no-repeat;
 }
 .img_play {
     background: url(../../assets/icons/icons/play-back.svg) 0 0/cover  no-repeat;
@@ -100,7 +100,10 @@
     height: 48px;
 }
 .img_next {
-    background: url(../../assets/icons/icons/forward.svg) 0 0/cover  no-repeat;
+    background: url(../../assets/icons/icons/next-track_icon.png) 0 0/cover  no-repeat;
+}
+.footer__bm{
+    background-color: #fff;
 }
 @media (max-width: 1200px) {
     .component {

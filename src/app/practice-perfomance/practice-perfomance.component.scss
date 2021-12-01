@@ -24,7 +24,7 @@
     justify-content: center;
     //max-height :800px;
     width: 100%;
-    height: calc(75vh - 142.8px);
+    height: calc(90vh );
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -45,7 +45,7 @@
     justify-content: space-evenly;
 }
 .text {
-    overflow-y: scroll;
+   // overflow-y: scroll;
     max-width: auto;
     line-height: 20px;
     padding: 0 10px;
@@ -137,4 +137,5 @@ p {
         z-index: 2;
         margin-left: 0;
     }
+ 
 }

@@ -42,6 +42,8 @@ import { MillisecondsToHoursPipe } from './milliseconds-to-hours.pipe';
 import { AngularFirestore, AngularFirestoreModule } from '@angular/fire/firestore';
 import { AddComplexNameComponent } from './add-complex-name/add-complex-name.component';
 import { AddComplexPracticesComponent } from './add-complex-practices/add-complex-practices.component';
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 export const config = {
   firebase: {
@@ -82,7 +84,6 @@ export const config = {
   ],
   imports: [
     BrowserModule,
-
     ReactiveFormsModule,
     FormsModule,
     CommonModule,
@@ -92,29 +93,21 @@ export const config = {
     MatProgressSpinnerModule,
     MatProgressBarModule,
     MatCheckboxModule,
-
     AppRoutingModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
-
       registrationStrategy: 'registerWhenStable:30000'
     }),
-
     AngularFireModule.initializeApp(config.firebase),
-
     AngularFirestoreModule.enablePersistence(),
-    
     BrowserAnimationsModule,
-
-    
-
-
-
+    OwlDateTimeModule,
+    OwlNativeDateTimeModule,
+    FontAwesomeModule,
   ],
   entryComponents: [
     ErrorDialogComponent
   ],
-
   providers: [],
   bootstrap: [AppComponent]
 })

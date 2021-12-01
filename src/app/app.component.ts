@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { SwUpdate } from '@angular/service-worker';
 import { interval } from 'rxjs';
 import { AngularFireService } from './angular-fire.service';
+import { ServiceWorkerModule }from '@angular/service-worker'
 
 @Component({
   selector: 'app-root',
@@ -12,10 +13,10 @@ export class AppComponent {
   contructor(
     AFService: AngularFireService,
     sw: SwUpdate,
+  pwa:ServiceWorkerModule
 
   ) {
     console.log("this.UserData")
-
     interval(3600).subscribe(() => {
       sw.checkForUpdate();
     });

@@ -45,13 +45,13 @@ export class BmPageComponent implements OnInit, AfterViewInit, OnDestroy {
 
       console.log(item);
       console.log(this.allPractics);
-       this.allPractics.forEach(element => {
+      this.allPractics.forEach(element => {
         if (element.id == this.bmId) {
           console.log(element)
           this.currentPractice = element;
 
         }
-        
+
       });
 
     })
@@ -79,11 +79,13 @@ export class BmPageComponent implements OnInit, AfterViewInit, OnDestroy {
 
 
   onPlay(index, event) {
-
+    if (this.playedIdx !== undefined && this.playedIdx !== index) {
+      document.getElementsByTagName('audio')[this.playedIdx].pause();
+    }
     this.playedIdx = index;
 
     let audio = document.getElementsByTagName('audio')[index];
-
+    
     audio.classList.add("active");
 
     audio.addEventListener('ended', (event) => {
@@ -108,21 +110,13 @@ export class BmPageComponent implements OnInit, AfterViewInit, OnDestroy {
 
     else {
       if (document.getElementsByTagName('audio')[index - 1].played) {
-        document.getElementsByTagName('audio')[index - 1].pause()
-      }
-      
-      // if (document.getElementsByTagName('audio')[index - 2].played) {
-      //   document.getElementsByTagName('audio')[index - 2].pause()
-      // }
-      // if (document.getElementsByTagName('audio')[index - 2].played) {
-      //   document.getElementsByTagName('audio')[index - 2].pause()
-      // }
 
+      }
       document.getElementsByTagName('audio')[index].play()
       document.getElementsByTagName('audio')[index].classList.toggle("active")
 
     }
-   // document.getElementsByTagName('audio')[index].volume = 0;
+    // document.getElementsByTagName('audio')[index].volume = 0;
 
   }
 
@@ -136,20 +130,22 @@ export class BmPageComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   Play() {
+    console.log(this.playedIdx, "index");
+
     if (this.playedIdx == undefined || null) {
-
       this.playedIdx == 0
-
-      document.getElementsByTagName('audio')[this.playedIdx].play();
+      document.getElementsByTagName('audio')[0].play();
     }
 
     else {
       document.getElementsByTagName('audio')[this.playedIdx].play();
-    }
+      console.log("Starting Playing///");
+      
+    };
 
     console.log(this.isPlay)
 
-    this.isPlay = false;
+   // this.isPlay = false;
 
   }
 
@@ -168,10 +164,10 @@ export class BmPageComponent implements OnInit, AfterViewInit, OnDestroy {
 
   volumeTumbler() {
     this.volume = !this.volume;
-    if(this.volume == false){
+    if (this.volume == false) {
       document.getElementsByTagName('audio')[this.playedIdx].volume = 0;
     }
-    else(
+    else (
       document.getElementsByTagName('audio')[this.playedIdx].volume = 1
     )
   }

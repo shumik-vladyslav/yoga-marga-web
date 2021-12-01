@@ -37,14 +37,14 @@
 }
 
 .button__submit{
-    width: 280px;
+    width: 40vw;
     height: 60px;
     transition: 500ms;
     font-size: 18px;
 }
 
-.settings__sublit{
+.settings__button{
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
 }
 

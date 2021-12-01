@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "~ng-pick-datetime/assets/style/picker.min.css";
 * {
   padding: 0;
   margin: 0;
@@ -468,6 +469,9 @@ button[disabled] {
   // background: linear-gradient(180deg, rgb(144, 251, 241), rgb(0, 150, 136));
 
   background: radial-gradient(circle, rgba(174,238,194,1) 0%, rgba(0,150,136,1) 100%);
+}
+.footer.footer__bm{
+  background:#fff;
 }
 
 .header {

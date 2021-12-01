@@ -44,6 +44,7 @@
             <p class="hourTimer time__text" *ngIf="CurrentPractic?.id !== 'Asany-1'">{{hourTime | timeTransform}} </p>
 
             <p class ="description__text">{{show.description}}</p>
+            <i class="fas fa-user" style="width: 20px;height: 20px;" ></i>
         </div>
 
         <div class="audio">
@@ -70,7 +71,7 @@
         <img src="../../assets/icons/icons/volume-on.png" alt="on" class="icon-img" (click)="volumeTumbler()"
             *ngIf="volume == false">
 
-        <img src="../../assets/icons/icons/openDoc.png" alt="скачать" class="icon-img" (click)="openText()">
+        <img src="../../assets/icons/icons/file.png" alt="скачать" class="icon-img" (click)="openText()">
 
         <img src="../../assets/icons/icons/file (2).png" alt="начало" class="icon-img" (click)="startExercise()"
             *ngIf="ifStarted == false">
@@ -87,6 +88,7 @@
         <img src="../../assets/icons/icons/settings.png" alt="" class="icon-img" (click)="openSettings()">
 
         <img src="../../assets/icons/icons/close.png" alt="закрыть" class="icon-img" (click)="back()">
+        
 
 
     </div>

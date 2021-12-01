@@ -16,34 +16,19 @@ import { PracticeSettings } from '../PracticesSetting.model';
   styleUrls: ['./practice-perfomance.component.scss']
 })
 export class PracticePerfomanceComponent implements OnInit, OnDestroy {
-
-
   CurrentPractic;
-
   currentExerciseId;
-
   allPractics;
-
   practiceId;
-
   practiceAudio: string;
-
   nowPlaying: boolean = false;
-
   timeLeft: number = 60;
-
   timeAll: number = 0;
-
   subscribeTimerLeft: any;
-
   subscribeTimerAll: any;
-
   onPractic: boolean;
-
   ifStarted: boolean = false;
-
   volume: boolean = true;
-
   show = {
     img: '',
     imgMirror: false,
@@ -53,26 +38,15 @@ export class PracticePerfomanceComponent implements OnInit, OnDestroy {
     exerciseTimer: null,
     audio: ''
   }
-
   userId
-
   userDataAll
-
   settings = new PracticeSettings;
-
   localSettings;
-
-
   reminderFlag
   metronomeFlag
-
-
   hasAmountCounter: boolean = false;
-
   audioPr = new Audio();
-
   audioExercise = new Audio();
-
   constructor(
     private AFService: AngularFireService,
     private router: Router,
@@ -83,142 +57,86 @@ export class PracticePerfomanceComponent implements OnInit, OnDestroy {
   ) {
     this.practiceId = this.route.snapshot.params['id'];
     this.CurrentPractic = AFService.ChoosedPractic;
-
-
-
-
-
     this.settings = PracticeSettings.createInstance();
-
-
   }
-
   ngOnInit(): void {
     console.log(document.getElementsByTagName('audio'))
     this.getUserSettingsPracticesAndData();
-
-
   }
-
   async getUserSettingsPracticesAndData() {
     //Для настроек практик
-
     await this.AFAuth.authState.subscribe(user => {
       this.userId = user.email;
-
       console.log(this.userId);
-
       this.AFS.doc(`users/${this.userId}`).valueChanges().subscribe(res => {
         this.userDataAll = res;
         console.log(this.userDataAll);
-
         this.localSettings = this.userDataAll.practices[this.practiceId];
-
         if (this.localSettings.amountCounter == "NaN") { this.localSettings.amountCounter = 0 }
         console.log(this.localSettings)
-
         if (!this.userDataAll.practices) {
           this.userDataAll.practices = {}
         }
-
         if (!this.userDataAll.practices[this.practiceId]) {
           console.log("no")
           this.userDataAll.practices[this.practiceId] = this.settings
         }
-
-
       })
-
-
       this.AFS.collection(`practices`).valueChanges().subscribe(item => {
-
         this.allPractics = item;
-
-        console.log(item)
-
+        console.log(item);
         this.allPractics.forEach(element => {
-
           if (element.id == this.practiceId) {
             console.log(element)
-
             this.CurrentPractic = element;
-
             this.hasAmountCounter = this.CurrentPractic.hasAmountCounter;
-
             this.show.img = this.CurrentPractic.img;
             this.show.title = this.CurrentPractic.name;
             this.show.description = this.CurrentPractic.shortDescription;
-
             this.reminderFlag = this.localSettings.singleReminder
             if (this.reminderFlag == false) {
               this.reminderFlag = this.localSettings.multiReminder
             }
             this.metronomeFlag = this.CurrentPractic.hasMetronome
-
             this.practiceAudio = this.CurrentPractic?.audio
-
             console.log(this.practiceAudio)
             console.log(this.localSettings.intervals)
             if (this.localSettings.intervals[0] == null) {
               this.localSettings.intervals[0] = { "value": 4 }
             }
-            if (this.localSettings.amountCounter == NaN) { this.localSettings.amountCounter == 0 }
-            //console.log(this.localSettings)
-
-
+            if (isNaN(this.localSettings.amountCounter)) { this.localSettings.amountCounter = 0 }
+            console.log(this.localSettings)
           }
-
         });
-
       })
     })
-
-
-
-
   }
-
-
-
   volumeTumbler() {
-
     // this.volume= !this.volume
-
     if (this.volume === true) {
       this.volume = false;
       this.audioPr.volume = 0;
       this.audioExercise.volume = 0;
-
     }
     else {
       this.volume = true;
       this.audioPr.volume = 1;
       this.audioExercise.volume = 1;
     }
-
   }
-
-
   // функции переключения асан
 
   // первая-- запуск всей практики
   startExercise() {
     //флаг
     this.ifStarted = true;
-
-
     //запускает часовой таймер
     this.hourTimer();
     this.startTimerAll();
-
     //загружает настройки по умолчанию
     this.AFService.updateUser(this.userDataAll, this.userId)
-
-
     this.playAudioPr()
-
     this.nextAsanaAndTime()
-
     //подключаем напоминалку
     //одиночная
     if (this.localSettings.singleReminder === true) {
@@ -228,13 +146,10 @@ export class PracticePerfomanceComponent implements OnInit, OnDestroy {
     if (this.localSettings.multiReminder === true) {
       this.multiReminder(this.localSettings.reminderInterval)
     }
-
     if (this.CurrentPractic.hasMetronome === true) {
       console.log("metronome!!!")
       this.metronome()
-
     }
-
     // для практик с упражнениями, переназначаем практики, ПЕРЕДЕЛАтЬ!!!
     this.currentExerciseId = 0;
     this.show.img = this.CurrentPractic.exercises[this.currentExerciseId].image;
@@ -244,44 +159,28 @@ export class PracticePerfomanceComponent implements OnInit, OnDestroy {
     this.show.imgMirror = this.CurrentPractic.exercises[this.currentExerciseId].mirror;
     //
     this.playAudioExercise()
-
     this.onPractic = true;
-
-
-
     if (document.getElementsByTagName('audio')[0].played) {
       this.nowPlaying = true;
     }
-
     if (document.getElementsByTagName('audio')[0].paused) {
       this.nowPlaying = false;
-
     }
-
-
   }
-
-
   nextExercise() {
     let alpha
     if (this.currentExerciseId > 0) {
       alpha = this.CurrentPractic.exercises[this.currentExerciseId - 1].image
     }
-
-
-
     this.currentExerciseId++;
     this.show.img = this.CurrentPractic.exercises[this.currentExerciseId].image;
     this.show.title = this.CurrentPractic.exercises[this.currentExerciseId].name;
     this.show.description = this.CurrentPractic.exercises[this.currentExerciseId].description;
     this.show.audio = this.CurrentPractic.exercises[this.currentExerciseId].audio
     this.show.imgMirror = this.CurrentPractic.exercises[this.currentExerciseId].mirror;
-
-
     if (alpha == this.CurrentPractic.exercises[this.currentExerciseId].image) {
       console.log("mirror")
     }
-
   }
   audGong
   nextExerciseTumb() {
@@ -576,7 +475,7 @@ export class PracticePerfomanceComponent implements OnInit, OnDestroy {
 
 
   back() {
-    this.userDataAll.practices[this.practiceId].spentTime = this.timeAll + this.userDataAll.practices[this.practiceId].spentTime;
+    this.userDataAll.practices[this.practiceId].spentTime = (this.timeAll *1000) + this.userDataAll.practices[this.practiceId].spentTime;
     if (this.CurrentPractic.hasAmountCounter == true && this.ifStarted == true) {
       this.router.navigate(['amount-counter', this.practiceId])
     }
