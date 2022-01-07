@@ -88,6 +88,20 @@
     z-index: 7;
     cursor: pointer;
 }
+.footer-audio{
+    position: fixed;
+    bottom: 60px;
+   // border-top: 1px solid rgb(27, 27, 27);
+    display: flex;
+    height: 60px;
+    width: 60%;
+    z-index: 2;
+    margin: 0 20%;
+   // background-color: rgb(207, 207, 207) !important;
+}
+.footer-audio_element{
+    width: 100%;
+}
 .img_forward {
     background: url(../../assets/icons/icons/previous-track_icon.png) 0 0/cover  no-repeat;
 }

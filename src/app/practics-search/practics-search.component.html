@@ -1,44 +1,33 @@
 <app-menu></app-menu>
-<div class="content" id="content" manifest = "example.appcache">
+<div class="content" id="content" manifest="example.appcache">
 
     <div class="container ">
         <div class="block__row">
             <input type="text" class="input" placeholder="Поиск" [(ngModel)]="searchModel" #Search
                 (input)="onSearchChange(Search.value)">
         </div>
-       
     </div>
-
-
-    <div class="container container-practic" >
+    <div class="container container-practic">
         <div class="block__row">
             <div class="block__element " *ngFor="let p of filteredPractices " (click)="openPractice(p)">
                 <div class="inner">
+
                     <div class="image">
-                        <img src="{{p?.ico}}"  class="img-icon icon">
+                        <div class="progress" *ngIf='p.goalNum >=0'>
+                            <mat-progress-bar mode="determinate" value="{{p.goalNum}}"></mat-progress-bar>
+                        </div>
+                        <img src="{{p?.ico}}" class="img-icon icon">
                     </div>
                     <div class="text">
                         <p>{{p.name}}</p>
                     </div>
-                    <div class="progress" *ngIf='p.goalNum >=0'>
-                        <mat-progress-bar mode="determinate" value="{{p.goalNum}}"></mat-progress-bar>
-                    </div>
-                    
-
                 </div>
             </div>
-
-
         </div>
-
-
-
     </div>
     <div class="footer">
         <div class="menu-button__block" (click)="onToggleMenu()">
             <span class="menu-button"> </span>
         </div>
-
     </div>
-
 </div>

@@ -1,96 +1,95 @@
 <div class="conmponent">
-    <div class="block">
+  <div class="block">
 
 
 
-        <div class="image" [ngStyle]="{'background-image': 'url('+show.img+')'}"
-            [ngClass]='{mirror : show.imgMirror === true }'>
+    <div class="image" [ngStyle]="{'background-image': 'url('+show.img+')'}"
+      [ngClass]='{mirror : show.imgMirror === true }'>
 
-        </div>
+    </div>
 
-        <div class="time">
-            <!-- <img src="../../assets/icons/icons/clock.png" alt="" class="img-clock__icon"> class="img-clock__icon" -->
-            <div class="img__block">
-                <img class="img-clock__icon"
-                    src="data:image/png;base64,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">
-                <p class="done">{{localSettings?.spentTime | millisecondsToHours}}</p>
-            </div>
-            <div class="img__block" *ngIf="hasAmountCounter">
-                <img src="../../assets/icons/icons/count.png" class="img-clock__icon" style="margin: 5px 0; width: 35px; height: 35px; margin-right:5px;" />
-                <p>{{localSettings?.amountCounter}}</p>
-            </div>
+    <div class="time">
+      <!-- <img src="../../assets/icons/icons/clock.png" alt="" class="img-clock__icon"> class="img-clock__icon" -->
+      <div class="img__block">
+        <img class="img-clock__icon"
+          src="data:image/png;base64,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">
+        <p class="done">{{localSettings?.spentTime | millisecondsToHours}}</p>
+      </div>
+      <div class="img__block" *ngIf="hasAmountCounter">
+        <img src="../../assets/icons/icons/count.png" class="img-clock__icon"
+          style="margin: 5px 0; width: 25px; height: 25px; margin-right:10px;" />
+        <p>{{localSettings?.amountCounter}}</p>
+      </div>
 
-        </div>
+    </div>
 
-        <div class="text">
-            <h1 class="title">{{show.title}}</h1>
+    <div class="text">
+      <h1 class="title">{{show.title}}</h1>
 
-            <!-- <div *ngIf="CurrentPractic?.id == 'Asany-1'  ">
+      <!-- <div *ngIf="CurrentPractic?.id == 'Asany-1'  ">
             <p class="time_left">{{timeLeft | timeTransform}}</p><br>
             <p>прошло:{{timeAll | timeTransform}}</p><br>
 
 
         </div> -->
 
-            <p class="time__text">{{timeAll | timeTransform}}</p><br>
-            <!-- лечение от проявления во всех практикакх, хотя надо только в асанах -->
+      <!-- <p class="time__text">{{timeAll | timeTransform}}</p><br> -->
+      <!-- лечение от проявления во всех практикакх, хотя надо только в асанах -->
 
-            <div *ngIf="CurrentPractic.exercises.length > 0">
-                <p class="time_left">{{timeLeft | timeTransform}}</p><br>
-                <!-- <p>прошло:{{timeAll | timeTransform}}</p><br> -->
+      <div *ngIf="CurrentPractic.exercises.length > 0">
+        <p class="time_left">{{timeLeft | timeTransform}}</p><br>
+        <!-- <p>прошло:{{timeAll | timeTransform}}</p><br> -->
 
-            </div>
+      </div>
 
-            <p class="hourTimer time__text" *ngIf="CurrentPractic?.id !== 'Asany-1'">{{hourTime | timeTransform}} </p>
+      <p class="hourTimer time__text" *ngIf="CurrentPractic?.id !== 'Asany-1'">{{hourTime | timeTransform}} </p>
 
-            <p class ="description__text">{{show.description}}</p>
-            <i class="fas fa-user" style="width: 20px;height: 20px;" ></i>
-        </div>
-
-        <div class="audio">
-            <audio src="{{show.audio}}" id="audio"></audio>
-            <audio src="{{practiceAudio}}" id="audio"></audio>
-        </div>
-        <div class="reminder">
-            <audio src="../../assets/sound/pomni.mp3" id="audio__riminder" *ngIf="reminderFlag == true"></audio>
-        </div>
-
-
-        <div class="metronome" *ngIf="metronomeFlag == true">
-            <!-- <audio src="../../assets/sound/metronom.mp3" id="audio__metronome"></audio> -->
-            <audio src="../../assets/sound/gong.mp3" id="audio__metronome"></audio>
-        </div>
-
-
-
+      <p class="description__text">{{show.description}}</p>
+      <i class="fas fa-user" style="width: 20px;height: 20px;"></i>
     </div>
-    <div class="footer__practic">
 
-        <img src="../../assets/icons/icons/volume-off.png" alt="off" class="icon-img" (click)="volumeTumbler()"
-            *ngIf="volume == true">
-        <img src="../../assets/icons/icons/volume-on.png" alt="on" class="icon-img" (click)="volumeTumbler()"
-            *ngIf="volume == false">
-
-        <img src="../../assets/icons/icons/file.png" alt="скачать" class="icon-img" (click)="openText()">
-
-        <img src="../../assets/icons/icons/file (2).png" alt="начало" class="icon-img" (click)="startExercise()"
-            *ngIf="ifStarted == false">
-
-        <img src="../../assets/icons/icons/pause (2).png" alt="пауза" class="icon-img"
-            *ngIf="  nowPlaying ==  false && currentExerciseId != undefined || null" (click)="pauseExercise()">
-
-        <img src="../../assets/icons/icons/file (2).png" alt="воспроизвести" class="icon-img"
-            *ngIf="nowPlaying ==  true" (click)="playExercise()">
-
-        <img src="../../assets/icons/icons/next.png" alt="следующее" class="icon-img" (click)="nextExerciseTumb()"
-            *ngIf="currentExerciseId != undefined || null">
-
-        <img src="../../assets/icons/icons/settings.png" alt="" class="icon-img" (click)="openSettings()">
-
-        <img src="../../assets/icons/icons/close.png" alt="закрыть" class="icon-img" (click)="back()">
-        
-
-
+    <div class="audio">
+      <audio src="{{show.audio}}" id="audio"></audio>
+      <audio src="{{practiceAudio}}" id="audio"></audio>
     </div>
+    <div class="reminder">
+      <audio src="../../assets/sound/pomni.mp3" id="audio__riminder" *ngIf="reminderFlag == true"></audio>
+    </div>
+
+
+    <div class="metronome" *ngIf="metronomeFlag == true">
+      <!-- <audio src="../../assets/sound/metronom.mp3" id="audio__metronome"></audio> -->
+      <audio src="../../assets/sound/gong.mp3" id="audio__metronome"></audio>
+    </div>
+
+
+
+  </div>
+  <div class="footer__practic">
+
+    <img src="../../assets/icons/icons/volume-off.png" alt="off" class="icon-img" (click)="volumeTumbler()"
+      *ngIf="volume == true">
+    <img src="../../assets/icons/icons/volume-on.png" alt="on" class="icon-img" (click)="volumeTumbler()"
+      *ngIf="volume == false">
+
+    <img src="../../assets/icons/icons/file.png" alt="скачать" class="icon-img" (click)="openText()">
+
+    <img src="../../assets/icons/icons/file (2).png" alt="начало" class="icon-img" (click)="startExercise()"
+      *ngIf="ifStarted == false">
+
+    <img src="../../assets/icons/icons/pause (2).png" alt="пауза" class="icon-img"
+      *ngIf="  nowPlaying ==  false && currentExerciseId != undefined || null" (click)="pauseExercise()">
+
+    <img src="../../assets/icons/icons/file (2).png" alt="воспроизвести" class="icon-img" *ngIf="nowPlaying ==  true"
+      (click)="playExercise()">
+
+    <img src="../../assets/icons/icons/next.png" alt="следующее" class="icon-img" (click)="nextExerciseTumb()"
+      *ngIf="currentExerciseId != undefined || null">
+
+    <img src="../../assets/icons/icons/settings.png" alt="" class="icon-img" (click)="openSettings()">
+
+    <img src="../../assets/icons/icons/close.png" alt="закрыть" class="icon-img" (click)="back()">
+
+  </div>
 </div>
 <!-- <button (click)="metronome()" >rrr</button> -->

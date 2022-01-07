@@ -75,15 +75,15 @@
 }
 
 .time_left {
-    font-size: 24px;
+    font-size: 30px;
     font-weight: bolder;
     text-align: center;
 }
 
 .img-clock__icon {
-    width: 40px;
-    height: 40px;
-    //  background-color: #fff;
+    width: 25px;
+    height: 25px;
+    margin-right: 10px;
 }
 
 .img__block {
@@ -103,6 +103,9 @@ p {
 .description__text{
     font-size: 17px;
     line-height: 20px;
+}
+.hourTimer{
+    font-size: 30px;
 }
 @media (max-width: 500px) {
     .image {

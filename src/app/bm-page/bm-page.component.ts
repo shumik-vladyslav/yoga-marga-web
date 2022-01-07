@@ -102,20 +102,26 @@ export class BmPageComponent implements OnInit, AfterViewInit, OnDestroy {
 
 
   }
-  onClick(index) {
-    if (index == 0) {
-      document.getElementsByTagName('audio')[index].play()
-      document.getElementsByTagName('audio')[index].classList.toggle("active")
-    }
+  currentTrackUrl;
+  onTrackClick(index, track) {
+    this.currentTrackUrl = track.url;
+    setTimeout(()=>{ 
+    document.getElementsByTagName('audio')[0].play()  
+    }, 1000)
+    
+    // if (index == 0) {
+    //   document.getElementsByTagName('audio')[index].play()
+    //   document.getElementsByTagName('audio')[index].classList.toggle("active")
+    // }
 
-    else {
-      if (document.getElementsByTagName('audio')[index - 1].played) {
+    // else {
+    //   if (document.getElementsByTagName('audio')[index - 1].played) {
 
-      }
-      document.getElementsByTagName('audio')[index].play()
-      document.getElementsByTagName('audio')[index].classList.toggle("active")
+    //   }
+    //   document.getElementsByTagName('audio')[index].play()
+    //   document.getElementsByTagName('audio')[index].classList.toggle("active")
 
-    }
+    // }
     // document.getElementsByTagName('audio')[index].volume = 0;
 
   }
