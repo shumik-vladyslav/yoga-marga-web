@@ -8,8 +8,8 @@
 
 
   </div>
-  <div class="items" *ngFor="let track of currentPractice?.bmtracks; let i=index" #track>
-    <div class="inner" (click)="onTrackClick(i, track)">
+  <div class="items" *ngFor="let track of currentPractice?.bmtracks; let i=index" #track >
+    <div class="inner" (click)="onTrackClick(i, track)" [ngClass]="{'selected': playedTrackIndex == ( i)}">
       <p class="text"> {{i+1}}. {{track.name}}</p>
       <!-- <audio src="{{track.url}}" class="audio " id='{{i}}' controls (play)="onPlay(i, $event)" (pause)="onPlay(i, $event)"> 
       </audio>-->
@@ -19,7 +19,7 @@
 <div class="footer-audio">
   <audio class="footer-audio_element"
     src="{{currentTrackUrl}}"
-    controls > </audio>
+    controls (play)="onPlay()" (pause)="onPlay()"> </audio>
 </div>
 <div class="footer footer__bm">
 
@@ -29,13 +29,13 @@
     <img src="../../assets/icons/icons/volume-on.png" alt="on" class="icon-img" (click)="volumeTumbler()"
       *ngIf="!volume">
   </div>
-  <div class="inne" (click)="before()">
+  <div class="inne" (click)="previous()">
     <div class="icon-img img_forward"></div>
   </div>
 
   <div class="inne">
-    <img src="../../assets/icons/icons/file (2).png" alt="" class="icon-img" *ngIf="isPlay" (click)="Play() ">
-    <img src="../../assets/icons/icons/pause (2).png" alt="" class="icon-img" *ngIf="!isPlay" (click)="onPause()">
+    <img src="../../assets/icons/icons/file (2).png" alt="" class="icon-img" *ngIf="isPlay" (click)="play() ">
+    <img src="../../assets/icons/icons/pause (2).png" alt="" class="icon-img" *ngIf="!isPlay" (click)="pause()">
   </div>
   <div class="inne" (click)="next()">
     <div class="icon-img img_next"></div>

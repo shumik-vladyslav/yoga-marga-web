@@ -1,14 +1,14 @@
-.input{
+.input {
     font-size: 18px;
     font-weight: bold;
     color: rgb(0, 150, 136);
     text-align: center;
-  //  line-height: 14px;
+    //  line-height: 14px;
 }
 
 .menu-close {
     display: flex;
-    //  justify-content:flex-end;
+    position: relative;
 }
 
 .menu__close-btn {
@@ -28,19 +28,20 @@
 
 .menu__close-line {
     width: 10px;
-    height: 1px;
-    background: rgb(0, 150, 136);
-   bottom: 25px; 
-   left: 46.5% ;
+    height: 2px;
+    background: #009688;
+    bottom: 14px;
+    left: 7px;
     transform: rotate(45deg);
-
     position: absolute;
 }
 .menu__close-btn::before {
     content: "";
     width: 20px;
-    height: 1px;
-    background: rgb(0, 150, 136);
+    height: 2px;
+    background: #009688;
     transform: rotate(135deg);
     position: absolute;
+    bottom: 18px;
+    left: 13px;
 }

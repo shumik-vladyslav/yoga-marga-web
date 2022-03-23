@@ -109,7 +109,7 @@ export class PracticsSearchComponent implements OnInit {
         if (this.userStartedPractices[iterator].priority >= 0) {
           priority = this.userStartedPractices[iterator].priority
         }
-        console.log(iterator, this.userStartedPractices[iterator])
+
         if (iterator == element.id && num > 0) {
           element.goalNum = Math.round(num)
 

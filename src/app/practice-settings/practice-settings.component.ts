@@ -30,30 +30,18 @@ export class PracticeSettingsComponent implements OnInit, OnDestroy {
     this.practiceId = this.route.snapshot.params['id'];
     console.log(this.practiceId)
   }
-
   userId;
-
   userDataAll: any = {};
-
   settings = new PracticeSettings;
-
   practiceId
-
   allPractices
-
   currPr
-
   remindType = true;
-
   checked1 = false;
   checked2 = false;
-
   metronomeFlag;
-
   hasAmountCounter: boolean = false;
-
   intervalsMetronome
-
   practicTimeInFormat = {
     timePractice: null,
     timereminder: null,
@@ -106,7 +94,7 @@ export class PracticeSettingsComponent implements OnInit, OnDestroy {
         console.log(this.userDataAll);
 
         this.localSettings = this.userDataAll.practices[this.practiceId]
-        console.log(this.localSettings)
+        console.log("localsettings", this.localSettings)
 
         this.practicTimeInFormat.timePractice = this.localSettings.practiceDuration / 1000 / 60 / 60;
         this.practicTimeInFormat.timereminder = this.localSettings.reminderInterval / 1000 / 60;
@@ -180,13 +168,13 @@ export class PracticeSettingsComponent implements OnInit, OnDestroy {
   }
 
   submit() {
-    this.localSettings.reminderInterval = this.practicTimeInFormat.timereminder * 1000 * 60
+    this.localSettings.reminderInterval = this.practicTimeInFormat.timereminder * 1000 * 60;
     this.localSettings.spentTimeGoal = this.practicTimeInFormat.spentTimeGoal * 1000 * 60 * 60;
     if (this.practicTimeInFormat.amountCounterGoal > 0) {
       this.localSettings.amountCounterGoal = this.practicTimeInFormat.amountCounterGoal;
-    }
-    this.userDataAll.practices[this.practiceId] = this.localSettings
-    this.AFService.updateUser(this.userDataAll, this.userId)
+    };
+    this.userDataAll.practices[this.practiceId] = this.localSettings;
+    this.AFService.updateUser(this.userDataAll, this.userId);
 
     this._location.back();
   }
@@ -219,6 +207,18 @@ export class PracticeSettingsComponent implements OnInit, OnDestroy {
   }
   ngOnDestroy() {
 
+  }
+  dateTimeTime;
+  dateTimeChanged(event, index) {
+
+    let time = Date.parse(event.value);
+    
+    console.log("changed", time);
+    const str_time = time.toString();
+    const result = Number(str_time.slice(5, 12))-760000;
+    this.dateTimeTime = result*10;
+    console.log("result", result);
+    this.localSettings.exercises[index].exerciseDuration = this.dateTimeTime;
   }
 }
 

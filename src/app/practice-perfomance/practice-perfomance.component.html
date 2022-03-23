@@ -1,8 +1,5 @@
 <div class="conmponent">
   <div class="block">
-
-
-
     <div class="image" [ngStyle]="{'background-image': 'url('+show.img+')'}"
       [ngClass]='{mirror : show.imgMirror === true }'>
 
@@ -36,34 +33,25 @@
       <!-- <p class="time__text">{{timeAll | timeTransform}}</p><br> -->
       <!-- лечение от проявления во всех практикакх, хотя надо только в асанах -->
 
-      <div *ngIf="CurrentPractic.exercises.length > 0">
+      <div *ngIf="CurrentPractic?.exercises.length > 0">
         <p class="time_left">{{timeLeft | timeTransform}}</p><br>
         <!-- <p>прошло:{{timeAll | timeTransform}}</p><br> -->
-
       </div>
-
       <p class="hourTimer time__text" *ngIf="CurrentPractic?.id !== 'Asany-1'">{{hourTime | timeTransform}} </p>
-
       <p class="description__text">{{show.description}}</p>
       <i class="fas fa-user" style="width: 20px;height: 20px;"></i>
     </div>
-
     <div class="audio">
       <audio src="{{show.audio}}" id="audio"></audio>
-      <audio src="{{practiceAudio}}" id="audio"></audio>
+      <audio src="{{practiceAudio}}" id="audio" ></audio>
     </div>
     <div class="reminder">
       <audio src="../../assets/sound/pomni.mp3" id="audio__riminder" *ngIf="reminderFlag == true"></audio>
     </div>
-
-
     <div class="metronome" *ngIf="metronomeFlag == true">
       <!-- <audio src="../../assets/sound/metronom.mp3" id="audio__metronome"></audio> -->
       <audio src="../../assets/sound/gong.mp3" id="audio__metronome"></audio>
     </div>
-
-
-
   </div>
   <div class="footer__practic">
 

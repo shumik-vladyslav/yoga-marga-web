@@ -4,16 +4,16 @@
         <h1> Комплексы практик</h1>
     </header>
     <div class="container">
-        <h2 class="h2__header"> Общие комплексы</h2>
+        <h2 class="h2__header white-text_headers"> Общие комплексы</h2>
         <div class="complex__block">
             <div class="complex__element" *ngFor="let element of DataAll.array" (click)="openComplex_listPage(element.name)">
                 <img src="{{element.ico}}" alt="" class="img-icon">
                 <p>{{element.name}}</p>
             </div>
         </div>
-        <h2 class="h2__header"> Личные комплексы</h2>
+        <h2 class="h2__header white-text_headers"> Личные комплексы</h2>
         <div class="complex__block">
-            <p *ngIf=" userComplexes == null||undefined">У Вас пока нет комплексов, но Вы можете их создать</p>
+            <p *ngIf=" userComplexes == null||undefined" class="h2__header white-text_headers">У Вас пока нет комплексов, но Вы можете их создать</p>
             <div class="complex__element" *ngFor="let element of userComplexes" (click)="openComplex_listPage(element.name)">
                 <img src="{{element.ico}}" alt="" class="img-icon">
                 <p>{{element.name}}</p>

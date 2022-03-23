@@ -44,6 +44,7 @@ import { AddComplexNameComponent } from './add-complex-name/add-complex-name.com
 import { AddComplexPracticesComponent } from './add-complex-practices/add-complex-practices.component';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { MillisecondsToTimePipe } from './milliseconds-to-time.pipe';
 
 export const config = {
   firebase: {
@@ -80,7 +81,8 @@ export const config = {
     AmountCounterComponent,
     MillisecondsToHoursPipe,
     AddComplexNameComponent,
-    AddComplexPracticesComponent
+    AddComplexPracticesComponent,
+    MillisecondsToTimePipe
   ],
   imports: [
     BrowserModule,

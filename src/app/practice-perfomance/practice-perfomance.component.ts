@@ -6,6 +6,7 @@ import { Location, NgIf } from '@angular/common';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { PracticeSettings } from '../PracticesSetting.model';
+import { SetiingsModel } from '../models/setiings-model';
 
 
 //import { Track } from 'ngx-audio-player';
@@ -22,7 +23,7 @@ export class PracticePerfomanceComponent implements OnInit, OnDestroy {
   practiceId;
   practiceAudio: string;
   nowPlaying: boolean = false;
-  timeLeft: number = 60;
+  timeLeft: number = 30;
   timeAll: number = 0;
   subscribeTimerLeft: any;
   subscribeTimerAll: any;
@@ -47,6 +48,8 @@ export class PracticePerfomanceComponent implements OnInit, OnDestroy {
   hasAmountCounter: boolean = false;
   audioPr = new Audio();
   audioExercise = new Audio();
+  exerciseIndex = 0;
+  currentExerciseduration: number;
   constructor(
     private AFService: AngularFireService,
     private router: Router,
@@ -72,8 +75,31 @@ export class PracticePerfomanceComponent implements OnInit, OnDestroy {
         this.userDataAll = res;
         console.log(this.userDataAll);
         this.localSettings = this.userDataAll.practices[this.practiceId];
+        console.log("LocalSettings", this.localSettings);
+        if (this.localSettings == undefined) {
+          //this.localSettings = new SetiingsModel;
+          this.localSettings = {
+            defaultAudioIdx: 0,
+            exerciseDuration: 0,
+            intervals: [],
+            metronomeFlag: false,
+            multiReminder: false,
+            practiceDuration: 3600000,
+            reminderInterval: 60000,
+            singleReminder: false,
+            spentTime: 0,
+            spentTimeGoal: 0,
+          };
+          console.log("LocalSettingsByModel", this.localSettings);
+
+        }
+        if (this.localSettings?.exercises.length > 0) {
+          this.currentExerciseduration = this.localSettings.exercises[0].exerciseDuration;
+          this.timeLeft = this.localSettings.exercises[0].exerciseDuration / 1000;
+        }
+
         if (this.localSettings.amountCounter == "NaN") { this.localSettings.amountCounter = 0 }
-        console.log(this.localSettings)
+        console.log("Localsettings", this.localSettings)
         if (!this.userDataAll.practices) {
           this.userDataAll.practices = {}
         }
@@ -87,20 +113,20 @@ export class PracticePerfomanceComponent implements OnInit, OnDestroy {
         console.log(item);
         this.allPractics.forEach(element => {
           if (element.id == this.practiceId) {
-            console.log(element)
+            console.log("CurrentPractick", element);
             this.CurrentPractic = element;
             this.hasAmountCounter = this.CurrentPractic.hasAmountCounter;
             this.show.img = this.CurrentPractic.img;
             this.show.title = this.CurrentPractic.name;
             this.show.description = this.CurrentPractic.shortDescription;
-            this.reminderFlag = this.localSettings.singleReminder
+            this.reminderFlag = this.localSettings.singleReminder;
             if (this.reminderFlag == false) {
-              this.reminderFlag = this.localSettings.multiReminder
+              this.reminderFlag = this.localSettings.multiReminder;
             }
-            this.metronomeFlag = this.CurrentPractic.hasMetronome
-            this.practiceAudio = this.CurrentPractic?.audio
-            console.log(this.practiceAudio)
-            console.log(this.localSettings.intervals)
+            this.metronomeFlag = this.CurrentPractic.hasMetronome;
+            this.practiceAudio = this.CurrentPractic.audio;
+            console.log('AuDiO', this.practiceAudio);
+            console.log(this.localSettings.intervals);
             if (this.localSettings.intervals[0] == null) {
               this.localSettings.intervals[0] = { "value": 4 }
             }
@@ -136,7 +162,7 @@ export class PracticePerfomanceComponent implements OnInit, OnDestroy {
     //загружает настройки по умолчанию
     this.AFService.updateUser(this.userDataAll, this.userId)
     this.playAudioPr()
-    this.nextAsanaAndTime()
+    //this.nextAsanaAndTime()
     //подключаем напоминалку
     //одиночная
     if (this.localSettings.singleReminder === true) {
@@ -168,9 +194,12 @@ export class PracticePerfomanceComponent implements OnInit, OnDestroy {
     }
   }
   nextExercise() {
-    let alpha
+    let alpha;
+    console.log("this.currentExerciseId", this.currentExerciseId);
+    console.log("currentExerciseId", this.currentExerciseId);
+
     if (this.currentExerciseId > 0) {
-      alpha = this.CurrentPractic.exercises[this.currentExerciseId - 1].image
+      alpha = this.CurrentPractic.exercises[this.currentExerciseId - 1]?.image
     }
     this.currentExerciseId++;
     this.show.img = this.CurrentPractic.exercises[this.currentExerciseId].image;
@@ -178,6 +207,7 @@ export class PracticePerfomanceComponent implements OnInit, OnDestroy {
     this.show.description = this.CurrentPractic.exercises[this.currentExerciseId].description;
     this.show.audio = this.CurrentPractic.exercises[this.currentExerciseId].audio
     this.show.imgMirror = this.CurrentPractic.exercises[this.currentExerciseId].mirror;
+
     if (alpha == this.CurrentPractic.exercises[this.currentExerciseId].image) {
       console.log("mirror")
     }
@@ -185,9 +215,14 @@ export class PracticePerfomanceComponent implements OnInit, OnDestroy {
   audGong
   nextExerciseTumb() {
 
-    this.nextExercise()
+    this.nextExercise();
 
-    this.pauseTimerAll()
+    this.pauseTimerAll();
+    this.exerciseIndex++;
+    if (this.CurrentPractic.exercises[0] && !this.localSettings.exercises) {
+      this.localSettings.exercises = this.CurrentPractic.exercises;
+    }
+    this.currentExerciseduration = this.localSettings.exercises[this.exerciseIndex].exerciseDuration;
 
     this.audioExercise.pause()
     this.audioExercise.src = this.show.audio
@@ -197,22 +232,17 @@ export class PracticePerfomanceComponent implements OnInit, OnDestroy {
 
     this.intervalAll = setInterval(() => { this.timeAll++ }, 1000)
 
-    this.timeLeft = 59;
+    this.timeLeft = this.currentExerciseduration / 1000;
 
     this.interval = setInterval(() => {
       if (this.timeLeft == 1) {
         console.log("one sec")
-
       }
       if (this.timeLeft === 0) {
-
-        this.nextAsanaAndTime2()
-
-
+        this.nextExerciseTumb();
       }
       this.timeLeft--;
-
-
+      console.log(this.timeLeft);
     }, 1000)
 
 
@@ -226,7 +256,8 @@ export class PracticePerfomanceComponent implements OnInit, OnDestroy {
   playAudioPr() {
     this.audioPr = new Audio()
     this.audioPr.src = this.practiceAudio;
-    this.audioPr.load()
+    this.audioPr.load();
+    this.audioPr.play();
   }
 
   playAudioExercise() {
@@ -347,7 +378,6 @@ export class PracticePerfomanceComponent implements OnInit, OnDestroy {
     this.nowPlaying = false;
 
     if (this.CurrentPractic.hasMetronome === true) {
-      console.log("metronome!!!")
       this.metronome()
     }
   }
@@ -360,17 +390,17 @@ export class PracticePerfomanceComponent implements OnInit, OnDestroy {
   nextAsanaAndTime2() {
     this.timeInterval = setInterval(() => {
       if (this.onPractic == true) {
-        this.nextExercise()
+        this.nextExercise();
 
         //лечение от залипания переключения на остановке паузы
-        if (this.timeLeft !== 60) {
+        if (this.timeLeft !== this.currentExerciseduration / 1000) {
           clearInterval(this.timeInterval)
-          this.nextAsanaAndTime()
+          //  this.nextAsanaAndTime()
 
         }
 
         if (this.timeLeft <= 0) {
-          this.timeLeft = 60
+          this.timeLeft = this.currentExerciseduration / 1000;
         }
         if (this.timeLeft == 1) {
           let audGong = new Audio()
@@ -379,24 +409,23 @@ export class PracticePerfomanceComponent implements OnInit, OnDestroy {
           audGong.play
         }
       }
-    }, this.timeLeft * 1000)
+    }, this.currentExerciseduration)
   }
 
 
   // для переключения асан
   nextAsanaAndTime() {
-
-
+    console.log("nextAsana", this.currentExerciseduration);
     this.timeInterval = setInterval(() => {
       if (this.onPractic == true) {
-        this.nextExercise()
+        this.nextExercise();
       }
-    }, this.time * 1000)
+    }, this.currentExerciseduration)
   }
 
   //переменные для таймера
 
-  time: number = 60;
+  time: number = 30;
 
   interval;
 
@@ -406,24 +435,24 @@ export class PracticePerfomanceComponent implements OnInit, OnDestroy {
 
   play;
 
-
-
-
-
-
   startTimerAll() {
-
     this.intervalAll = setInterval(() => { this.timeAll++ }, 1000)
-
     this.interval = setInterval(() => {
       if (this.timeLeft > 0) {
         this.timeLeft--;
       } else {
-        this.timeLeft = 59;
+        this.timeLeft = (this.currentExerciseduration / 1000) - 1;
       }
 
       if (this.timeLeft == 0) {
+        if (this.CurrentPractic.exercises[0] && !this.localSettings.exercises) {
+          this.localSettings.exercises = this.CurrentPractic.exercises;
+        }
         console.log("time over!")
+        this.exerciseIndex++;
+        this.currentExerciseduration = this.localSettings.exercises[this.exerciseIndex].exerciseDuration;
+
+        this.nextExercise();
         this.audGong = new Audio()
         this.audGong.src = "../../assets/sound/gong.mp3"
         this.audGong.load();
@@ -475,9 +504,13 @@ export class PracticePerfomanceComponent implements OnInit, OnDestroy {
 
 
   back() {
-    this.userDataAll.practices[this.practiceId].spentTime = (this.timeAll *1000) + this.userDataAll.practices[this.practiceId].spentTime;
+    if (this.ifStarted == true) {
+      this.saveProgressPractice()
+    };
+
     if (this.CurrentPractic.hasAmountCounter == true && this.ifStarted == true) {
-      this.router.navigate(['amount-counter', this.practiceId])
+      //  this.router.navigate(['amount-counter', this.practiceId])
+      this._location.back();
     }
     else {
       this._location.back();
@@ -485,7 +518,18 @@ export class PracticePerfomanceComponent implements OnInit, OnDestroy {
 
   }
 
+  saveProgressPractice() {
+    if (this.userDataAll.practices[this.practiceId]) {
+      this.userDataAll.practices[this.practiceId].spentTime = (this.timeAll * 1000) + this.userDataAll.practices[this.practiceId].spentTime;
+    }
+    else {
+      this.localSettings.spentTime = (this.timeAll * 1000);
 
+
+      this.userDataAll.practices[this.practiceId] = this.localSettings;
+      console.log("SpETTime", this.userDataAll.practices);
+    };
+  }
 
   ngOnDestroy() {
     this.audioExercise.pause()

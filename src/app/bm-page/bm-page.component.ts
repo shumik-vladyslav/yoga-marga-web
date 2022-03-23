@@ -12,21 +12,15 @@ import { Location } from '@angular/common';
 })
 export class BmPageComponent implements OnInit, AfterViewInit, OnDestroy {
   currentPractice;
-
-  audio
-
-  playedIdx = 0
-
-  played
-
+  audio;
+  playedTrackIndex = 0;
+  played;
   isPlay: boolean = true;
-
   bmId;
-
   allPractics;
-
   volume: boolean = true;
-
+  currentTrackUrl;
+  indexPosition;
   constructor(
     private AFService: AngularFireService,
     private router: Router,
@@ -34,36 +28,21 @@ export class BmPageComponent implements OnInit, AfterViewInit, OnDestroy {
     private AFS: AngularFirestore,
     private _location: Location,
   ) {
-
     this.currentPractice = this.AFService.ChoosedPractic;
-
     this.bmId = this.route.snapshot.params['id'];
-
     this.AFService.GetPractices().subscribe(item => {
-
       this.allPractics = item
-
-      console.log(item);
       console.log(this.allPractics);
       this.allPractics.forEach(element => {
         if (element.id == this.bmId) {
           console.log(element)
           this.currentPractice = element;
-
+          this.currentTrackUrl = this.currentPractice.bmtracks[0].url;
         }
-
       });
-
     })
-
-
   }
-
   ngOnInit(): void {
-
-
-
-
 
   }
 
@@ -78,91 +57,62 @@ export class BmPageComponent implements OnInit, AfterViewInit, OnDestroy {
 
 
 
-  onPlay(index, event) {
-    if (this.playedIdx !== undefined && this.playedIdx !== index) {
-      document.getElementsByTagName('audio')[this.playedIdx].pause();
-    }
-    this.playedIdx = index;
-
-    let audio = document.getElementsByTagName('audio')[index];
-    
-    audio.classList.add("active");
-
+  onPlay() {
+    let audio = document.getElementsByTagName('audio')[0];
     audio.addEventListener('ended', (event) => {
-      console.log("конец")
-      document.getElementsByTagName('audio')[index + 1].play()
+      console.log("ending, next");
+      this.next();
     })
-
-    if (document.getElementsByTagName('audio')[index].played) {
+    if (document.getElementsByTagName('audio')[0].played) {
       this.isPlay = false;
     }
-    if (document.getElementsByTagName('audio')[index].paused) {
+    if (document.getElementsByTagName('audio')[0].paused) {
       this.isPlay = true;
     }
-
-
   }
-  currentTrackUrl;
+
   onTrackClick(index, track) {
+    this.playedTrackIndex = index;
     this.currentTrackUrl = track.url;
-    setTimeout(()=>{ 
-    document.getElementsByTagName('audio')[0].play()  
+    setTimeout(() => {
+      document.getElementsByTagName('audio')[0].play()
     }, 1000)
-    
-    // if (index == 0) {
-    //   document.getElementsByTagName('audio')[index].play()
-    //   document.getElementsByTagName('audio')[index].classList.toggle("active")
-    // }
-
-    // else {
-    //   if (document.getElementsByTagName('audio')[index - 1].played) {
-
-    //   }
-    //   document.getElementsByTagName('audio')[index].play()
-    //   document.getElementsByTagName('audio')[index].classList.toggle("active")
-
-    // }
-    // document.getElementsByTagName('audio')[index].volume = 0;
-
   }
-
-  onPause() {
-    document.getElementsByTagName('audio')[this.playedIdx].pause()
-
-    console.log(this.isPlay);
-
+  pause() {
+    document.getElementsByTagName('audio')[0].pause()
     this.isPlay = true;
-
   }
-
-  Play() {
-    console.log(this.playedIdx, "index");
-
-    if (this.playedIdx == undefined || null) {
-      this.playedIdx == 0
-      document.getElementsByTagName('audio')[0].play();
-    }
-
-    else {
-      document.getElementsByTagName('audio')[this.playedIdx].play();
-      console.log("Starting Playing///");
-      
-    };
-
-    console.log(this.isPlay)
-
-   // this.isPlay = false;
-
+  play() {
+    document.getElementsByTagName('audio')[0].play();
   }
 
   next() {
-    document.getElementsByTagName('audio')[this.playedIdx].pause();
-    document.getElementsByTagName('audio')[this.playedIdx + 1].play();
+    this.playedTrackIndex++;
+    console.log("next", this.playedTrackIndex);
+    if (this.playedTrackIndex == this.currentPractice.bmtracks.length) {
+      this.playedTrackIndex = 0;
+      this.currentTrackUrl = this.currentPractice.bmtracks[this.playedTrackIndex].url;
+      setTimeout(() => {
+        document.getElementsByTagName('audio')[0].play();
+      }, 1000);
+      return
+    }
+    this.currentTrackUrl = this.currentPractice.bmtracks[this.playedTrackIndex].url;
+    setTimeout(() => {
+      document.getElementsByTagName('audio')[0].play();
+    }, 1000);
   }
 
-  before() {
-    document.getElementsByTagName('audio')[this.playedIdx].pause();
-    document.getElementsByTagName('audio')[this.playedIdx - 1].play();
+  previous() {
+    console.log("next", this.playedTrackIndex);
+    if (this.playedTrackIndex === 0) {
+      this.playedTrackIndex = this.currentPractice.bmtracks.length;
+    }
+    this.playedTrackIndex--;
+    this.currentTrackUrl = this.currentPractice.bmtracks[this.playedTrackIndex].url;
+    setTimeout(() => {
+      document.getElementsByTagName('audio')[0].play();
+    }, 1000);
   }
   close() {
     this._location.back();
@@ -171,21 +121,21 @@ export class BmPageComponent implements OnInit, AfterViewInit, OnDestroy {
   volumeTumbler() {
     this.volume = !this.volume;
     if (this.volume == false) {
-      document.getElementsByTagName('audio')[this.playedIdx].volume = 0;
+      document.getElementsByTagName('audio')[0].volume = 0;
     }
     else (
-      document.getElementsByTagName('audio')[this.playedIdx].volume = 1
+      document.getElementsByTagName('audio')[0].volume = 1
     )
   }
 
   // async onSelectTrack(i): Promise<void> {
-  //   this.onPause();
-  //   this.playedIdx = i;
+  //   this.pause();
+  //   this.playedTrackIndex = i;
   //   this.played = this.practice.bmtracks[i];
   //   const url = await this.checkCache(this.played.url) 
   //   this.played.audio = new Audio(url);
   //   this.played.audio.addEventListener("ended",  () => {
-  //     if (this.playedIdx + 1 >= this.practice.bmtracks.length) return;
+  //     if (this.playedTrackIndex + 1 >= this.practice.bmtracks.length) return;
   //     this.onForw();
   //   }, false);  
   //   await this.onPlay();

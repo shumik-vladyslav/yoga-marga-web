@@ -1,89 +1,99 @@
 <app-menu></app-menu>
 <div class="content">
-    <div class="header">
-        <h1>
-            Настройки
-        </h1>
+  <div class="header">
+    <h1>
+      Настройки
+    </h1>
+  </div>
+  <div class="container">
+    <div class="setting__block">
+      <p class="text">
+        Установите приоритет (чем больше число, тем выше практика в списке)
+      </p>
+      <input type="number" [(ngModel)]="localSettings.priority" class="settings-input">
+      <!-- [(ngModel)]='settings.priority' -->
     </div>
-    <div class="container">
-        <div class="setting__block">
-            <p class="text">
-                Установите приоритет (чем больше число, тем выше практика в списке)
-            </p>
-            <input type="number" [(ngModel)]="localSettings.priority" class="settings-input">
-            <!-- [(ngModel)]='settings.priority' -->
-        </div>
-        <div class="setting__block">
-            <p class="text">
-                Установите время всей практики
-            </p>
-            <input type="number" [(ngModel)]="practicTimeInFormat.timePractice" class="settings-input">
-            <!--  -->
-        </div>
-        <!--     -->
-        <div class="setting__block">
-            <p class="text">
-                Также вы можете установить время на каждое упражнение
-            </p>
-            <input type="number" [(ngModel)]="practicTimeInFormat.timeExersice" class="settings-input">
-            <input [owlDateTimeTrigger]="dt2" [owlDateTime]="dt2" class="settings-input">
-            <owl-date-time [pickerType]="'timer'" #dt2 [startAt]="startAt" [showSecondsTimer]="true"></owl-date-time>
-        </div>
-        <!-- *ngIf="currPr.exercises.length > 0"
+    <div class="setting__block">
+      <p class="text">
+        Установите время всей практики
+      </p>
+      <input type="number" [(ngModel)]="practicTimeInFormat.timePractice" class="settings-input">
+      <!--  -->
+    </div>
+    <!--     -->
+
+    <!-- *ngIf="currPr.exercises.length > 0"
  
 -->
 
 
-        <div class="setting__block">
-            <p class="text">
-                Установите время, через которое вы получите сообщение о неотвлечении
-            </p>
-            <input type="number" [(ngModel)]="practicTimeInFormat.timereminder" class="settings-input">
-            <mat-slide-toggle color="primary" class="toggle-button" (click)="checkSingle()"
-                [(ngModel)]="localSettings.singleReminder">
-                Однократное напоминание</mat-slide-toggle>
-            <mat-slide-toggle color="primary" class="toggle-button" (click)="checkMulti()"
-                [(ngModel)]="localSettings.multiReminder">
-                Многократное напоминание</mat-slide-toggle>
+    <div class="setting__block">
+      <p class="text">
+        Установите время, через которое вы получите сообщение о неотвлечении
+      </p>
+      <input type="number" [(ngModel)]="practicTimeInFormat.timereminder" class="settings-input">
+      <mat-slide-toggle color="primary" class="toggle-button" (click)="checkSingle()"
+        [(ngModel)]="localSettings.singleReminder">
+        Однократное напоминание</mat-slide-toggle>
+      <mat-slide-toggle color="primary" class="toggle-button" (click)="checkMulti()"
+        [(ngModel)]="localSettings.multiReminder">
+        Многократное напоминание</mat-slide-toggle>
 
 
-        </div>
-        <div class="setting__block" *ngIf="metronomeFlag == true">
-            <div class="metronome__settings">
-                <p class="text">
-                    Настройте метроном
-                </p>
-                <button class="button" (click)="addMetronomTime()">+</button>
-            </div>
-            <div class="bl" *ngFor="let interval of localSettings.intervals; let i = index">
-                <input type="number" class="settings-input" [(ngModel)]="localSettings.intervals[i].value"> <button
-                    class="button" (click)="deleteMetronomTime(i)">-</button>
-            </div>
-
-            <!--  -->
-        </div>
-
-        <div class="setting__block">
-            <p class="text">
-                Цель: время проведенное в практике (часов)
-            </p>
-            <input type="number" class="settings-input" [(ngModel)]="practicTimeInFormat.spentTimeGoal">
-        </div>
-
-        <div class="setting__block" *ngIf="hasAmountCounter == true">
-            <p class="text">
-                Цель: выполнить раз (например количество простираний)
-            </p>
-            <input type="number" class="settings-input" [(ngModel)]="practicTimeInFormat.amountCounterGoal">
-        </div>
-
-        <div class="settings__button">
-            <button class="button button__submit" (click)="back()">
-                Назад
-            </button>
-            <button class="button button__submit" (click)="submit()">
-                Применить
-            </button>
-        </div>
     </div>
+    <div class="setting__block" *ngIf="metronomeFlag == true">
+      <div class="metronome__settings">
+        <p class="text">
+          Настройте метроном
+        </p>
+        <button class="button" (click)="addMetronomTime()">+</button>
+      </div>
+      <div class="bl" *ngFor="let interval of localSettings.intervals; let i = index">
+        <input type="number" class="settings-input" [(ngModel)]="localSettings.intervals[i].value"> <button
+          class="button" (click)="deleteMetronomTime(i)">-</button>
+      </div>
+
+      <!--  -->
+    </div>
+
+    <div class="setting__block">
+      <p class="text">
+        Цель: время проведенное в практике (часов)
+      </p>
+      <input type="number" class="settings-input" [(ngModel)]="practicTimeInFormat.spentTimeGoal">
+    </div>
+
+    <div class="setting__block" *ngIf="hasAmountCounter == true">
+      <p class="text">
+        Цель: выполнить раз (например количество простираний)
+      </p>
+      <input type="number" class="settings-input" [(ngModel)]="practicTimeInFormat.amountCounterGoal">
+    </div>
+    <div class="setting__block">
+      <p class="text">
+        Также вы можете установить время на каждое упражнение
+      </p>
+      <p class="text">{{dateTimeTime | millisecondsToTime}}</p>
+      <input type="number" [(ngModel)]="practicTimeInFormat.timeExersice" class="settings-input">
+
+      <div *ngFor="let time of localSettings?.exercises; let i = index" class="settings-input-block">
+        <p class="text" style="position: absolute;top: 30px;left: -420px;">{{time.name}}</p>
+        <p class="text" style="position: absolute; top: 30px;left: 66px;">{{time.exerciseDuration | millisecondsToTime}}
+        </p>
+        <input [owlDateTimeTrigger]="dt2" [owlDateTime]="dt2" class="" (dateTimeChange)="dateTimeChanged($event, i)"
+          style="opacity: 0;">
+        <owl-date-time [pickerType]="'timer'" #dt2 [startAt]="startAt" [showSecondsTimer]="true">
+        </owl-date-time>
+      </div>
+
+    </div>
+    <div class="settings__button">
+      <button class="button button__submit" (click)="back()">
+        Назад
+      </button>
+      <button class="button button__submit" (click)="submit()">
+        Применить
+      </button>
+    </div>
+  </div>
 </div>
