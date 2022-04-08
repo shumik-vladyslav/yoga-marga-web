@@ -41,7 +41,8 @@ export class MenuComponent implements OnInit {
   }
 
   logout() {
-    this.firebaseAuth.signOut()
+    localStorage.removeItem("auth"); 
+    //this.firebaseAuth.signOut()
     this.router.navigate(['login'])
   }
 

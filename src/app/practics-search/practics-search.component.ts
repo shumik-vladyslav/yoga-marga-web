@@ -156,30 +156,33 @@ export class PracticsSearchComponent implements OnInit {
   async getUserData() {
 
 
+
+
+    this.AFservice.GetPractices().subscribe(item => {
+      console.log(item)
+      this.practices = item;
+      this.filteredPractices = this.practices;
+      this.practiceGoalLine()
+    })
+
+    /*
     await this.AFAuth.authState.subscribe(user => {
       this.userId = user.email;
-
       console.log(this.userId);
       this.AFS.doc(`users/${this.userId}`).valueChanges().subscribe(res => {
+        console.log(res); 
         this.userDataAll = res;
         console.log(this.userDataAll);
         this.userStartedPractices = this.userDataAll.practices
         console.log(this.userStartedPractices)
-
-
         this.AFservice.GetPractices().subscribe(item => {
           console.log(item)
           this.practices = item;
           this.filteredPractices = this.practices;
           this.practiceGoalLine()
-          
         })
-
-
-
-
       })
-    })
+    })*/
 
 
   }

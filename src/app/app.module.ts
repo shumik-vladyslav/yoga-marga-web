@@ -45,7 +45,7 @@ import { AddComplexPracticesComponent } from './add-complex-practices/add-comple
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MillisecondsToTimePipe } from './milliseconds-to-time.pipe';
-
+import { HttpClientModule }   from '@angular/common/http';
 export const config = {
   firebase: {
     apiKey: "AIzaSyB_GbsCOx3bVOQ8ewbi0wmET7rV5yh-nq0",
@@ -106,6 +106,7 @@ export const config = {
     OwlDateTimeModule,
     OwlNativeDateTimeModule,
     FontAwesomeModule,
+    HttpClientModule
   ],
   entryComponents: [
     ErrorDialogComponent

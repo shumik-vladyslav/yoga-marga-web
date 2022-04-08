@@ -74,6 +74,14 @@ export class PersonalInfoComponent implements OnInit {
   async getUserData() {
 
 
+    const auth = JSON.parse(localStorage.getItem("auth"));
+
+    this.userId = auth.id;
+    this.userData.spiritalName = auth.spiritual_name;
+    this.userData.name = auth.full_name;
+    this.userData.status = auth.status;
+    this.init();
+    /*
     await this.AFAuth.authState.subscribe(user => {
       this.userId = user.email;
 
@@ -87,7 +95,7 @@ export class PersonalInfoComponent implements OnInit {
         this.userData.status = this.userDataAll.status
         this.init()
       })
-    })
+    })*/
 
 
 

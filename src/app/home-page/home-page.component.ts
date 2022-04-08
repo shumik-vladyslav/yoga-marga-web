@@ -16,7 +16,8 @@ export class HomePageComponent implements OnInit {
   ngOnInit(): void {
   }
  logout(){
-  this.afAuth.signOut()
+  //this.afAuth.signOut()
+  localStorage.removeItem("auth");  
   this.router.navigate(["login"])
 
  }
