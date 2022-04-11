@@ -20,25 +20,18 @@
                         <input type="text " class="input__cabinet" [(ngModel)]="userData.spiritalName">
                     </div>
 
-
-
-                    <div class="inpput__block"> <span class="world__name span">Ф.И.О</span></div> 
+                    <div class="inpput__block"> <span class="world__name span">Имя</span></div> 
                     <div class="inpput__block">
                         <input type="text" class="input__cabinet" [(ngModel)]="userData.name">
                     </div>
-
-
-                    <div class="inpput__block"><span class="gender span">Пол</span> </div>  
+                    <div class="inpput__block"> <span class="world__name span">Фамилия</span></div> 
                     <div class="inpput__block">
-                        <select name="" id="" class="select__cabinet">
-
-                            <option value="1" hidden ng-selected="selected"></option>
-
-                            <option value="Матаджи">Матаджи</option>
-                            <option value="Прабху">Прабху</option>
-
-                        </select>
+                        <input type="text" class="input__cabinet" [(ngModel)]="userData.lastname">
                     </div>
+
+
+                  
+                    
 
 
 
@@ -54,20 +47,49 @@
 
                         </select>
                     </div>
+                    
 
-
-                    <div class="inpput__block"><span class="phone span">Телефон</span> </div>   
+                    <div class="inpput__block"><span class="status span">Курс обучения</span> </div>  
                     <div class="inpput__block">
-                        <input type="text" class="input__cabinet">
+                        <select name="" id="" class="select__cabinet" [(ngModel)]="userData.course">
+
+                            <option value="{{userData.course }}" hidden ng-selected="selected"> {{userData.course }}
+                            </option>
+                           <option value="850">1</option>
+                           <option value="851">2</option>
+                           <option value="853">3</option>
+                           <option value="8715">4</option>
+                           <option value="855">5</option>
+                           <option value="856">6</option>
+                           <option value="858">7</option>
+                           <option value="4432">8</option>
+                           <option value="8716">9</option>
+                           <option value="859">10</option>
+                           <option value="4431">11</option>
+                           <option value="4433">12</option>
+
+                        </select>
                     </div>
 
 
-                    <mat-slide-toggle [(ngModel)]="CheckButton">Slide me!</mat-slide-toggle>
-                    <mat-checkbox class="example-margin" [(ngModel)]="goldThemeCheckbox"
-                        (change)="change($event.checked)">Check
-                        me!</mat-checkbox>
+                    <div class="inpput__block"><span class="status span">Пароль</span> </div> 
+                    <div class="inpput__block">
+                        <input type="text" class="input__cabinet" [(ngModel)]="userData.password">
+                    </div>
+                    <div class="inpput__block"><span class="status span">Повторите пароль</span> </div> 
+                    <div class="inpput__block">
+                        <input type="text" class="input__cabinet" [(ngModel)]="userData.confirmPassword">
+                    </div>
+
+                  
+
+
+                    
 
                     <button class="button" (click)="changeUserData()">Изменить данные</button>
+
+                    <span style="color: #327ea6;
+                    padding: 15px;">Для изменения e-mail напишите<br>администратору support@institute-vasishtha.com</span>
 
 
                     <!-- <mat-progress-spinner class="example-margin" color="warn" mode="determinate" value="10"></mat-progress-spinner> -->

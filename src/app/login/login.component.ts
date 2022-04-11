@@ -67,12 +67,14 @@ export class LoginComponent implements OnInit {
       const authState = {
         email: response.user.EMAIL,
         active: true,
-        full_name: `${response.user.NAME} ${response.user.LAST_NAME}`,
+        name: response.user.NAME,
+        lastname: response.user.LAST_NAME,
         gender: "",
         id: response.user.ID,
         phone: "",
         spiritual_name: response.user.UF_DUH_NAME,
-        status: "Пользователь"
+        status: "Пользователь",
+        course: response.user.COURSE
       };
       localStorage.setItem("auth", JSON.stringify(authState)); 
       this.router.navigate(['practices-search']);

@@ -15,7 +15,8 @@
             <input type="text" class="input" placeholder="Email" [(ngModel)]="data.Email" formControlName="Email"
                 [ngClass]="{'error-validation': (myForm.controls.Email.invalid) && (customeValidation === false)}">
             <!-- <label for="">Статус</label> -->
-            <select name="Status" id="" class="select" [(ngModel)]="data.Status" formControlName="Status"
+
+           <!-- <select name="Status" id="" class="select" [(ngModel)]="data.Status" formControlName="Status"
                 [ngClass]="{'error-validation': (myForm.controls.Status.invalid) && (customeValidation === false)}">
                 <option value="Грихастха">Грихастха</option>
                 <option value="Заочный символ веры">Заочный символ веры</option>
@@ -25,7 +26,22 @@
                 <option value="Пурна-санньяси">Пурна-санньяси</option>
                 <option value="Символ веры">Символ веры</option>
                 <option value="Разработчик">Разработчик</option>
+                <option value="" disabled hidden ng-selected="selected"> Статус</option>-->
+
+                <select placeholder="Статус" name="Status" id="" class="select" [(ngModel)]="data.Status" formControlName="Status"
+                [ngClass]="{'error-validation': (myForm.controls.Status.invalid) && (customeValidation === false)}">
+                <option value="10">Новичок</option>
+                <option value="11">Заочный Символ Веры Санатана Дхармы</option>
+                <option value="12">Заочный Символ Веры Прибежища</option>
+                <option value="13">Очный Символ Веры Санатана Дхармы</option>
+                <option value="14">Очный Символ Веры Прибежища</option>
+                <option value="15">Грихастха</option>
+                <option value="16">Карма-санньяси</option>
+                <option value="17">Ванапрастха</option>
+                <option value="18">Брахмачари</option>
+                <option value="19">Санньяси</option>
                 <option value="" disabled hidden ng-selected="selected"> Статус</option>
+               
 
 
             </select>

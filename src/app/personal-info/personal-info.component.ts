@@ -2,7 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireService } from '../angular-fire.service';
-
+import {IVService} from "../iv.service"
 @Component({
   selector: 'app-personal-info',
   templateUrl: './personal-info.component.html',
@@ -14,6 +14,7 @@ export class PersonalInfoComponent implements OnInit {
     private AFS: AngularFirestore,
     private AFService: AngularFireService,
     private AFAuth: AngularFireAuth,
+    private IV: IVService
   ) {
 
     setTimeout(() => {
@@ -44,10 +45,12 @@ export class PersonalInfoComponent implements OnInit {
 
   userData = {
     name: "",
+    lastname: "",
     spiritalName: "",
     status: "",
-    gender: "",
-    phone: ""
+    password: "",
+    confirmPassword: "",
+    course: ""
   }
 
   goalsArr: any = []
@@ -78,8 +81,10 @@ export class PersonalInfoComponent implements OnInit {
 
     this.userId = auth.id;
     this.userData.spiritalName = auth.spiritual_name;
-    this.userData.name = auth.full_name;
+    this.userData.name = auth.name;
+    this.userData.lastname = auth.lastname;
     this.userData.status = auth.status;
+    this.userData.course = auth.course;
     this.init();
     /*
     await this.AFAuth.authState.subscribe(user => {
@@ -169,11 +174,16 @@ export class PersonalInfoComponent implements OnInit {
 
 
   changeUserData() {
+    if(this.userData.password && this.userData.password != this.userData.confirmPassword) {
+      alert("Пароли не совпадают");
+      return false;
+    }
+    this.IV.api("profileUpdate", {id: this.userId, ...this.userData}).subscribe();
+    return true; 
+    /*
     if (this.userDataAll !== null || undefined) {
       this.AFS.doc(`users/${this.userId}`).update(this.userDataAll)
-    }
-
-    console.log(this.status)
+    }*/
   }
 
   CheckButto() {

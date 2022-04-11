@@ -103,6 +103,25 @@
     position: absolute;
 }
 
+.ivlink img{
+    width: 45px;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+
+.ivlink {
+    font-size: 18px;
+    color: white;
+    background: #029789;
+    text-align: center;
+    padding: 10px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
 @media (max-width: 800px) {
     .componentt {
         width: 70%;

@@ -7,9 +7,9 @@
    
     <input type="password" placeholder="Пароль" name="" id="" formControlName="Password" name="password"[ngClass]="{'error-validation': (myForm.controls.Password.invalid) &&   (customeValidation === false)}" >
     
-   
+    <a style="text-align: right;padding-right: 10px; text-decoration: underline;" href="https://institute-vasishtha.com/auth/?forgot_password=yes">Забыли пароль?</a>
     <button type="submit" class="button button-submit"  (click)="onSignin()">Войти</button>
-    <p class="text">Еще нет аккаунта? <a routerLink="/signup">Зарегистрируйтесь</a></p>
+    <p class="text">Еще нет аккаунта? <a href="https://institute-vasishtha.com/personal/register/">Зарегистрируйтесь</a></p>
  
   </div>
 </form></div>
