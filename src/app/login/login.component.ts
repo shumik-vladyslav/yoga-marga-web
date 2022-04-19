@@ -73,7 +73,7 @@ export class LoginComponent implements OnInit {
         id: response.user.ID,
         phone: "",
         spiritual_name: response.user.UF_DUH_NAME,
-        status: "Пользователь",
+        status: response.user.UF_SP,
         course: response.user.COURSE
       };
       localStorage.setItem("auth", JSON.stringify(authState)); 

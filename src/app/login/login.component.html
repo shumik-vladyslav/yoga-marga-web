@@ -3,6 +3,7 @@
     <div class="component">
  
     <img  class="img-sing-in" src="/assets/logo/logo.jpg" alt="img-sing-in"  > 
+    <div class="login-description">Используйте для входа данные своего аккаунта<br>на портале Институт риши Васиштхи</div>
     <input type="email" placeholder="email" formControlName="Email" name="login"  [ngClass]="{'error-validation': (myForm.controls.Email.invalid) && (customeValidation === false)}">
    
     <input type="password" placeholder="Пароль" name="" id="" formControlName="Password" name="password"[ngClass]="{'error-validation': (myForm.controls.Password.invalid) &&   (customeValidation === false)}" >
@@ -10,6 +11,6 @@
     <a style="text-align: right;padding-right: 10px; text-decoration: underline;" href="https://institute-vasishtha.com/auth/?forgot_password=yes">Забыли пароль?</a>
     <button type="submit" class="button button-submit"  (click)="onSignin()">Войти</button>
     <p class="text">Еще нет аккаунта? <a href="https://institute-vasishtha.com/personal/register/">Зарегистрируйтесь</a></p>
- 
+    <p class="text">Тех. поддержка: <a href="mailto:support@institute-vasishtha.com">support@institute-vasishtha.com</a></p>
   </div>
 </form></div>

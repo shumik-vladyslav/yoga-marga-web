@@ -53,15 +53,29 @@ export class PersonalInfoComponent implements OnInit {
     course: ""
   }
 
-  goalsArr: any = []
+  goalsArr: any = [];
+
+  statuses: any = [];
 
   userEmail = this.AFService.userId;
 
   practiceName
 
   ngOnInit(): void {
-
-    this.getUserData()
+    this.statuses = {
+      "10": "Новичок",
+      "11": "Заочный Символ Веры Санатана Дхармы",
+      "12": "Заочный Символ Веры Прибежища",
+      "13": "Очный Символ Веры Санатана Дхармы",
+      "14": "Очный Символ Веры Прибежища",
+      "15": "Грихастха",
+      "16": "Карма-санньяси",
+      "17": "Ванапрастха",
+      "18": "Брахмачари",
+      "19": "Санньяси"
+    };
+    this.getUserData();
+  
   }
 
 
@@ -78,14 +92,16 @@ export class PersonalInfoComponent implements OnInit {
 
 
     const auth = JSON.parse(localStorage.getItem("auth"));
-
+    
     this.userId = auth.id;
     this.userData.spiritalName = auth.spiritual_name;
     this.userData.name = auth.name;
     this.userData.lastname = auth.lastname;
-    this.userData.status = auth.status;
+    this.userData.status = this.statuses[auth.status];
     this.userData.course = auth.course;
+  
     this.init();
+   
     /*
     await this.AFAuth.authState.subscribe(user => {
       this.userId = user.email;
@@ -178,7 +194,10 @@ export class PersonalInfoComponent implements OnInit {
       alert("Пароли не совпадают");
       return false;
     }
+    delete this.userData.course;
+    delete this.userData.status;
     this.IV.api("profileUpdate", {id: this.userId, ...this.userData}).subscribe();
+    alert("Успешно!");
     return true; 
     /*
     if (this.userDataAll !== null || undefined) {

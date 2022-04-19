@@ -37,38 +37,13 @@
 
                     <div class="inpput__block"><span class="status span">Статус</span> </div>  
                     <div class="inpput__block">
-                        <select name="" id="" class="select__cabinet" [(ngModel)]="userData.status">
-
-                            <option value="{{userData.status }}" hidden ng-selected="selected"> {{userData.status }}
-                            </option>
-                            <option value="Грихастха">Грихастха</option>
-                            <option value="Карма-Санньяси">Карма-Санньяси</option>
-                            <option value="Пурна-Санньяси">Пурна-Санньяси</option>
-
-                        </select>
+                        <input disabled type="text" class="input__cabinet" [(ngModel)]="userData.status">
                     </div>
                     
 
                     <div class="inpput__block"><span class="status span">Курс обучения</span> </div>  
                     <div class="inpput__block">
-                        <select name="" id="" class="select__cabinet" [(ngModel)]="userData.course">
-
-                            <option value="{{userData.course }}" hidden ng-selected="selected"> {{userData.course }}
-                            </option>
-                           <option value="850">1</option>
-                           <option value="851">2</option>
-                           <option value="853">3</option>
-                           <option value="8715">4</option>
-                           <option value="855">5</option>
-                           <option value="856">6</option>
-                           <option value="858">7</option>
-                           <option value="4432">8</option>
-                           <option value="8716">9</option>
-                           <option value="859">10</option>
-                           <option value="4431">11</option>
-                           <option value="4433">12</option>
-
-                        </select>
+                        <input disabled type="text" class="input__cabinet" [(ngModel)]="userData.course">
                     </div>
 
 
@@ -88,8 +63,8 @@
 
                     <button class="button" (click)="changeUserData()">Изменить данные</button>
 
-                    <span style="color: #327ea6;
-                    padding: 15px;">Для изменения e-mail напишите<br>администратору support@institute-vasishtha.com</span>
+                    <div style="color: #327ea6;
+                    padding: 15px;">Для изменения e-mail напишите<br>администратору support@institute-vasishtha.com</div>
 
 
                     <!-- <mat-progress-spinner class="example-margin" color="warn" mode="determinate" value="10"></mat-progress-spinner> -->
